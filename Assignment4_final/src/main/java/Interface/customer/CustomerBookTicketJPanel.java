@@ -288,28 +288,51 @@ public class CustomerBookTicketJPanel extends javax.swing.JPanel {
         String airlinerName = comboAirliner.getSelectedItem().toString();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd"); 
         try {
-            ft.parse(departureTime);       
-            if (from.equals("") || to.equals("")) {
+            if (departureTime.equals("")) {
+                if (from.equals("") || to.equals("")) {
                 JOptionPane.showMessageDialog(null, "please fill in the from and to information", "warning",JOptionPane.WARNING_MESSAGE); 
-            } else {
-                if (airlinerName.equals("Any Airliners")) {
-                    List<Flight> allFlights = airlinerDirectory.getAllFligthsByCondition(from, to, departureTime);
-                    if (allFlights == null) {
-                        JOptionPane.showMessageDialog(null, "No matching flight found"); 
-                    } else {
-                        pupulateFlightsTable(allFlights);
-                    }
                 } else {
-                    Airliner searchAirliner = airlinerDirectory.searchAirlinerByName(airlinerName);
-                    List<Flight> searchFlights = searchAirliner.searchFlightByConditions(from, to, departureTime);
-                    if (searchFlights == null) {
-                        JOptionPane.showMessageDialog(null, "No matching flight found"); 
+                    if (airlinerName.equals("Any Airliners")) {
+                        List<Flight> allFlights = airlinerDirectory.getAllFligthsByCondition(from, to, departureTime);
+                        if (allFlights == null) {
+                            JOptionPane.showMessageDialog(null, "No matching flight found"); 
+                        } else {
+                            pupulateFlightsTable(allFlights);
+                        }
                     } else {
-                        pupulateFlightsTable(searchFlights);
+                        Airliner searchAirliner = airlinerDirectory.searchAirlinerByName(airlinerName);
+                        List<Flight> searchFlights = searchAirliner.searchFlightByConditions(from, to, departureTime);
+                        if (searchFlights == null) {
+                            JOptionPane.showMessageDialog(null, "No matching flight found"); 
+                        } else {
+                            pupulateFlightsTable(searchFlights);
+                        }
+                    }
+                }
+            } else {
+                ft.parse(departureTime);
+                if (from.equals("") || to.equals("")) {
+                JOptionPane.showMessageDialog(null, "please fill in the from and to information", "warning",JOptionPane.WARNING_MESSAGE); 
+                } else {
+                    if (airlinerName.equals("Any Airliners")) {
+                        List<Flight> allFlights = airlinerDirectory.getAllFligthsByCondition(from, to, departureTime);
+                        if (allFlights == null) {
+                            JOptionPane.showMessageDialog(null, "No matching flight found"); 
+                        } else {
+                            pupulateFlightsTable(allFlights);
+                        }
+                    } else {
+                        Airliner searchAirliner = airlinerDirectory.searchAirlinerByName(airlinerName);
+                        List<Flight> searchFlights = searchAirliner.searchFlightByConditions(from, to, departureTime);
+                        if (searchFlights == null) {
+                            JOptionPane.showMessageDialog(null, "No matching flight found"); 
+                        } else {
+                            pupulateFlightsTable(searchFlights);
+                        }
                     }
                 }
             }
-            
+
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "departure time format is not correct", "warning",JOptionPane.WARNING_MESSAGE);
         }

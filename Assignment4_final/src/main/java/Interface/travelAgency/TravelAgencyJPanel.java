@@ -50,7 +50,7 @@ public class TravelAgencyJPanel extends javax.swing.JPanel {
         
         for (Airplane airplane : airliner.getFleet().getAirplaneDirectory()) {
             for (Flight flight : airplane.getFlights()) {
-                Object[] row = new Object[6];
+                Object[] row = new Object[7];
                 row[0] = airplane.getSerialNumber();
                 row[1] = flight.getFlightNumber();
                 row[2] = flight.getFrom();
@@ -58,6 +58,7 @@ public class TravelAgencyJPanel extends javax.swing.JPanel {
                 row[4] = flight.getDepartureTime();
                 row[5] = flight.getArriveTime();
                 row[6] = flight.getPrice();
+                
                 dtm.addRow(row);
             }
         }
@@ -70,13 +71,15 @@ public class TravelAgencyJPanel extends javax.swing.JPanel {
         for (Airliner airliner : airlinerList) {
             for (Airplane airplane : airliner.getFleet().getAirplaneDirectory()) {
                 for (Flight flight : airplane.getFlights()) {
-                    Object[] row = new Object[6];
-                    row[0] = flight.getFlightNumber();
-                    row[1] = flight.getFrom();
-                    row[2] = flight.getTo();
-                    row[3] = flight.getDepartureTime();
-                    row[4] = flight.getArriveTime();
-                    row[5] = flight.getPrice();
+                    Object[] row = new Object[7];
+                    row[0] = airplane.getSerialNumber();
+                    row[1] = flight.getFlightNumber();
+                    row[2] = flight.getFrom();
+                    row[3] = flight.getTo();
+                    row[4] = flight.getDepartureTime();
+                    row[5] = flight.getArriveTime();
+                    row[6] = flight.getPrice();
+                
                     dtm.addRow(row);
                 }
             }

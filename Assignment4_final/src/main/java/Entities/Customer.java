@@ -60,11 +60,13 @@ public class Customer extends User{
     
     public void addSeat(Seat seat) {
         seat.setIsAvailable(false);
+        seat.getFlight().findSeat(seat.getRow(), seat.getColumn(), seat.getLocation()).setIsAvailable(false);
         mySeats.add(seat);
     }
     
     public void deleteSeat(Seat seat) {
         seat.setIsAvailable(true);
+        seat.getFlight().findSeat(seat.getRow(), seat.getColumn(), seat.getLocation()).setIsAvailable(true);
         mySeats.remove(seat);
     }
     

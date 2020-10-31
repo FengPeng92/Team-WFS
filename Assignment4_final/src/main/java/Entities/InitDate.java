@@ -82,18 +82,18 @@ public class InitDate {
             //String arriveTime = "08/13/2020";
         
             //int row, int column, String location, Flight flight, boolean isAvailable, Customer customer
-            Flight flight1 = new Flight("1", "Boston", "Beijing", ft.parse("2020-10-22"), ft.parse("2020-10-23"), 320.0);
-            Flight flight2 = new Flight("2", "Boston", "Beijing", ft.parse("2020-10-22"), ft.parse("2020-10-23"), 1000.0);
-            Flight flight3 = new Flight("3", "Beijing", "Shanghai", ft.parse("2020-10-20"), ft.parse("2020-10-21"), 500.0);
-            Flight flight4 = new Flight("4", "Beijing", "Wuhan", ft.parse("2020-10-20"), ft.parse("2020-10-20"), 300.0);
-            Flight flight5 = new Flight("5", "Wuhan", "Beijing", ft.parse("2020-10-21"), ft.parse("2020-10-21"), 400.0);
-            Flight flight6 = new Flight("6", "Boston", "Wuhan", ft.parse("2020-10-22"), ft.parse("2020-10-24"), 430.0);
-            Flight flight7 = new Flight("7", "Chengdu", "Beijing", ft.parse("2020-10-21"), ft.parse("2020-10-21"), 540.0);
-            Flight flight8 = new Flight("8", "Guangzhou", "Beijing", ft.parse("2020-10-19"), ft.parse("2020-10-20"), 550.0);
-            Flight flight9 = new Flight("9", "Shanghai", "Beijing", ft.parse("2020-10-24"), ft.parse("2020-10-25"), 660.0);
-            Flight flight10 = new Flight("10", "Shanghai", "Beijing", ft.parse("2020-10-26"), ft.parse("2020-10-27"), 600.0);
-            Flight flight11 = new Flight("11", "Boston", "Guangzhou", ft.parse("2020-10-25"), ft.parse("2020-10-25"), 520.0);
-            Flight flight12 = new Flight("12", "Boston", "Shanghai", ft.parse("2020-10-22"), ft.parse("2020-10-23"), 800.0);
+            Flight flight1 = new Flight("a1", "Boston", "Beijing", ft.parse("2020-10-22"), ft.parse("2020-10-23"), 320.0);
+            Flight flight2 = new Flight("a2", "Boston", "Beijing", ft.parse("2020-10-22"), ft.parse("2020-10-23"), 1000.0);
+            Flight flight3 = new Flight("a3", "Beijing", "Shanghai", ft.parse("2020-10-20"), ft.parse("2020-10-21"), 500.0);
+            Flight flight4 = new Flight("a4", "Beijing", "Wuhan", ft.parse("2020-10-20"), ft.parse("2020-10-20"), 300.0);
+            Flight flight5 = new Flight("a5", "Wuhan", "Beijing", ft.parse("2020-10-21"), ft.parse("2020-10-21"), 400.0);
+            Flight flight6 = new Flight("a6", "Boston", "Wuhan", ft.parse("2020-10-22"), ft.parse("2020-10-24"), 430.0);
+            Flight flight7 = new Flight("a7", "Chengdu", "Beijing", ft.parse("2020-10-21"), ft.parse("2020-10-21"), 540.0);
+            Flight flight8 = new Flight("a8", "Guangzhou", "Beijing", ft.parse("2020-10-19"), ft.parse("2020-10-20"), 550.0);
+            Flight flight9 = new Flight("a9", "Shanghai", "Beijing", ft.parse("2020-10-24"), ft.parse("2020-10-25"), 660.0);
+            Flight flight10 = new Flight("a10", "Shanghai", "Beijing", ft.parse("2020-10-26"), ft.parse("2020-10-27"), 600.0);
+            Flight flight11 = new Flight("a11", "Boston", "Guangzhou", ft.parse("2020-10-25"), ft.parse("2020-10-25"), 520.0);
+            Flight flight12 = new Flight("a12", "Boston", "Shanghai", ft.parse("2020-10-22"), ft.parse("2020-10-23"), 800.0);
             
             Seat seat1 = new Seat(12, 1, "middle", flight1, true, customer1);
             Seat seat2 = new Seat(10, 1, "left", flight2, true, customer1);
