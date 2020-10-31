@@ -5,6 +5,13 @@
  */
 package Interface.customer;
 
+import Entities.AirlinerDirectory;
+import Entities.Customer;
+import Entities.Seat;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jaysu
@@ -14,8 +21,47 @@ public class CustomersJPanel extends javax.swing.JPanel {
     /**
      * Creates new form customersJPanel
      */
+    private Customer customer;
+    private JPanel UserProcessContainer;
+    private AirlinerDirectory airlinerDirectory;
     public CustomersJPanel() {
+        
+    }
+
+    public CustomersJPanel(Customer customer, AirlinerDirectory airlinerDirectory, JPanel UserProcessContainer) {
+        this.customer = customer;
+        this.UserProcessContainer = UserProcessContainer;
+        this.airlinerDirectory = airlinerDirectory;
         initComponents();
+        populate();
+        populateTickets();
+    }
+    
+    public void populate() {
+        txtName.setText(customer.getUserName());
+        txtAge.setText(String.valueOf(customer.getAge()));
+        txtGender.setText(customer.getGender());
+        txtTravelOffice.setText(customer.getTravelOffice().getUserName()); 
+        
+    }
+    
+    public void populateTickets() {
+        DefaultTableModel dtm=(DefaultTableModel) tableTickets.getModel();
+        List<Seat> mySeats = customer.getMySeats();
+        dtm.setRowCount(0);
+        
+        for (Seat seat : mySeats) {
+            Object[] row = new Object[6];
+            row[0] = seat;
+            row[1] = seat.getFlight().getFrom();
+            row[2] = seat.getFlight().getTo();
+            row[3] = seat.getFlight().getDepartureTime();
+            row[4] = seat.getFlight().getArriveTime();
+            String location = seat.getColumn() + " col, " + seat.getRow() + " row, " + seat.getLocation();
+            row[5] = location;
+            dtm.addRow(row);
+        }
+        
     }
 
     /**

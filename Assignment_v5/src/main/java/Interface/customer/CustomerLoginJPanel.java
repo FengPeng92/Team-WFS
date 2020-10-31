@@ -5,6 +5,7 @@
  */
 package Interface.customer;
 
+import Entities.AirlinerDirectory;
 import Entities.Customer;
 import Entities.CustomerDirectory;
 import Entities.TravelOffice;
@@ -28,11 +29,13 @@ public class CustomerLoginJPanel extends javax.swing.JPanel {
     private CustomerDirectory customerDirectory;
     private JPanel UserProcessContainer;
     private TravelOfficeDirectory travelOfficeDirectory;
+    private AirlinerDirectory airlinerDirectory;
     public CustomerLoginJPanel() {
     }
 
-    public CustomerLoginJPanel(CustomerDirectory customerDirectory, TravelOfficeDirectory travelOfficeDirectory, JPanel UserProcessContainer) {
+    public CustomerLoginJPanel(AirlinerDirectory airlinerDirectory, CustomerDirectory customerDirectory, TravelOfficeDirectory travelOfficeDirectory, JPanel UserProcessContainer) {
         initComponents();
+        this.airlinerDirectory = airlinerDirectory;
         this.customerDirectory = customerDirectory;
         this.UserProcessContainer = UserProcessContainer;
         this.travelOfficeDirectory = travelOfficeDirectory;
@@ -87,6 +90,11 @@ public class CustomerLoginJPanel extends javax.swing.JPanel {
         });
 
         btnBack.setText("back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -176,23 +184,26 @@ public class CustomerLoginJPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        List<Customer> customerList = customerDirectory.getCustomerList();
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         String travelOffice = comboTravelOffice.getSelectedItem().toString();
         Customer loginCustomer = null;
         
-        if (username == "" || password == "" || travelOffice == "") {
+        if (username.equals("") || password.equals("") || travelOffice.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill in the information", "warning",JOptionPane.WARNING_MESSAGE);           
         } else {
-            loginCustomer = customerDirectory.searchCustomerByName(username, travelOffice);
+            loginCustomer = customerDirectory.searchCustomerByName(username, travelOffice); 
             if (loginCustomer == null) {
-                JOptionPane.showMessageDialog(null, "Username doesn't exist", "warning",JOptionPane.WARNING_MESSAGE);   
+                JOptionPane.showMessageDialog(null, "username or travel office is not correct", "warning",JOptionPane.WARNING_MESSAGE);   
             } else if (!loginCustomer.getPassword().equals(password) && !loginCustomer.getTravelOffice().getUserName().equals(travelOffice)) {
                 JOptionPane.showMessageDialog(null, "Password or Travel Office is not correct", "warning",JOptionPane.WARNING_MESSAGE); 
             } else {
                 System.out.println("Login Successed");              
                 //To be done
+                CustomersJPanel customerJPanel = new CustomersJPanel(loginCustomer, airlinerDirectory, UserProcessContainer);
+                UserProcessContainer.add("CustomersJPanel", customerJPanel);
+                CardLayout layout = (CardLayout) UserProcessContainer.getLayout();
+                layout.next(UserProcessContainer);
             }
             
         }
@@ -205,6 +216,13 @@ public class CustomerLoginJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) UserProcessContainer.getLayout();
         layout.next(UserProcessContainer);
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        UserProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)UserProcessContainer.getLayout();
+        layout.previous(UserProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

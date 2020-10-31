@@ -133,7 +133,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCustomerLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerLoginActionPerformed
         // TODO add your handling code here:
-        CustomerLoginJPanel customerLoginJPanel = new CustomerLoginJPanel(customerDirectory, travelOfficeDirecotry, UserProcessContainer);
+        CustomerLoginJPanel customerLoginJPanel = new CustomerLoginJPanel(airlinerDirectory, customerDirectory, travelOfficeDirecotry, UserProcessContainer);
         UserProcessContainer.add("CustomerLoginJPanel", customerLoginJPanel);
         CardLayout layout = (CardLayout) UserProcessContainer.getLayout();
         layout.next(UserProcessContainer);
