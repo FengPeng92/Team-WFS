@@ -5,10 +5,13 @@
  */
 package Interface.customer;
 
+import Entities.Customer;
 import Entities.CustomerDirectory;
 import Entities.TravelOffice;
 import Entities.TravelOfficeDirectory;
+import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -80,8 +83,18 @@ public class CustomerRegisterJPanel extends javax.swing.JPanel {
         });
 
         btnBack.setText("back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel3.setText("Customer Register");
@@ -203,6 +216,50 @@ public class CustomerRegisterJPanel extends javax.swing.JPanel {
     private void txtReenterPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReenterPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtReenterPasswordActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+        try {
+            Customer newCustomer = null;
+            String username = txtUsername.getText();
+            String password = txtPassword.getText();
+            String reenterPassword = txtReenterPassword.getText();
+            int age = Integer.parseInt(txtAge.getText());
+            String travelOffice = comboTravelOffice.getSelectedItem().toString();
+            String gender = comboGender.getSelectedItem().toString();
+
+            boolean isExisted = customerDirectory.verfyUsername(username);
+            if (username.equals("") || password.equals("") || reenterPassword.equals("") || travelOffice.equals("") || gender.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please fill in the information", "warning",JOptionPane.WARNING_MESSAGE); 
+                return;
+            }
+            if (isExisted) {
+                System.out.println("User has existed");
+                JOptionPane.showMessageDialog(null, "User has existed", "warning",JOptionPane.WARNING_MESSAGE); 
+            } else {
+                if (!password.equals(reenterPassword)) {
+                    JOptionPane.showMessageDialog(null, "Password and reenter Password are not the same", "warning",JOptionPane.WARNING_MESSAGE); 
+                } else {
+                    TravelOffice to = travelOfficeDirectory.searchTravelOfficeByName(travelOffice);
+                    //TravelOffice travelOffice, String gender, int age, String userName, String password
+                    newCustomer = new Customer(to, gender, age, username, password);
+                    customerDirectory.addNewCustomer(newCustomer);
+                    to.addNewCustomer(newCustomer);
+                    JOptionPane.showMessageDialog(null, "you registered successfully");
+                }
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Age should be int", "warning",JOptionPane.WARNING_MESSAGE); 
+        }
+        
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        UserProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)UserProcessContainer.getLayout();
+        layout.previous(UserProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
