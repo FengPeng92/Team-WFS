@@ -44,7 +44,7 @@ public class AirlinersJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) tableFleet.getModel();
         dtm.setRowCount(0);
         
-        for (Airplane airplane : loginairliner.getFleet().getairplane()) {
+        for (Airplane airplane : loginairliner.getFleet().getAirplaneDirectory()) {
             Object[] row = new Object[11];
             row[0] = airplane.getSerialNumber();
             row[1] = airplane.getModel();

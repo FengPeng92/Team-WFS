@@ -185,7 +185,7 @@ public class CustomerLoginJPanel extends javax.swing.JPanel {
         if (username == "" || password == "" || travelOffice == "") {
             JOptionPane.showMessageDialog(null, "Please fill in the information", "warning",JOptionPane.WARNING_MESSAGE);           
         } else {
-            loginCustomer = customerDirectory.searchCustomerByName(username);
+            loginCustomer = customerDirectory.searchCustomerByName(username, travelOffice);
             if (loginCustomer == null) {
                 JOptionPane.showMessageDialog(null, "Username doesn't exist", "warning",JOptionPane.WARNING_MESSAGE);   
             } else if (!loginCustomer.getPassword().equals(password) && !loginCustomer.getTravelOffice().getUserName().equals(travelOffice)) {

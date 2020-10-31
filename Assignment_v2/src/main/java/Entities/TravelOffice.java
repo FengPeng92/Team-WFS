@@ -17,6 +17,20 @@ public class TravelOffice extends User {
         super(userName, password, "Travel Office");
         this.customerDirectory = customerDirectory;
     }
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+
+    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
+        this.customerDirectory = customerDirectory;
+    }
+
+    public void addNewCustomer(Customer newCustomer) {
+        customerDirectory.addNewCustomer(newCustomer);
+    }
+    
+    
     
     
 }

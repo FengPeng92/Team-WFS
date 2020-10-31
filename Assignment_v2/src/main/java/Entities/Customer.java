@@ -58,6 +58,16 @@ public class Customer extends User{
         this.mySeats = mySeats;
     }
     
+    public void addSeat(Seat seat) {
+        seat.setIsAvailable(false);
+        mySeats.add(seat);
+    }
+    
+    public void deleteSeat(Seat seat) {
+        seat.setIsAvailable(true);
+        mySeats.remove(seat);
+    }
+    
     
     
     

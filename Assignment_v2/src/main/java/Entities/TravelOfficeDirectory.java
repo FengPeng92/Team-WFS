@@ -14,14 +14,11 @@ import java.util.List;
  */
 public class TravelOfficeDirectory {
     private List<TravelOffice> travelOfficeDirectory;
-    private InitDate initDate;
 
     public TravelOfficeDirectory() {
         //CustomerDirectory customerDirectory, String userName, String password
-        initDate = new InitDate();
-        this.travelOfficeDirectory = initDate.getTravelOfficeList();
-        
-
+        this.travelOfficeDirectory = new ArrayList<>();
+       
     }
 
     public List<TravelOffice> getTravelOfficeList() {
@@ -39,7 +36,15 @@ public class TravelOfficeDirectory {
         }
         return travelOffice;
     }
-    
+
+    public void addNewTravelOffice(TravelOffice newTravelOffice) {
+        travelOfficeDirectory.add(newTravelOffice);
+    }
+
+    public void setTravelOfficeDirectory(List<TravelOffice> travelOfficeDirectory) {
+        this.travelOfficeDirectory = travelOfficeDirectory;
+    }
+
     
     
 }

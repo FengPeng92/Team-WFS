@@ -15,11 +15,11 @@ import java.util.List;
 public class Airplane {
     private List<Flight> flights;
     private Airliner airliner;
-    private String serialNumber;
+    private int serialNumber;
     private String model;
     private String manudaturer;
 
-    public Airplane(Airliner airliner, String serialNumber, String model, String manudaturer) {
+    public Airplane(Airliner airliner, int serialNumber, String model, String manudaturer) {
         flights = new ArrayList<>();
         this.airliner = airliner;
         this.serialNumber = serialNumber;
@@ -43,11 +43,11 @@ public class Airplane {
         this.airliner = airliner;
     }
 
-    public String getSerialNumber() {
+    public int getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(String serialNumber) {
+    public void setSerialNumber(int serialNumber) {
         this.serialNumber = serialNumber;
     }
 
@@ -66,6 +66,30 @@ public class Airplane {
     public void setManudaturer(String manudaturer) {
         this.manudaturer = manudaturer;
     }
+
+    public void addFlight(Flight flight) {
+        flights.add(flight);
+    }
+
+    public Flight serchFlightByFlightNumber(String flightNumber) {
+        Flight deleteFlight = null;
+        for (Flight flight :flights) {
+            if (flight.getFlightNumber() == null ? flightNumber == null : flight.getFlightNumber().equals(flightNumber)) {
+                deleteFlight = flight;
+            }
+        }
+        return deleteFlight;
+    }
+
+    public void cancelFlight(Flight deleteFlight) {
+        flights.remove(deleteFlight);
+    }
+
+    public void deleteFlight(Flight flight) {
+        
+    }
+    
+    
     
     
     
