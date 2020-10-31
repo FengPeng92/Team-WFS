@@ -8,7 +8,10 @@ package Interface.customer;
 import Entities.AirlinerDirectory;
 import Entities.Customer;
 import Entities.Seat;
+import Entities.TravelOfficeDirectory;
+import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -90,10 +93,14 @@ public class CustomersJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtGender = new javax.swing.JTextField();
 
+        setEnabled(false);
+
         jLabel1.setText("Name:");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Tickets");
+
+        txtName.setEnabled(false);
 
         tableTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +113,11 @@ public class CustomersJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tableTickets);
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnViewDetails.setText("View Detail");
         btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +127,11 @@ public class CustomersJPanel extends javax.swing.JPanel {
         });
 
         btnSearchFlight.setText("Search flight");
+        btnSearchFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchFlightActionPerformed(evt);
+            }
+        });
 
         btnCancelFlight.setText("Cancel flight");
         btnCancelFlight.addActionListener(new java.awt.event.ActionListener() {
@@ -126,18 +143,24 @@ public class CustomersJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel3.setText("Customer Details");
 
+        txtTravelOffice.setEnabled(false);
+
         jLabel4.setText("Travel Office: ");
 
         jLabel5.setText("Age: ");
 
+        txtAge.setEnabled(false);
+
         jLabel6.setText("Gender:");
+
+        txtGender.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -167,7 +190,7 @@ public class CustomersJPanel extends javax.swing.JPanel {
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(149, 149, 149)
                         .addComponent(jLabel3)))
-                .addGap(0, 68, Short.MAX_VALUE))
+                .addGap(0, 87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,11 +229,51 @@ public class CustomersJPanel extends javax.swing.JPanel {
 
     private void btnCancelFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelFlightActionPerformed
         // TODO add your handling code here:
+        int selectDeleteTicketRow = tableTickets.getSelectedRow();
+        if (selectDeleteTicketRow >= 0 ) {
+            Seat curSeat = (Seat) tableTickets.getValueAt(selectDeleteTicketRow, 0);
+            customer.deleteSeat(curSeat);
+            populateTickets();
+            JOptionPane.showMessageDialog(null, "Cancel the seat successfully");
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "please select a row", "warning",JOptionPane.WARNING_MESSAGE); 
+        }
     }//GEN-LAST:event_btnCancelFlightActionPerformed
 
     private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
         // TODO add your handling code here:
+        
+        int selectTicketRow = tableTickets.getSelectedRow();
+        
+        if (selectTicketRow >= 0) {
+            Seat curSeat = (Seat) tableTickets.getValueAt(selectTicketRow, 0);
+            CustomerViewDetailJPanel customerViewDetailpanel = new CustomerViewDetailJPanel(UserProcessContainer, curSeat, customer);
+            UserProcessContainer.add("CustomerViewDetailJPanel", customerViewDetailpanel);
+            CardLayout layout = (CardLayout) UserProcessContainer.getLayout();
+            layout.next(UserProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "please select a row", "warning",JOptionPane.WARNING_MESSAGE); 
+        }
+        
     }//GEN-LAST:event_btnViewDetailsActionPerformed
+
+    private void btnSearchFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchFlightActionPerformed
+        // TODO add your handling code here:
+        CustomerBookTicketJPanel customerBookTicketpanel = new CustomerBookTicketJPanel(UserProcessContainer, customer, airlinerDirectory);
+        UserProcessContainer.add("CustomerBookTicketJPanel", customerBookTicketpanel);
+        CardLayout layout = (CardLayout) UserProcessContainer.getLayout();
+        layout.next(UserProcessContainer);
+        
+        
+    }//GEN-LAST:event_btnSearchFlightActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        UserProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)UserProcessContainer.getLayout();
+        layout.previous(UserProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
