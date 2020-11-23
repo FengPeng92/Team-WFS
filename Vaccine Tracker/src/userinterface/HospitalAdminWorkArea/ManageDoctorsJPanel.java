@@ -48,7 +48,7 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.system = system;
         
-        jLabel1.setText(organization.getName());
+        jLabel1.setText(enterprise.getName());
         jLabel3.setText(userAccount.getUsername());
         
         populateTable();
@@ -59,7 +59,9 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) tableDoctors.getModel();
         dtm.setRowCount(0);
         
-        for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
+//        System.out.println(enterprise);
+//        System.out.println(enterprise.getUserAccountDirectory());
+        for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
             if (userAccount.getRole() instanceof DoctorRole) {
                 Object[] row = new Object[3];
                 row[0] = userAccount;

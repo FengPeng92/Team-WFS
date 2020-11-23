@@ -11,7 +11,6 @@ import Business.Entity.Vaccine;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -42,7 +41,11 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
-        jLabel1.setText(organization.getName());
+        System.out.println(enterprise);
+        System.out.println(organization);
+        System.out.println(userAccount);   
+        
+        jLabel1.setText(enterprise.getName());
         jLabel3.setText(userAccount.getUsername());
         
     }

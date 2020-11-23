@@ -146,7 +146,6 @@ public class MainJFrame extends javax.swing.JFrame {
                        //Step 3:check against each organization for each enterprise
                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
                            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
-                           System.out.println(userAccount.getRole());
                            if(userAccount!=null){
                                inEnterprise=enterprise;
                                inOrganization=organization;
@@ -176,7 +175,6 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            System.out.println(userAccount.getRole());
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
             layout.next(container);
         }
