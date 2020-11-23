@@ -42,7 +42,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
-        jLabel1.setText(enterprise.getName());
+        jLabel1.setText(organization.getName());
         jLabel3.setText(userAccount.getUsername());
         
     }
@@ -50,6 +50,16 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     
     public void populateTable() {
         DefaultTableModel dtm=(DefaultTableModel) tableVaccine.getModel();
+        dtm.setRowCount(0);
+        
+        for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            Object[] row = new Object[4];
+            row[0] = vaccine;
+            row[1] = vaccine.getVaccineType();
+            row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate();
+            dtm.addRow(row);
+        }
         
     }
     
@@ -107,6 +117,11 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setText("List All Vaccines");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         tableVaccine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +139,11 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         jButton3.setText("Report to Institution");
 
         jButton4.setText("Manage Doctors");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -147,7 +167,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -173,7 +193,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -192,6 +212,19 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ManageDoctorsJPanel manageDoctorsJPanel = new ManageDoctorsJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        userProcessContainer.add("ManageDoctorsJPanel", manageDoctorsJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
