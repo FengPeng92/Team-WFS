@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Entity.VaccineDirectory;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 
@@ -16,6 +17,7 @@ public abstract class Enterprise extends Organization{
     
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
+    private VaccineDirectory vaccineDirectory;
 
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
@@ -53,5 +55,18 @@ public abstract class Enterprise extends Organization{
         super(name);
         this.enterpriseType=type;
         organizationDirectory=new OrganizationDirectory();
+        if (type == EnterpriseType.Hospital || type == EnterpriseType.Institution) {
+            vaccineDirectory = new VaccineDirectory();
+        }  
     }
+
+    public VaccineDirectory getVaccineDirectory() {
+        return vaccineDirectory;
+    }
+
+    public void setVaccineDirectory(VaccineDirectory vaccineDirectory) {
+        this.vaccineDirectory = vaccineDirectory;
+    }
+    
+    
 }

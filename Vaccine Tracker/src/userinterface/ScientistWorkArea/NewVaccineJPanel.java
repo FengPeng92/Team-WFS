@@ -53,7 +53,7 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Vaccine Type: ");
 
-        jLabel6.setText("Description: ");
+        jLabel6.setText("Detail: ");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);

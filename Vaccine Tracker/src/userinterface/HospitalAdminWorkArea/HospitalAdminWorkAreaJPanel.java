@@ -7,12 +7,14 @@ package userinterface.HospitalAdminWorkArea;
 import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.Vaccine;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,6 +29,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private Vaccine vaccine;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -39,8 +42,29 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
+        jLabel1.setText(enterprise.getName());
+        jLabel3.setText(userAccount.getUsername());
+        
     }
     
+    
+    public void populateTable() {
+        DefaultTableModel dtm=(DefaultTableModel) tableVaccine.getModel();
+        
+    }
+    
+    public void populateTable(Vaccine vaccine) {
+        DefaultTableModel dtm=(DefaultTableModel) tableVaccine.getModel();
+        dtm.setRowCount(0);
+        
+        Object[] row = new Object[4];
+        row[0] = vaccine;
+        row[1] = vaccine.getVaccineType();
+        row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+        row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate();
+        
+        dtm.addRow(row);
+    }
    
 
     
@@ -57,11 +81,11 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtVaccine = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableVaccine = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -75,11 +99,16 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Vaccine: ");
 
-        jButton1.setText("Search");
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("List All Vaccines");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableVaccine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -90,7 +119,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
                 "Vaccine", "Vaccine Type", "Phase", "Effective Rate(%)"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableVaccine);
 
         jButton3.setText("Report to Institution");
 
@@ -111,9 +140,9 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -135,8 +164,8 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,8 +177,24 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        
+        String searchVaccine = txtVaccine.getText();
+        if (searchVaccine.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter the vaccine name.");
+        } else {
+            vaccine = enterprise.getVaccineDirectory().searchVaccineByName(searchVaccine);
+            if (vaccine == null) {
+                JOptionPane.showMessageDialog(null, "No search result");
+            } else {
+                populateTable(vaccine);
+            }
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -158,7 +203,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tableVaccine;
+    private javax.swing.JTextField txtVaccine;
     // End of variables declaration//GEN-END:variables
 }
