@@ -54,19 +54,16 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) tableShootingRequest.getModel();
         dtm.setRowCount(0);
         
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getWorkRequestList()) {
-            if (workRequest instanceof VaccineShootRequest) {
-                if (((VaccineShootRequest) workRequest).getStatus().equals("Request to Shoot")) {
-                    Object[] row = new Object[5];
-                    row[0] = workRequest;
-                    row[1] = workRequest.getSender();
-                    row[2] = ((VaccineShootRequest) workRequest).getVaccine().getVaccineName();
-                    int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
-                    row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
-                    row[4] = ((VaccineShootRequest) workRequest).getStatus();
-                }
-                
-            }
+        for (WorkRequest workRequest : enterprise.getWorkQueue().getVaccineShootRequestList()) {
+            if (((VaccineShootRequest) workRequest).getStatus().equals("Request to Shoot")) {
+                Object[] row = new Object[5];
+                row[0] = workRequest;
+                row[1] = workRequest.getSender();
+                row[2] = ((VaccineShootRequest) workRequest).getVaccine().getVaccineName();
+                int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
+                row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+                row[4] = ((VaccineShootRequest) workRequest).getStatus();
+            }                        
         }
     }
 

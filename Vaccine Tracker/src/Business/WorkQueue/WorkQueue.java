@@ -5,6 +5,7 @@
 package Business.WorkQueue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,5 +21,16 @@ public class WorkQueue {
 
     public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;
+    }
+    
+    public List<WorkRequest> getVaccineShootRequestList() {
+        List<WorkRequest> requests = new ArrayList<>();
+        
+        for (WorkRequest workRequest : workRequestList) {
+            if (workRequest instanceof VaccineShootRequest) {
+                requests.add(workRequest);
+            }
+        }
+        return requests;
     }
 }
