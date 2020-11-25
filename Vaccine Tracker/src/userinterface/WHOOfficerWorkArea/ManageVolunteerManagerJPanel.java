@@ -5,15 +5,6 @@
  */
 package userinterface.WHOOfficerWorkArea;
 
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Organization.Organization;
-import Business.Role.DoctorRole;
-import Business.Role.VolunteerManagerRole;
-import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 import userinterface.HospitalAdminWorkArea.*;
 
 /**
@@ -21,46 +12,12 @@ import userinterface.HospitalAdminWorkArea.*;
  * @author fengpeng
  */
 public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
-    private JPanel userProcessContainer;
-    private Organization organization;
-    private Enterprise enterprise;
-    private UserAccount userAccount;
-    private EcoSystem system;
-    private UserAccount selectedVolunteer;
+
     /**
      * Creates new form ManageDoctorsJPanel
      */
-    public ManageVolunteerManagerJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system) {
+    public ManageVolunteerManagerJPanel() {
         initComponents();
-        
-        this.userProcessContainer = userProcessContainer;
-        this.organization = organization;
-        this.enterprise = enterprise;
-        this.userAccount = userAccount;
-        this.system = system;
-        
-        jLabel1.setText(enterprise.getName());
-        jLabel3.setText(userAccount.getUsername());
-        
-        populateTable();
-    }
-    
-    public void populateTable() {
-        DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
-        dtm.setRowCount(0);
-        
-//        System.out.println(enterprise);
-//        System.out.println(enterprise.getUserAccountDirectory());
-        for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
-            if (userAccount.getRole() instanceof VolunteerManagerRole) {
-                Object[] row = new Object[3];
-                row[0] = userAccount;
-                row[1] = userAccount.getEmployee().getName();
-                row[2] = userAccount.getPassword();
-                
-                dtm.addRow(row);
-            }
-        }
     }
 
     /**
@@ -152,11 +109,6 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
         jLabel12.setText("Volunteer Manager Information");
 
         jButton5.setText("Back");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -271,13 +223,6 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
