@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import userinterface.DoctorWorkArea.DoctorWorkAreaJPanel;
 import javax.swing.JPanel;
+import userinterface.WHOOfficerWorkArea.WHOOfficerWorkAreaJPanel;
 
 /**
  *
@@ -19,7 +20,7 @@ public class WHOOfficerRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
-        return new DoctorWorkAreaJPanel(userProcessContainer, account, organization, enterprise, system);
+        return new WHOOfficerWorkAreaJPanel(userProcessContainer, account, organization, enterprise, system);
     }
     
     

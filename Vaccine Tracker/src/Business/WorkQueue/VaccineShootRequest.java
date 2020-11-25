@@ -15,11 +15,13 @@ public class VaccineShootRequest extends WorkRequest {
     private String shootingId;
     private Vaccine vaccine;
     private String status;
+    private String hasAntibody;
 
-    public VaccineShootRequest(Vaccine vaccine, String status, String shootingId) {
+    public VaccineShootRequest(Vaccine vaccine, String shootingId) {
         this.vaccine = vaccine;
-        this.status = status;
+        this.status = "Request to Shoot";
         this.shootingId = shootingId;
+        this.hasAntibody = "Not tested";
     }
 
     public Vaccine getVaccine() {
@@ -38,6 +40,14 @@ public class VaccineShootRequest extends WorkRequest {
         this.status = status;
     }
 
+    public String getHasAntibody() {
+        return hasAntibody;
+    }
+
+    public void setHasAntibody(String hasAntibody) {
+        this.hasAntibody = hasAntibody;
+    }
+    
     @Override
     public String toString() {
         return shootingId;

@@ -41,9 +41,6 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
-        System.out.println(enterprise);
-        System.out.println(organization);
-        System.out.println(userAccount);   
         
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(userAccount.getUsername());

@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.VaccineShootRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.List;
@@ -51,12 +52,39 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
         
         for (WorkRequest workRequest : requests) {
+            if (workRequest.getSender() == userAccount) {
+                Object[] row = new Object[5];
+                row[0] = userAccount;
+                row[1] = userAccount.getEmployee().getName();
+                row[2] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
+                int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
+                row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+                row[4] = ((VaccineShootRequest) workRequest).getHasAntibody();
+                
+                dtm.addRow(row);
+            }
+        }         
+    } 
+    
+    public void populateTable() {
+        DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
+        dtm.setRowCount(0);
+        
+        List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
+        
+        for (WorkRequest workRequest : requests) {           
+            Object[] row = new Object[5];
+            row[0] = userAccount;
+            row[1] = userAccount.getEmployee().getName();
+            row[2] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
+            int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
+            row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+            row[4] = ((VaccineShootRequest) workRequest).getHasAntibody();
+
+            dtm.addRow(row);
             
         }
-        
-        Object[] row = new Object[5];
-        row[0] = userAccount;
-    } 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,6 +134,11 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         });
 
         btnAllVolunteers.setText("List All Volunteers");
+        btnAllVolunteers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAllVolunteersActionPerformed(evt);
+            }
+        });
 
         tableResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,6 +158,11 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         jLabel5.setText("Search Results");
 
         btnSelect.setText("Select");
+        btnSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Username:");
 
@@ -179,7 +217,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                                         .addGap(37, 37, 37)
                                         .addComponent(jRadioButton1))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +233,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                                         .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(40, 40, 40)
                                         .addComponent(btnSearch)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(0, 270, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
@@ -266,6 +304,22 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnAllVolunteersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllVolunteersActionPerformed
+        // TODO add your handling code here:、
+        populateTable();
+    }//GEN-LAST:event_btnAllVolunteersActionPerformed
+
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableResults.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter the username.");
+        }
+    }//GEN-LAST:event_btnSelectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
