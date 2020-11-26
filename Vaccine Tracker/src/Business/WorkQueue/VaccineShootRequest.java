@@ -47,18 +47,6 @@ public class VaccineShootRequest extends WorkRequest {
     public void setHasAntibody(String hasAntibody) {
         this.hasAntibody = hasAntibody;
     }
-
-    public String getShootingId() {
-        return shootingId;
-    }
-
-    public void setShootingId(String shootingId) {
-        this.shootingId = shootingId;
-    }
-    
-    
-    
-    
     
     @Override
     public String toString() {

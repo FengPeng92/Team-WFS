@@ -91,6 +91,11 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         jButton1.setText("View Phase Test Result");
 
         jButton2.setText("Volunteer Manager Management");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -132,6 +137,14 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ManageVolunteerManagerJPanel manageVolunteerManagerJPanel = new ManageVolunteerManagerJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        userProcessContainer.add("ManageVolunteerManagerJPanel", manageVolunteerManagerJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

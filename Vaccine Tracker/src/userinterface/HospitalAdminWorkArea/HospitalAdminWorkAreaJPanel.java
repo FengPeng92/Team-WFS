@@ -45,6 +45,8 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(userAccount.getUsername());
         
+        populateTable();
+        
     }
     
     
@@ -239,4 +241,6 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tableVaccine;
     private javax.swing.JTextField txtVaccine;
     // End of variables declaration//GEN-END:variables
+
+
 }

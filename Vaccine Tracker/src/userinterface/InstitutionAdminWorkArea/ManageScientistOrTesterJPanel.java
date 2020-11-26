@@ -5,17 +5,35 @@
  */
 package userinterface.InstitutionAdminWorkArea;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author fengpeng
  */
 public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
 
+    private JPanel userProcessContainer;
+    private Organization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EcoSystem system;
     /**
      * Creates new form ManageScientistOrTesterJPanel
      */
-    public ManageScientistOrTesterJPanel() {
+    public ManageScientistOrTesterJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
+        this.system = system;
     }
 
     /**
@@ -113,6 +131,11 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         jLabel14.setText("Scientists or Testers Information");
 
         jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Select");
 
@@ -257,6 +280,14 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        InstitutionAdminWorkAreaJPanel panel = new InstitutionAdminWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        userProcessContainer.add("InstitutionAdminWorkAreaJPanel", panel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,7 +5,6 @@
  */
 package Business.Enterprise;
 
-import Business.Entity.Vaccine;
 import Business.Organization.OrganizationDirectory;
 import java.util.ArrayList;
 
@@ -46,25 +45,5 @@ public class EnterpriseDirectory {
             enterpriseList.add(enterprise);
         }
         return enterprise;
-    }
-
-    public Enterprise searchEnterpiseByName(String enterpriseName) {
-        for (Enterprise enterprise : enterpriseList) {
-            if (enterprise.getName().equals(enterpriseName)) {
-                return enterprise;
-            }
-        }
-        return null;
-    }
-
-    public Enterprise searchEnterpiseByVaccine(Vaccine selectedVaccine) {
-        for (Enterprise enterprise : enterpriseList) {
-            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-                if (vaccine.getVaccineName().equals(selectedVaccine.getVaccineName())) {
-                    return enterprise;
-                }
-            }
-        }
-        return null;             
     }
 }
