@@ -18,6 +18,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.VolunteerWorkArea.VolunteerRegisterJPanel;
 
 /**
  *
@@ -205,6 +206,11 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
         jLabel7.setText("Do you want to be a volunteer? ");
 
         jButton3.setText("Go");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         boxPhase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Phases", "Preclinical", "Phase 1", "Phase 2", "Phase 3", "Approved" }));
 
@@ -314,6 +320,15 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        VolunteerRegisterJPanel volunteerRegisterJPanel = new VolunteerRegisterJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        userProcessContainer.add("VolunteerRegisterJPanel", volunteerRegisterJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxInstitution;
