@@ -18,6 +18,7 @@ public class VolunteerApplicationRequest extends WorkRequest {
     private String description;
 
     public VolunteerApplicationRequest(Questionary questionary, boolean isQualified, String description) {
+        
         this.questionary = questionary;
         this.isQualified = isQualified;
         this.description = description;

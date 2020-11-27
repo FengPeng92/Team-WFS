@@ -4,16 +4,11 @@
  */
 package userinterface.NormalUserWorkArea;
 
-import userinterface.ScientistWorkArea.*;
-import userinterface.HospitalAdminWorkArea.*;
-import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Vaccine;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

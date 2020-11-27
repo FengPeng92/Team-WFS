@@ -10,9 +10,11 @@ import Business.Enterprise.Enterprise;
 import Business.Entity.Questionary;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.VolunteerApplicationRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userinterface.DoctorWorkArea.VaccineShootRequestJPanel;
 
 /**
  *
@@ -330,6 +332,14 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
             } else if (radioTesNegitive.isSelected()) {
                 questionary.setTestResult("Negitive");
             }
+            
+            VolunteerApplicationRequest application = new VolunteerApplicationRequest(questionary, false, "");
+            application.setSender(userAccount);
+            application.setStatus("Requested");
+            
+            int size = system.getWorkQueue().getWorkRequestList().size();
+            system.getWorkQueue().getWorkRequestList().add(size, application);
+            
         } else {
             JOptionPane.showMessageDialog(null, "Please fill out the questionary");
         }
