@@ -10,6 +10,8 @@ import Business.Enterprise.Enterprise;
 import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.VaccineShootRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +31,8 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private Vaccine selectedVaccine;
+    private Enterprise selectedHospital;
+    private VaccineShootRequest newRequest;
     public RequestTestVaccineJPanel() {
     }
 
@@ -43,11 +47,10 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         
         jLabel3.setText(userAccount.getUsername());
         populateInstitution();
-        populateHospital();
     }
     
     //To be Completed
-    public void populateHospital() {
+    public void populateHospitalByVaccine() {
         DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
         dtm.setRowCount(0);
         
@@ -227,8 +230,18 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tableHospital);
 
         jButton4.setText("View my appoinment");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Make an appoinment");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
 
@@ -332,6 +345,40 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableHospital.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            selectedHospital = (Enterprise)tableHospital.getValueAt(selectedRow, 0);
+            String shootingId = system.getWorkQueue().getVaccineShootRequestList().size() + selectedHospital.getName();
+            
+            newRequest = new VaccineShootRequest(selectedVaccine, shootingId);
+            system.getWorkQueue().getVaccineShootRequestList().add(newRequest);
+            newRequest.setSender(userAccount);
+            
+            //To be done
+            //newRequest.setReceiver(selectedHospital.getUserAccountDirectory());
+            JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if (newRequest == null) {
+            JOptionPane.showMessageDialog(null, "Please book an appoinmnet first. ");
+        } else {
+            TestAppoinmentViewJPanel testAppoinmentViewJPanel = new TestAppoinmentViewJPanel(userProcessContainer, userAccount, organization, enterprise, system, newRequest);
+            userProcessContainer.add("TestAppoinmentViewJPanel", testAppoinmentViewJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+       
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

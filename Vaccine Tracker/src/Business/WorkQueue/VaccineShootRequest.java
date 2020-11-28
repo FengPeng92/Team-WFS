@@ -18,6 +18,7 @@ public class VaccineShootRequest extends WorkRequest {
     private String hasAntibody;
 
     public VaccineShootRequest(Vaccine vaccine, String shootingId) {
+        super();
         this.vaccine = vaccine;
         this.status = "Request to Shoot";
         this.shootingId = shootingId;
