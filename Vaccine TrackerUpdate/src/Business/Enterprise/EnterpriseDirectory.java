@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class EnterpriseDirectory {
     private ArrayList<Enterprise> enterpriseList;
+    
    
 
     public ArrayList<Enterprise> getEnterpriseList() {

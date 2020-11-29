@@ -16,6 +16,8 @@ import userinterface.ScientistWorkArea.ScientistWorkAreaJPanel;
  * @author raunak
  */
 public class ScientistRole extends Role{
+    
+    //public ArrayList<Enterprise> 
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {

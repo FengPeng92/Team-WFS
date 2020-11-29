@@ -20,7 +20,7 @@ public class VaccineDirectory {
     }
 
     public List<Vaccine> getVaccineList() {
-        System.out.println("vaccine list");
+        //System.out.println("vaccine list");
         return vaccineList;
     }
 

@@ -45,7 +45,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
     
     public void populate() {
         txtName.setText(v1.getVaccineName());
-        txtTime.setText(v1.getCreatedTime());
+        //txtTime.setText(v1.getCreatedTime());
         txtType.setText(v1.getVaccineType());
         txtDetail.setText(v1.getDetail()); 
     }

@@ -44,7 +44,7 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(account.getUsername());
         
-        //populate();
+        populate();
         
     }
     
@@ -188,16 +188,25 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         if (enterprise.getVaccineDirectory().getVaccineList() == null) {
             System.out.println("null");
         }
-        
+        //System.out.println("1");
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            //System.out.println("2");
             Object[] row = new Object[5];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStartDate();
-            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-            row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
-            dtm.addRow(row);
+            //row[2] = vaccine.getCreatedTime();
+            int size = vaccine.getPhases().size();
+            if (size == 0) {
+                dtm.addRow(row);
+            } else {
+                
+                row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+                row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
+                dtm.addRow(row);
+            }
+            
         }
+        
         
     }
 }

@@ -61,7 +61,7 @@ public abstract class Enterprise extends Organization{
     }
 
     public VaccineDirectory getVaccineDirectory() {
-        System.out.println("vacine directory");
+        //System.out.println(vaccineDirectory);
         return vaccineDirectory;
     }
 

@@ -180,8 +180,10 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
         String name = jTextField1.getText();
         String type = jTextField2.getText();
         String detail = jTextArea1.getText();
+        
+ 
         if ((name != null) || (type != null)) {
-            Vaccine vaccine = new Vaccine(name, type, detail);
+            Vaccine vaccine = new Vaccine(name, type, detail, "create the vaccine");
             enterprise.getVaccineDirectory().getVaccineList().add(vaccine);
         }
         else {

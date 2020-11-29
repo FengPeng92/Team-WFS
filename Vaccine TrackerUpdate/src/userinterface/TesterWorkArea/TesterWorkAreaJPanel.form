@@ -42,12 +42,12 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel6" min="-2" pref="128" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="jTextField2" min="-2" pref="123" max="-2" attributes="0"/>
+                                      <Component id="txtTime" min="-2" pref="123" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" pref="128" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" min="-2" pref="123" max="-2" attributes="0"/>
+                                      <Component id="txtName" min="-2" pref="123" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                                   <Component id="jLabel9" min="-2" pref="192" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jTextField4" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="txtRate" min="-2" pref="53" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel13" pref="64" max="32767" attributes="0"/>
                           </Group>
@@ -72,7 +72,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jTextField3" min="-2" pref="123" max="-2" attributes="0"/>
+                                  <Component id="txtType" min="-2" pref="123" max="-2" attributes="0"/>
                                   <Component id="jButton2" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -103,24 +103,24 @@
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="txtName" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="txtType" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtTime" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtRate" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -192,27 +192,30 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Accept"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vaccine Name: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtName">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Time:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="txtTime">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vaccine Type: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="txtType">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -226,7 +229,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="txtDetail">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -238,13 +241,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Go To Test"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="text" type="java.lang.String" value="Preclinical Effective Rate: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="txtRate">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>

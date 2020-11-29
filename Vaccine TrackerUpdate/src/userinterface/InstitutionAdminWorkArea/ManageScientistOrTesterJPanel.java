@@ -331,7 +331,7 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
             if ("Scientist".equals(pick)) {
                 UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ScientistRole());
             }
-            else if ("  Tester".equals(pick)) {
+            else if ("Tester".equals(pick)) {
                 UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new TesterRole());
             }
             else {

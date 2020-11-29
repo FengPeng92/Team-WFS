@@ -16,6 +16,8 @@ import Business.Role.HospitalAdminRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +34,9 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private Vaccine selectedVaccine;
+    
+    //public ArrayList<Enterprise> listEnterprise;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -46,16 +51,30 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(account.getUsername());
+        //listEnterprise = new ArrayList<Enterprise>();
+        
+        populate();
+        //populateAll();
+        //populateSelect();
+    }
+   
+    public void populateSelect() {
+        DefaultTableModel dtm2=(DefaultTableModel) jTable3.getModel();
+        dtm2.setRowCount(0);
+        for (Enterprise e : selectedVaccine.getHospitalList()) {
+            Object[] row = new Object[1];
+            row[0] = e;
+            dtm2.addRow(row);
+        }
     }
     
-   
     public void populateAll(){
         DefaultTableModel dtm1=(DefaultTableModel) jTable2.getModel();
         dtm1.setRowCount(0);
-        for (UserAccount h : enterprise.getUserAccountDirectory().getUserAccountList()) {
-            if (h.getRole() instanceof HospitalAdminRole) {
+        for (Enterprise h : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
+            if (h.getEnterpriseType() == Enterprise.EnterpriseType.Hospital && !selectedVaccine.getHospitalList().contains(h)) {
                 Object[] row = new Object[1];
-                row[0] = h.getEmployee().getName();
+                row[0] = h;
                 dtm1.addRow(row);
             }
         }
@@ -71,15 +90,26 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
             Object[] row = new Object[5];
-            row[0] = vaccine;
-            row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStartDate();
-            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-            row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
-            dtm.addRow(row);
+            row[0] = vaccine.getVaccineType();
+            row[1] = vaccine;
+            //row[2] = vaccine.getCreatedTime();
+            row[4] = vaccine.getStatus();
+            int size = vaccine.getPhases().size();
+            if (size == 0) {
+                dtm.addRow(row);
+            } else {
+                
+                row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+                row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
+                dtm.addRow(row);
+            }
+            
         }
         
     }
+    
+    
+    
 
     
     /**
@@ -126,7 +156,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Vaccine Name", "Vaccine Type", "Create Time", "Phase", "Status"
+                "Vaccine Type", "Vaccine Name", "Create Time", "Phase", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -150,8 +180,18 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setText("Request Preclinical Trial");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Request Hospital Tests");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,6 +228,11 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         jLabel6.setText("Selected Hospitals");
 
         jButton5.setText("Add");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Submit");
 
@@ -276,19 +321,14 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int a = jTable1.getSelectedRow();
-        Vaccine v1 = null;
-        if (a >= 0) {
-            String name = (String)jTable1.getValueAt(a, 1);
-            for (Vaccine v : enterprise.getVaccineDirectory().getVaccineList()) {
-                if (v.getVaccineName() == null ? name == null : v.getVaccineName().equals(name)) {
-                    v1 = v;
-                    VaccineInfoJPanel panel = new VaccineInfoJPanel(userProcessContainer, userAccount, organization, enterprise, system, v1);
-                    userProcessContainer.add("VaccineInfoJPanel", panel);
-                    CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-                    layout.next(userProcessContainer);
-                }
-            }
+        int selectAccept = jTable1.getSelectedRow();
+        if (selectAccept >= 0) {
+            Vaccine v1 = (Vaccine)jTable1.getValueAt(selectAccept, 1);
+
+            VaccineInfoJPanel panel = new VaccineInfoJPanel(userProcessContainer, userAccount, organization, enterprise, system, v1);
+            userProcessContainer.add("VaccineInfoJPanel", panel);
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select a row");
@@ -296,6 +336,53 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         }
         return;
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int selectEnterprise = jTable2.getSelectedRow();
+        if (selectEnterprise >= 0) {
+            Enterprise e1 = (Enterprise)jTable2.getValueAt(selectEnterprise, 0);
+            selectedVaccine.getHospitalList().add(e1);
+            populateSelect();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            populateSelect();
+        }
+        return;
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        int selectAccept = jTable1.getSelectedRow();
+        if (selectAccept >= 0) {
+            selectedVaccine = (Vaccine)jTable1.getValueAt(selectAccept, 1);
+            populateAll();
+            populateSelect();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            populate();
+        }
+        return;
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectAccept = jTable1.getSelectedRow();
+        if (selectAccept >= 0) {
+            Vaccine v1 = (Vaccine)jTable1.getValueAt(selectAccept, 1);
+            
+            v1.setStatus("request phase 1");
+            populate();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            populate();
+        }
+        return;
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -317,4 +404,6 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
+
+    
 }
