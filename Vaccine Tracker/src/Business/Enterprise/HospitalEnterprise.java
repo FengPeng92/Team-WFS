@@ -13,6 +13,9 @@ import java.util.ArrayList;
  * @author fengpeng
  */
 public class HospitalEnterprise extends Enterprise {
+    
+    String Address;
+    String phone;
 
     public HospitalEnterprise(String name) {
         super(name, EnterpriseType.Hospital);
@@ -24,5 +27,5 @@ public class HospitalEnterprise extends Enterprise {
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
-    
+
 }

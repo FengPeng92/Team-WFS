@@ -9,13 +9,17 @@ import userinterface.HospitalAdminWorkArea.*;
 import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.Animal;
+import Business.Entity.Vaccine;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.InstitutionAdminWorkArea.InstitutionAdminWorkAreaJPanel;
 
 /**
  *
@@ -28,6 +32,8 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    
+    private Vaccine v1;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -40,6 +46,10 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
+        jLabel1.setText(enterprise.getName());
+        jLabel3.setText(account.getUsername());
+        
+        populate();     
     }
     
    
@@ -62,17 +72,17 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTime = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtType = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtDetail = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtRate = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
@@ -102,6 +112,11 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setText("Vaccine Pre-clinical Test Request");
 
         jButton1.setText("Accept");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Vaccine Name: ");
 
@@ -111,11 +126,16 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("Detail: ");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txtDetail.setColumns(20);
+        txtDetail.setRows(5);
+        jScrollPane2.setViewportView(txtDetail);
 
         jButton2.setText("Go To Test");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Preclinical Effective Rate: ");
 
@@ -146,17 +166,17 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(31, 31, 31)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(31, 31, 31)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(172, 172, 172)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(25, 25, 25)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -170,7 +190,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton2))))
                         .addGap(122, 122, 122))))
         );
@@ -186,27 +206,27 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,6 +237,61 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectAccept = jTable1.getSelectedRow();
+        if (selectAccept >= 0) {
+            Vaccine v2 = (Vaccine)jTable1.getValueAt(selectAccept, 0);
+            if ("accept".equals(v2.getStatus())) {
+                PreclinicalTestJPanel panel = new PreclinicalTestJPanel(userProcessContainer, userAccount, organization, enterprise, system, v2);
+                userProcessContainer.add("InstitutionAdminWorkAreaJPanel", panel);
+                CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "please accept");
+            return;
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            populate();
+        }
+        return;
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectAccept = jTable1.getSelectedRow();
+        int total = 0;
+        int number = 0;
+        if (selectAccept >= 0) {
+            Vaccine v1 = (Vaccine)jTable1.getValueAt(selectAccept, 0);
+            v1.setStatus("accept");
+
+            txtName.setText(v1.getVaccineName());
+            txtType.setText(v1.getVaccineType());
+            txtDetail.setText(v1.getDetail());
+            for (Animal a : v1.getAnimalDirectory().getAnimalList()) 
+            {
+                total += a.getTotal();
+                number += a.getNumber();
+            }
+            if (number == 0) {
+                txtRate.setText("0");
+            }
+            else {
+                txtRate.setText(String.valueOf(((number*100)/total)));
+            }
+            populate();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            populate();
+        }
+        return;
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -235,10 +310,39 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextArea txtDetail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtRate;
+    private javax.swing.JTextField txtTime;
+    private javax.swing.JTextField txtType;
     // End of variables declaration//GEN-END:variables
+
+    private void populate() {
+        DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+
+        if (enterprise.getVaccineDirectory().getVaccineList() == null) {
+            System.out.println("null");
+        }
+        
+        for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            if ("request phase 1".equals(vaccine.getStatus()) || "accept".equals(vaccine.getStatus())) {
+                Object[] row = new Object[5];
+                row[0] = vaccine;
+                row[1] = vaccine.getVaccineType();
+                //row[2] = vaccine.getCreatedTime();
+                row[4] = vaccine.getStatus();
+                int size = vaccine.getPhases().size();
+                if (size == 0) {
+                    dtm.addRow(row);
+                } else {
+
+                    row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+                    row[4] = vaccine.getStatus();
+                    dtm.addRow(row);
+                }
+            }
+            
+        }
+    }
 }

@@ -4,17 +4,15 @@
  */
 package userinterface.VolunteerWorkArea;
 
-import userinterface.NormalUserWorkArea.*;
-import userinterface.ScientistWorkArea.*;
-import userinterface.HospitalAdminWorkArea.*;
-import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.Vaccine;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +27,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private Vaccine selectedVaccine;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -41,7 +40,96 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
+        jLabel3.setText(userAccount.getUsername());
+        populateInstitution();
     }
+    
+    
+    public void populateInstitution() {
+        boxInstitution.addItem("All Institutions");
+        for (Enterprise enterprise: system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
+            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Institution) {
+                boxInstitution.addItem(enterprise.getName());
+            }
+        }
+    }
+    
+    public void populateAllVaccines() {
+        DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
+        dtm.setRowCount(0);
+        
+        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
+            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+                Object[] row = new Object[5];
+                row[0] = vaccine;
+                row[1] = vaccine.getVaccineType();
+                row[2] = vaccine.getCreatedTime();
+                int size = vaccine.getPhases().size();
+                row[3] = vaccine.getPhases().get(size-1).getName();
+                row[4] = vaccine.getPhases().get(size-1).getStatus();
+                dtm.addRow(row);
+            }
+        }
+    }
+    
+    public void populateVaccinesByInstitution(Enterprise enterprise) {
+        DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
+        dtm.setRowCount(0);
+        
+        for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            Object[] row = new Object[5];
+            row[0] = vaccine;
+            row[1] = vaccine.getVaccineType();
+            row[2] = vaccine.getCreatedTime();
+            int size = vaccine.getPhases().size();
+            row[3] = vaccine.getPhases().get(size-1).getName();
+            row[4] = vaccine.getPhases().get(size-1).getStatus();
+            dtm.addRow(row);
+        }               
+    }
+    
+    public void populateVaccinesByPhase(String phaseName) {
+        DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
+        dtm.setRowCount(0);
+        
+        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
+            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+                int size = vaccine.getPhases().size();
+                if (vaccine.getPhases().get(size-1).getName().equals(phaseName)) {
+                    Object[] row = new Object[5];
+                    row[0] = vaccine;
+                    row[1] = vaccine.getVaccineType();
+                    row[2] = vaccine.getCreatedTime();
+                    row[3] = vaccine.getPhases().get(size-1).getName();
+                    row[4] = vaccine.getPhases().get(size-1).getStatus();
+                    dtm.addRow(row);
+                }
+                
+            }
+        }
+    }
+    
+    public void populateVaccinesByInstitutionAndPhase(Enterprise enterprise, String phaseName) {
+        DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
+        dtm.setRowCount(0);
+        
+        for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            int size = vaccine.getPhases().size();
+            if (vaccine.getPhases().get(size-1).getName().equals(phaseName)) {
+                Object[] row = new Object[5];
+                row[0] = vaccine;
+                row[1] = vaccine.getVaccineType();
+                row[2] = vaccine.getCreatedTime();
+                row[3] = vaccine.getPhases().get(size-1).getName();
+                row[4] = vaccine.getPhases().get(size-1).getStatus();
+                dtm.addRow(row);
+            }
+            
+        } 
+    }
+    
+    
+    
     
    
 
@@ -59,12 +147,12 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxInstitution = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        boxPhase = new javax.swing.JComboBox<>();
+        btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableVaccine = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -81,9 +169,16 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Phase: ");
 
-        jButton1.setText("Search");
+        boxPhase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Phases", "Preclinical", "Phase 1", "Phase 2", "Phase 3", "Approved" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        tableVaccine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -94,13 +189,18 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
                 "Vaccine Name", "Vaccine Type", "Create Time", "Phase", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableVaccine);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Vaccine Information");
 
         jButton2.setText("View Vaccine Details");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Back");
 
@@ -129,13 +229,13 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boxInstitution, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boxPhase, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(btnSearch))
                             .addComponent(jScrollPane1))))
                 .addGap(107, 107, 107))
         );
@@ -152,10 +252,10 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxInstitution, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxPhase, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -166,12 +266,46 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        String searchInstitu = boxInstitution.getSelectedItem().toString();
+        String selectedPhase = boxPhase.getSelectedItem().toString();
+        
+        if (searchInstitu.equals("All Institutions") && selectedPhase.equals("All Phases")) {
+            populateAllVaccines();
+        } else if (searchInstitu.equals("All Institutions")) {
+            populateVaccinesByPhase(selectedPhase);    
+        } else if (selectedPhase.equals("All Phases")) {
+            Enterprise selectedEnterprise = system.getNetworkList().get(0).getEnterpriseDirectory().searchEnterpiseByName(searchInstitu);
+            populateVaccinesByInstitution(selectedEnterprise);
+        } else {
+            Enterprise selectedEnterprise = system.getNetworkList().get(0).getEnterpriseDirectory().searchEnterpiseByName(searchInstitu);
+            populateVaccinesByInstitutionAndPhase(selectedEnterprise, selectedPhase);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableVaccine.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            selectedVaccine = (Vaccine)tableVaccine.getValueAt(selectedRow, 0);
+            Enterprise selectedenterprise = system.getNetworkList().get(0).getEnterpriseDirectory().searchEnterpiseByVaccine(selectedVaccine);
+            VolunteerViewVaccineDetailJPanel volunteerViewVaccineDetailJPanel = new VolunteerViewVaccineDetailJPanel(userProcessContainer, userAccount, selectedenterprise, system, selectedVaccine);
+            userProcessContainer.add("VolunteerViewVaccineDetailJPanel", volunteerViewVaccineDetailJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> boxInstitution;
+    private javax.swing.JComboBox<String> boxPhase;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -179,6 +313,6 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableVaccine;
     // End of variables declaration//GEN-END:variables
 }

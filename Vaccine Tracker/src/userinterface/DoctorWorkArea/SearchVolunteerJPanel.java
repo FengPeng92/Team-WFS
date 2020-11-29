@@ -31,6 +31,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private VaccineShootRequest selectedShoot;
     public SearchVolunteerJPanel() {
         initComponents();
     }
@@ -53,13 +54,14 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         
         for (WorkRequest workRequest : requests) {
             if (workRequest.getSender() == userAccount) {
-                Object[] row = new Object[5];
-                row[0] = userAccount;
-                row[1] = userAccount.getEmployee().getName();
-                row[2] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
+                Object[] row = new Object[6];
+                row[0] = ((VaccineShootRequest)workRequest).getShootingId();
+                row[1] = userAccount;
+                row[2] = userAccount.getEmployee().getName();
+                row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
                 int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
-                row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
-                row[4] = ((VaccineShootRequest) workRequest).getHasAntibody();
+                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+                row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
                 
                 dtm.addRow(row);
             }
@@ -73,13 +75,14 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
         
         for (WorkRequest workRequest : requests) {           
-            Object[] row = new Object[5];
-            row[0] = userAccount;
-            row[1] = userAccount.getEmployee().getName();
-            row[2] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
+            Object[] row = new Object[6];
+            row[0] = ((VaccineShootRequest)workRequest).getShootingId();
+            row[1] = userAccount;
+            row[2] = userAccount.getEmployee().getName();
+            row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
             int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
-            row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
-            row[4] = ((VaccineShootRequest) workRequest).getHasAntibody();
+            row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+            row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
 
             dtm.addRow(row);
             
@@ -95,6 +98,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -111,8 +115,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         txtSelectedVaccine = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radioNo = new javax.swing.JRadioButton();
+        radioYes = new javax.swing.JRadioButton();
         btnConfirm = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -142,13 +146,13 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
 
         tableResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Username", "Name", "Vaccine", "Phase", "Has Antibody"
+                "ShootingId", "Username", "Name", "Vaccine", "Phase", "Has Antibody"
             }
         ));
         jScrollPane1.setViewportView(tableResults);
@@ -170,9 +174,11 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("Does this person have antibody?");
 
-        jRadioButton1.setText("No");
+        buttonGroup1.add(radioNo);
+        radioNo.setText("No");
 
-        jRadioButton2.setText("Yes");
+        buttonGroup1.add(radioYes);
+        radioYes.setText("Yes");
 
         btnConfirm.setText("Confirm");
 
@@ -213,9 +219,9 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                                         .addGap(81, 81, 81)
                                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(radioYes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(37, 37, 37)
-                                        .addComponent(jRadioButton1))
+                                        .addComponent(radioNo))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -267,8 +273,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSelectUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioNo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioYes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -313,8 +319,27 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         // TODO add your handling code here:
         int selectedRow = tableResults.getSelectedRow();
+        List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
+        
         
         if (selectedRow >= 0) {
+            String shootingId = (String) tableResults.getValueAt(selectedRow, 0);
+            for (WorkRequest workRequest : requests) {
+                if (((VaccineShootRequest) workRequest).getShootingId().equals(shootingId)) {
+                    selectedShoot = (VaccineShootRequest)workRequest;
+                    break;
+                }
+            }
+            
+            if (radioYes.isSelected()) {
+                selectedShoot.setHasAntibody("Yes");
+                populateTable(selectedShoot.getSender());
+            } else if (radioNo.isSelected()) {
+                selectedShoot.setHasAntibody("No");
+                populateTable(selectedShoot.getSender());
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a radio button");
+            }
             
         } else {
             JOptionPane.showMessageDialog(null, "Please enter the username.");
@@ -328,6 +353,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnConfirm;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSelect;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -336,9 +362,9 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton radioNo;
+    private javax.swing.JRadioButton radioYes;
     private javax.swing.JTable tableResults;
     private javax.swing.JTextField txtSelectUsername;
     private javax.swing.JTextField txtSelectedVaccine;

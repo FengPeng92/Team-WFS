@@ -345,6 +345,8 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
             txtUpdateName.setEnabled(false);
             txtUpdateUsername.setEnabled(false);
             txtUpdatePassword.setEnabled(false);
+            populateTable();
+            JOptionPane.showMessageDialog(null, "Update successfully");
         } else {
             JOptionPane.showMessageDialog(null, "Please fill in all updated information");
         }

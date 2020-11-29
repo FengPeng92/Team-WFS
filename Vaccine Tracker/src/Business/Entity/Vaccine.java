@@ -5,6 +5,7 @@
  */
 package Business.Entity;
 
+import Business.Enterprise.Enterprise;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,14 +21,22 @@ public class Vaccine {
     private String vaccineType;
     private String detail;
     private Date createdTime;
+    private List<Enterprise> hospitalList;
     private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+    private String status;
+    
+    private AnimalDirectory animalDirectory;
 
-    public Vaccine(String vaccineName, String vaccineType, String detail) {
+    public Vaccine(String vaccineName, String vaccineType, String detail, String status) {
         this.vaccineName = vaccineName;
         this.vaccineType = vaccineType;
         this.detail = detail;
         this.phases = new ArrayList<>();
+        this.hospitalList = new ArrayList<>();
         this.createdTime = new Date();
+        this.animalDirectory = new AnimalDirectory();
+        this.status = status;
+        //System.out.println(createdTime);
     }
 
     public String getVaccineName() {
@@ -74,6 +83,31 @@ public class Vaccine {
     public String toString() {
         return this.vaccineName;
     }
+
+    public List<Enterprise> getHospitalList() {
+        return hospitalList;
+    }
+
+    public void setHospitalList(List<Enterprise> hospitalList) {
+        this.hospitalList = hospitalList;
+    }
+
+    public AnimalDirectory getAnimalDirectory() {
+        return animalDirectory;
+    }
+
+    public void setAnimalDirectory(AnimalDirectory animalDirectory) {
+        this.animalDirectory = animalDirectory;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     
     
     

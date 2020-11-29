@@ -2,15 +2,15 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="groupAlcoholic">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    <Component class="javax.swing.ButtonGroup" name="groupSmoking">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup3">
+    <Component class="javax.swing.ButtonGroup" name="groupAllergic">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup4">
+    <Component class="javax.swing.ButtonGroup" name="groupCold">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup5">
+    <Component class="javax.swing.ButtonGroup" name="groupTest">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -49,30 +49,30 @@
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="radioAlcoholicYes" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="radioAlcoholicNo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="radioSmokingYes" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="radioSmokingNo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jRadioButton6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="radioAllergicYes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="radioColdYes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="radioTestNo" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="jRadioButton11" min="-2" max="-2" attributes="0"/>
+                                              <Component id="radioTestPositive" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                              <Component id="jRadioButton9" min="-2" max="-2" attributes="0"/>
+                                              <Component id="radioTesNegitive" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jRadioButton7" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton5" min="-2" max="-2" attributes="0"/>
+                                          <Component id="radioColdNo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="radioAllergicNo" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -122,33 +122,33 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioAlcoholicYes" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioAlcoholicNo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton4" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioSmokingYes" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioSmokingNo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton6" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton5" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioAllergicYes" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioAllergicNo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton8" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton7" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioColdYes" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioColdNo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel9" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton10" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton9" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jRadioButton11" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioTestNo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioTesNegitive" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="radioTestPositive" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="50" max="-2" attributes="0"/>
@@ -207,105 +207,105 @@
         <Property name="text" type="java.lang.String" value="Do you get a covid-19 test? if yes, positive or negtive? "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+    <Component class="javax.swing.JRadioButton" name="radioAlcoholicYes">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
+          <ComponentRef name="groupAlcoholic"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+    <Component class="javax.swing.JRadioButton" name="radioAlcoholicNo">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
+          <ComponentRef name="groupAlcoholic"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioAlcoholicNoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+    <Component class="javax.swing.JRadioButton" name="radioSmokingNo">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup2"/>
+          <ComponentRef name="groupSmoking"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioSmokingNoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+    <Component class="javax.swing.JRadioButton" name="radioSmokingYes">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup2"/>
+          <ComponentRef name="groupSmoking"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton5">
+    <Component class="javax.swing.JRadioButton" name="radioAllergicNo">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup3"/>
+          <ComponentRef name="groupAllergic"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioAllergicNoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton6">
+    <Component class="javax.swing.JRadioButton" name="radioAllergicYes">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup3"/>
+          <ComponentRef name="groupAllergic"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton7">
+    <Component class="javax.swing.JRadioButton" name="radioColdNo">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup4"/>
+          <ComponentRef name="groupCold"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioColdNoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton8">
+    <Component class="javax.swing.JRadioButton" name="radioColdYes">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup4"/>
+          <ComponentRef name="groupCold"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton9">
+    <Component class="javax.swing.JRadioButton" name="radioTesNegitive">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup5"/>
+          <ComponentRef name="groupTest"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Negtive"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton9ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioTesNegitiveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton10">
+    <Component class="javax.swing.JRadioButton" name="radioTestNo">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup5"/>
+          <ComponentRef name="groupTest"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton11">
+    <Component class="javax.swing.JRadioButton" name="radioTestPositive">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup5"/>
+          <ComponentRef name="groupTest"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Positive"/>
       </Properties>
@@ -314,11 +314,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

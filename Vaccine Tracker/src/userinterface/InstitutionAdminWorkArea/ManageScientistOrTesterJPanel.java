@@ -6,11 +6,19 @@
 package userinterface.InstitutionAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
+import Business.Entity.Vaccine;
 import Business.Organization.Organization;
+import Business.Role.DoctorRole;
+import Business.Role.Role;
+import Business.Role.ScientistRole;
+import Business.Role.TesterRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +31,8 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    UserAccount u1 = null;
+    Employee e1 = null;
     /**
      * Creates new form ManageScientistOrTesterJPanel
      */
@@ -34,6 +44,12 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.system = system;
+        
+        jLabel1.setText(enterprise.getName());
+        jLabel3.setText(userAccount.getUsername());
+        
+        populate();
+        initialize();
     }
 
     /**
@@ -105,6 +121,11 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         jLabel7.setText("Password: ");
 
         jButton1.setText("Create");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -125,6 +146,11 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         jButton2.setText("Update");
 
         jButton3.setText("Save");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,6 +164,11 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         });
 
         jButton5.setText("Select");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -195,7 +226,7 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
                                         .addComponent(jButton2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                                 .addComponent(jButton5))
                             .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
@@ -277,7 +308,7 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(233, 233, 233)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -288,6 +319,64 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String pick = (String)jComboBox1.getSelectedItem();
+        String name = jTextField1.getText();
+        String username = jTextField2.getText();
+        String password = jTextField3.getText();
+        if ((name != null) && (username != null) && (password != null)) {
+            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+            if ("Scientist".equals(pick)) {
+                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ScientistRole());
+            }
+            else if ("Tester".equals(pick)) {
+                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new TesterRole());
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "please input the value");
+            }
+            populate();
+        }
+        
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        u1.getEmployee().setName(jTextField4.getText());
+        u1.setUsername(jTextField5.getText());
+        u1.setPassword(jTextField6.getText());
+        e1.setName(jTextField4.getText());
+        populate();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int a = jTable1.getSelectedRow();
+        if (a >= 0) {
+            String name = (String)jTable1.getValueAt(a, 1);
+            for (UserAccount u : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                if (u.getEmployee().getName() == null ? name == null : u.getEmployee().getName().equals(name)) {
+                    jTextField4.setText(u.getEmployee().getName());
+                    jTextField5.setText(u.getUsername());
+                    jTextField6.setText(u.getPassword());
+                    u1 = u;
+                }
+            }
+            for (Employee e : enterprise.getEmployeeDirectory().getEmployeeList()) {
+                if (e.getName() == null ? name == null : e.getName().equals(name)) {
+                    e1 = e;
+                }
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            populate();
+        }
+        return;
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -321,4 +410,39 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    private void populate() {
+        DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        System.out.println("111");
+        
+        //for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
+        //    if (userAccount.getRole() instanceof DoctorRole) {
+        
+        for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
+            if (userAccount.getRole() instanceof ScientistRole || userAccount.getRole() instanceof TesterRole) {
+                Object[] row = new Object[5];
+                if (userAccount.getRole() instanceof ScientistRole) {
+                    row[0] = "Scientist";
+                }
+                else {
+                    row[0] = "Tester";
+                }
+                row[1] = userAccount.getEmployee().getName();
+                row[2] = userAccount.getUsername();
+                row[3] = userAccount.getPassword();
+                dtm.addRow(row);
+            }
+        }
+    }
+    
+    private void initialize(){
+        jComboBox1.removeAllItems();
+        jComboBox1.addItem("Scientist");
+        jComboBox1.addItem("Tester");
+        
+        jComboBox2.removeAllItems();
+        jComboBox2.addItem("Scientist");
+        jComboBox2.addItem("Tester");
+    }
 }

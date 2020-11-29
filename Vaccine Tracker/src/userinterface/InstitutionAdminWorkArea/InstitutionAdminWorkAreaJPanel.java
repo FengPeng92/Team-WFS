@@ -81,10 +81,7 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Vaccine Name", "Vaccine Type", "Create Time", "Phase", "Status"
@@ -184,21 +181,32 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    private void populate() {
+    public void populate() {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
-        System.out.println("1");
-        for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-            Object[] row = new Object[5];
-            System.out.println("2");
-            row[0] = vaccine;
-            System.out.println("3");
-            row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getCreatedTime();
-            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-            row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate();
-            dtm.addRow(row);
+
+        if (enterprise.getVaccineDirectory().getVaccineList() == null) {
+            System.out.println("null");
         }
+        //System.out.println("1");
+        for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            //System.out.println("2");
+            Object[] row = new Object[5];
+            row[0] = vaccine;
+            row[1] = vaccine.getVaccineType();
+            //row[2] = vaccine.getCreatedTime();
+            int size = vaccine.getPhases().size();
+            if (size == 0) {
+                dtm.addRow(row);
+            } else {
+                
+                row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+                row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
+                dtm.addRow(row);
+            }
+            
+        }
+        
         
     }
 }

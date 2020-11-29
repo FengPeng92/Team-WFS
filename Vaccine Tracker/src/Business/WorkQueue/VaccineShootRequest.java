@@ -18,6 +18,7 @@ public class VaccineShootRequest extends WorkRequest {
     private String hasAntibody;
 
     public VaccineShootRequest(Vaccine vaccine, String shootingId) {
+        super();
         this.vaccine = vaccine;
         this.status = "Request to Shoot";
         this.shootingId = shootingId;
@@ -47,6 +48,18 @@ public class VaccineShootRequest extends WorkRequest {
     public void setHasAntibody(String hasAntibody) {
         this.hasAntibody = hasAntibody;
     }
+
+    public String getShootingId() {
+        return shootingId;
+    }
+
+    public void setShootingId(String shootingId) {
+        this.shootingId = shootingId;
+    }
+    
+    
+    
+    
     
     @Override
     public String toString() {

@@ -7,7 +7,6 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
-import static Business.Enterprise.Enterprise.EnterpriseType.Hospital;
 import Business.Network.Network;
 import Business.Role.HospitalAdminRole;
 import Business.Role.InstitutionAdminRole;
@@ -275,7 +274,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
-         Component[] componentArray = userProcessContainer.getComponents();
+        Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
         sysAdminwjp.populateTree();

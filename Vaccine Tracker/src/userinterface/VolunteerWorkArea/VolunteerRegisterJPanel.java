@@ -5,6 +5,18 @@
  */
 package userinterface.VolunteerWorkArea;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Entity.Questionary;
+import Business.Entity.User;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.VolunteerApplicationRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import userinterface.DoctorWorkArea.VaccineShootRequestJPanel;
+
 /**
  *
  * @author fengpeng
@@ -14,8 +26,26 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
     /**
      * Creates new form VolunteerRegisterJPanel
      */
+    private JPanel userProcessContainer;
+    private Organization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EcoSystem system;
+    private User user;
     public VolunteerRegisterJPanel() {
+        
+    }
+
+    public VolunteerRegisterJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, User user) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
+        this.system = system;
+        this.user = user;
+        
+        jLabel3.setText(userAccount.getUsername());
     }
 
     /**
@@ -27,11 +57,11 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
+        groupAlcoholic = new javax.swing.ButtonGroup();
+        groupSmoking = new javax.swing.ButtonGroup();
+        groupAllergic = new javax.swing.ButtonGroup();
+        groupCold = new javax.swing.ButtonGroup();
+        groupTest = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -41,17 +71,17 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
+        radioAlcoholicYes = new javax.swing.JRadioButton();
+        radioAlcoholicNo = new javax.swing.JRadioButton();
+        radioSmokingNo = new javax.swing.JRadioButton();
+        radioSmokingYes = new javax.swing.JRadioButton();
+        radioAllergicNo = new javax.swing.JRadioButton();
+        radioAllergicYes = new javax.swing.JRadioButton();
+        radioColdNo = new javax.swing.JRadioButton();
+        radioColdYes = new javax.swing.JRadioButton();
+        radioTesNegitive = new javax.swing.JRadioButton();
+        radioTestNo = new javax.swing.JRadioButton();
+        radioTestPositive = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -77,67 +107,77 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Do you get a covid-19 test? if yes, positive or negtive? ");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Yes");
+        groupAlcoholic.add(radioAlcoholicYes);
+        radioAlcoholicYes.setText("Yes");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("No");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        groupAlcoholic.add(radioAlcoholicNo);
+        radioAlcoholicNo.setText("No");
+        radioAlcoholicNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                radioAlcoholicNoActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(jRadioButton3);
-        jRadioButton3.setText("No");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        groupSmoking.add(radioSmokingNo);
+        radioSmokingNo.setText("No");
+        radioSmokingNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                radioSmokingNoActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setText("Yes");
+        groupSmoking.add(radioSmokingYes);
+        radioSmokingYes.setText("Yes");
 
-        buttonGroup3.add(jRadioButton5);
-        jRadioButton5.setText("No");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        groupAllergic.add(radioAllergicNo);
+        radioAllergicNo.setText("No");
+        radioAllergicNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                radioAllergicNoActionPerformed(evt);
             }
         });
 
-        buttonGroup3.add(jRadioButton6);
-        jRadioButton6.setText("Yes");
+        groupAllergic.add(radioAllergicYes);
+        radioAllergicYes.setText("Yes");
 
-        buttonGroup4.add(jRadioButton7);
-        jRadioButton7.setText("No");
-        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+        groupCold.add(radioColdNo);
+        radioColdNo.setText("No");
+        radioColdNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton7ActionPerformed(evt);
+                radioColdNoActionPerformed(evt);
             }
         });
 
-        buttonGroup4.add(jRadioButton8);
-        jRadioButton8.setText("Yes");
+        groupCold.add(radioColdYes);
+        radioColdYes.setText("Yes");
 
-        buttonGroup5.add(jRadioButton9);
-        jRadioButton9.setText("Negtive");
-        jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
+        groupTest.add(radioTesNegitive);
+        radioTesNegitive.setText("Negtive");
+        radioTesNegitive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton9ActionPerformed(evt);
+                radioTesNegitiveActionPerformed(evt);
             }
         });
 
-        buttonGroup5.add(jRadioButton10);
-        jRadioButton10.setText("No");
+        groupTest.add(radioTestNo);
+        radioTestNo.setText("No");
 
-        buttonGroup5.add(jRadioButton11);
-        jRadioButton11.setText("Positive");
+        groupTest.add(radioTestPositive);
+        radioTestPositive.setText("Positive");
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,26 +198,26 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
+                                        .addComponent(radioAlcoholicYes)
                                         .addGap(36, 36, 36)
-                                        .addComponent(jRadioButton2))
+                                        .addComponent(radioAlcoholicNo))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton4)
+                                        .addComponent(radioSmokingYes)
                                         .addGap(36, 36, 36)
-                                        .addComponent(jRadioButton3))
+                                        .addComponent(radioSmokingNo))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadioButton6)
-                                            .addComponent(jRadioButton8)
-                                            .addComponent(jRadioButton10))
+                                            .addComponent(radioAllergicYes)
+                                            .addComponent(radioColdYes)
+                                            .addComponent(radioTestNo))
                                         .addGap(44, 44, 44)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jRadioButton11)
+                                                .addComponent(radioTestPositive)
                                                 .addGap(47, 47, 47)
-                                                .addComponent(jRadioButton9))
-                                            .addComponent(jRadioButton7)
-                                            .addComponent(jRadioButton5)))))
+                                                .addComponent(radioTesNegitive))
+                                            .addComponent(radioColdNo)
+                                            .addComponent(radioAllergicNo)))))
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(399, 399, 399)
@@ -212,62 +252,121 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioAlcoholicYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioAlcoholicNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioSmokingYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioSmokingNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioAllergicYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioAllergicNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioColdYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioColdNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioTestNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioTesNegitive, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioTestPositive, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void radioAlcoholicNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAlcoholicNoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_radioAlcoholicNoActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void radioSmokingNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSmokingNoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_radioSmokingNoActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void radioAllergicNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAllergicNoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_radioAllergicNoActionPerformed
 
-    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+    private void radioColdNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioColdNoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton7ActionPerformed
+    }//GEN-LAST:event_radioColdNoActionPerformed
 
-    private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed
+    private void radioTesNegitiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTesNegitiveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton9ActionPerformed
+    }//GEN-LAST:event_radioTesNegitiveActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (groupAlcoholic.getSelection() != null && groupAllergic.getSelection() != null && groupCold.getSelection() != null && groupSmoking.getSelection() != null && groupTest.getSelection() != null) {
+            Questionary questionary = new Questionary();
+            if (radioAlcoholicNo.isSelected()) {
+                questionary.setIsAlcoholic(false);
+            }
+            if (radioAlcoholicYes.isSelected()) {
+                questionary.setIsAlcoholic(true);
+            }
+            if (radioAllergicNo.isSelected()) {
+                questionary.setIsAllergic(false);
+            }
+            if (radioAllergicYes.isSelected()) {
+                questionary.setIsAllergic(true);
+            }
+            if (radioColdNo.isSelected()) {
+                questionary.setIsCold(false);
+            }
+            if (radioColdYes.isSelected()) {
+                questionary.setIsCold(true);
+            }
+            if (radioSmokingNo.isSelected()) {
+                questionary.setIsSmoking(false);
+            }
+            if (radioSmokingYes.isSelected()) {
+                questionary.setIsSmoking(true);
+            }
+            if (radioTestNo.isSelected()) {
+                questionary.setTestResult("No");
+                System.out.println(questionary.getTestResult());
+            }
+            if (radioTestPositive.isSelected()) {
+                questionary.setTestResult("Positive");
+            }
+            if (radioTesNegitive.isSelected()) {
+                questionary.setTestResult("Negitive");
+            }
+            
+            VolunteerApplicationRequest application = new VolunteerApplicationRequest(questionary, false, "");
+            application.setSender(userAccount);
+            application.setUser(user);
+            application.setStatus("Requested");
+            
+            system.getWorkQueue().getWorkRequestList().add(application);
+            JOptionPane.showMessageDialog(null, "reported successfully.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please fill out the questionary");
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup groupAlcoholic;
+    private javax.swing.ButtonGroup groupAllergic;
+    private javax.swing.ButtonGroup groupCold;
+    private javax.swing.ButtonGroup groupSmoking;
+    private javax.swing.ButtonGroup groupTest;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -279,16 +378,16 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JRadioButton radioAlcoholicNo;
+    private javax.swing.JRadioButton radioAlcoholicYes;
+    private javax.swing.JRadioButton radioAllergicNo;
+    private javax.swing.JRadioButton radioAllergicYes;
+    private javax.swing.JRadioButton radioColdNo;
+    private javax.swing.JRadioButton radioColdYes;
+    private javax.swing.JRadioButton radioSmokingNo;
+    private javax.swing.JRadioButton radioSmokingYes;
+    private javax.swing.JRadioButton radioTesNegitive;
+    private javax.swing.JRadioButton radioTestNo;
+    private javax.swing.JRadioButton radioTestPositive;
     // End of variables declaration//GEN-END:variables
 }
