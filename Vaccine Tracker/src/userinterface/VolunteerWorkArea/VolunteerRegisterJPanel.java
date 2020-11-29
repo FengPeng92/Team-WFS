@@ -8,6 +8,7 @@ package userinterface.VolunteerWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Questionary;
+import Business.Entity.User;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VolunteerApplicationRequest;
@@ -30,17 +31,19 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private User user;
     public VolunteerRegisterJPanel() {
         
     }
 
-    public VolunteerRegisterJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system) {
+    public VolunteerRegisterJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, User user) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.system = system;
+        this.user = user;
         
         jLabel3.setText(userAccount.getUsername());
     }
@@ -311,35 +314,46 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
             Questionary questionary = new Questionary();
             if (radioAlcoholicNo.isSelected()) {
                 questionary.setIsAlcoholic(false);
-            } else if (radioAlcoholicYes.isSelected()) {
+            }
+            if (radioAlcoholicYes.isSelected()) {
                 questionary.setIsAlcoholic(true);
-            } else if (radioAllergicNo.isSelected()) {
+            }
+            if (radioAllergicNo.isSelected()) {
                 questionary.setIsAllergic(false);
-            } else if (radioAllergicYes.isSelected()) {
+            }
+            if (radioAllergicYes.isSelected()) {
                 questionary.setIsAllergic(true);
-            } else if (radioColdNo.isSelected()) {
+            }
+            if (radioColdNo.isSelected()) {
                 questionary.setIsCold(false);
-            } else if (radioColdYes.isSelected()) {
+            }
+            if (radioColdYes.isSelected()) {
                 questionary.setIsCold(true);
-            } else if (radioSmokingNo.isSelected()) {
+            }
+            if (radioSmokingNo.isSelected()) {
                 questionary.setIsSmoking(false);
-            } else if (radioSmokingYes.isSelected()) {
+            }
+            if (radioSmokingYes.isSelected()) {
                 questionary.setIsSmoking(true);
-            } else if (radioTestNo.isSelected()) {
+            }
+            if (radioTestNo.isSelected()) {
                 questionary.setTestResult("No");
-            } else if (radioTestPositive.isSelected()) {
+                System.out.println(questionary.getTestResult());
+            }
+            if (radioTestPositive.isSelected()) {
                 questionary.setTestResult("Positive");
-            } else if (radioTesNegitive.isSelected()) {
+            }
+            if (radioTesNegitive.isSelected()) {
                 questionary.setTestResult("Negitive");
             }
             
             VolunteerApplicationRequest application = new VolunteerApplicationRequest(questionary, false, "");
             application.setSender(userAccount);
+            application.setUser(user);
             application.setStatus("Requested");
             
-            int size = system.getWorkQueue().getWorkRequestList().size();
-            system.getWorkQueue().getWorkRequestList().add(size, application);
-            
+            system.getWorkQueue().getWorkRequestList().add(application);
+            JOptionPane.showMessageDialog(null, "reported successfully.");
         } else {
             JOptionPane.showMessageDialog(null, "Please fill out the questionary");
         }

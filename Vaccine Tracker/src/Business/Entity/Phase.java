@@ -23,6 +23,7 @@ public class Phase {
     private double effectiveRate;
     List<UserAccount> volunteers; 
     private String status;
+    private String WHOdescription;
     private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
     public Phase(String name, String description, String status) {
@@ -90,5 +91,15 @@ public class Phase {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getWHOdescription() {
+        return WHOdescription;
+    }
+
+    public void setWHOdescription(String WHOdescription) {
+        this.WHOdescription = WHOdescription;
+    }
+    
+    
     
 }

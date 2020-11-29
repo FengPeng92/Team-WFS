@@ -9,11 +9,14 @@ import userinterface.HospitalAdminWorkArea.*;
 import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.Vaccine;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ReportToWHORequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +31,8 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private Vaccine selectedVaccine;
+    private WorkRequest selectedWorkRequest;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -40,10 +45,27 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
+        jLabel1.setText(enterprise.getName());
+        jLabel3.setText(userAccount.getUsername());
     }
     
-   
-
+   public void populateTable() {
+        DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        
+        for (WorkRequest request : system.getWorkQueue().getReportToWHORequestList()) {
+            ReportToWHORequest whoRequest = (ReportToWHORequest)request;
+            Object[] row = new Object[5];
+            row[0] = whoRequest.getVaccine();
+            row[1] = whoRequest.getVaccine().getVaccineType();
+            row[2] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStartDate();
+            row[3] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getName();
+            row[4] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStatus();
+            dtm.addRow(row);
+        }
+        
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,8 +111,18 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setText("Vaccine Request");
 
         jButton1.setText("View Phase Test Result");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Volunteer Manager Management");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -132,6 +164,31 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ManageVolunteerManagerJPanel manageVolunteerManagerJPanel = new ManageVolunteerManagerJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        userProcessContainer.add("ManageVolunteerManagerJPanel", manageVolunteerManagerJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            selectedVaccine = (Vaccine)jTable1.getValueAt(selectedRow, 0);
+            selectedWorkRequest = system.getWorkQueue().searchRequstByVaccine(selectedVaccine);
+            PhaseTestResultJPanel phaseTestResultJPanel = new PhaseTestResultJPanel(userProcessContainer, userAccount, organization, enterprise, system, selectedWorkRequest);
+            userProcessContainer.add("PhaseTestResultJPanel", phaseTestResultJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

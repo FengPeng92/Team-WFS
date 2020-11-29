@@ -6,6 +6,7 @@ package userinterface.NormalUserWorkArea;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.User;
 import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -27,6 +28,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private Vaccine selectedVaccine;
+    private User user;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -38,6 +40,8 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system = system;
+        
+        user = enterprise.getUserDirectory().searchUserByUserAccount(userAccount);
         
         jLabel3.setText(userAccount.getUsername());
         populateInstitution();
@@ -318,7 +322,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        VolunteerRegisterJPanel volunteerRegisterJPanel = new VolunteerRegisterJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        VolunteerRegisterJPanel volunteerRegisterJPanel = new VolunteerRegisterJPanel(userProcessContainer, userAccount, organization, enterprise, system, user);
         userProcessContainer.add("VolunteerRegisterJPanel", volunteerRegisterJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

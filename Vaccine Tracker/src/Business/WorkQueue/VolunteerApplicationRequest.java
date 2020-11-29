@@ -6,6 +6,7 @@
 package Business.WorkQueue;
 
 import Business.Entity.Questionary;
+import Business.Entity.User;
 
 /**
  *
@@ -16,6 +17,7 @@ public class VolunteerApplicationRequest extends WorkRequest {
     private Questionary questionary;
     private boolean isQualified;
     private String description;
+    private User user;
 
     public VolunteerApplicationRequest(Questionary questionary, boolean isQualified, String description) {
         
@@ -47,6 +49,16 @@ public class VolunteerApplicationRequest extends WorkRequest {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    
     
     
     
