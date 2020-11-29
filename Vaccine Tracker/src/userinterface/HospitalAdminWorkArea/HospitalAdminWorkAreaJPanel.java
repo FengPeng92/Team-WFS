@@ -11,6 +11,7 @@ import Business.Entity.Vaccine;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ReportToInstitutionRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
-    private Vaccine vaccine;
+    private Vaccine selectedVaccine;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -137,6 +138,11 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tableVaccine);
 
         jButton3.setText("Report to Institution");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Manage Doctors");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -204,11 +210,11 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         if (searchVaccine.equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter the vaccine name.");
         } else {
-            vaccine = enterprise.getVaccineDirectory().searchVaccineByName(searchVaccine);
-            if (vaccine == null) {
+            Vaccine searchedVaccine = enterprise.getVaccineDirectory().searchVaccineByName(searchVaccine);
+            if (searchedVaccine == null) {
                 JOptionPane.showMessageDialog(null, "No search result");
             } else {
-                populateTable(vaccine);
+                populateTable(searchedVaccine);
             }
         }
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -225,6 +231,23 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableVaccine.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            selectedVaccine = (Vaccine)tableVaccine.getValueAt(selectedRow, 0);
+            WorkRequest request = new ReportToInstitutionRequest();
+            ((ReportToInstitutionRequest)request).setVaccine(selectedVaccine);
+            system.getWorkQueue().getWorkRequestList().add(request);
+            JOptionPane.showMessageDialog(null, "Report successfully");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please selected a vaccine.");
+        }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;

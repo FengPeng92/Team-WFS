@@ -267,7 +267,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             role = new WHOOfficerRole();
         }
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, role);
-        System.out.println(enterprise.getName() + " " + account.getRole());
         populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed

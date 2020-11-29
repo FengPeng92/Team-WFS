@@ -338,7 +338,6 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
             }
             if (radioTestNo.isSelected()) {
                 questionary.setTestResult("No");
-                System.out.println(questionary.getTestResult());
             }
             if (radioTestPositive.isSelected()) {
                 questionary.setTestResult("Positive");

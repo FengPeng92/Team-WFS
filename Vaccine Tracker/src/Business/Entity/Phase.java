@@ -21,7 +21,7 @@ public class Phase {
     private Date endDate;
     private String description;
     private double effectiveRate;
-    List<UserAccount> volunteers; 
+    List<User> volunteers; 
     private String status;
     private String WHOdescription;
     private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
@@ -76,11 +76,11 @@ public class Phase {
         this.effectiveRate = effectiveRate;
     }
 
-    public List<UserAccount> getVolunteers() {
+    public List<User> getVolunteers() {
         return volunteers;
     }
 
-    public void setVolunteers(List<UserAccount> volunteers) {
+    public void setVolunteers(List<User> volunteers) {
         this.volunteers = volunteers;
     }
 

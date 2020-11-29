@@ -51,7 +51,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     
     //To be Completed
     public void populateHospitalByVaccine() {
-        DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
+        DefaultTableModel dtm =(DefaultTableModel) tableHospital.getModel();
         dtm.setRowCount(0);
         
         for (Enterprise enterprise: system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {

@@ -47,7 +47,8 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(userAccount.getUsername());
-    }
+        populateTable();
+;    }
     
    public void populateTable() {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();

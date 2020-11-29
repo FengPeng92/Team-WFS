@@ -5,17 +5,40 @@
  */
 package userinterface.ScientistWorkArea;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Entity.Vaccine;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author fengpeng
  */
 public class NewVaccineJPanel extends javax.swing.JPanel {
 
+    private JPanel userProcessContainer;
+    private Organization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EcoSystem system;
     /**
      * Creates new form NewVaccineJPanel
      */
-    public NewVaccineJPanel() {
+    public NewVaccineJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = account;
+        this.system = system;
+        
+        jLabel1.setText(enterprise.getName());
+        jLabel3.setText(account.getUsername());
     }
 
     /**
@@ -64,8 +87,18 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
         jLabel7.setText("Add New Vaccine Information");
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,6 +166,34 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
                 .addContainerGap(237, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name = jTextField1.getText();
+        String type = jTextField2.getText();
+        String detail = jTextArea1.getText();
+        
+ 
+        if ((name != null) || (type != null)) {
+            Vaccine vaccine = new Vaccine(name, type, detail, "create the vaccine");
+            enterprise.getVaccineDirectory().getVaccineList().add(vaccine);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "input the name or type");
+        }
+        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

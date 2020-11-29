@@ -55,7 +55,6 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         
-        System.out.println(system.getWorkQueue().getVolunteerApplicationRequestList().size());
         for (WorkRequest request : system.getWorkQueue().getVolunteerApplicationRequestList()) {
             Object[] row = new Object[4];
             row[0] = ((VolunteerApplicationRequest)request).getUser();
@@ -91,7 +90,6 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         } else {
             radioSmokingNo.setSelected(true);
         }
-        System.out.println(applicationRequest.getQuestionary().getTestResult());
         if (applicationRequest.getQuestionary().getTestResult().equals("No")) {
             radioTestNo.setSelected(true);
         } else if (applicationRequest.getQuestionary().getTestResult().equals("Positive")) {
