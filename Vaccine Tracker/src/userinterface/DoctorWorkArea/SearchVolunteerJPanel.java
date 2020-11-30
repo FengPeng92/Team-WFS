@@ -303,6 +303,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         } else {
             UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
             if (searchAccount == null) {
+                DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
+                dtm.setRowCount(0);
                 JOptionPane.showMessageDialog(null, "No search results");
             } else {
                 populateTable(searchAccount);

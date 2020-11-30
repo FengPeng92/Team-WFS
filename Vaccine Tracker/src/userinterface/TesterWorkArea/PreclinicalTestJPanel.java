@@ -228,7 +228,6 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
         
         populate();
         
-        // Animal(String animalName, double quantity, double effective, double effectiveRate, String description
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void initialize(){

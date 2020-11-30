@@ -11,15 +11,13 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Animal;
 import Business.Entity.Vaccine;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.InstitutionAdminWorkArea.InstitutionAdminWorkAreaJPanel;
 
 /**
  *
@@ -111,7 +109,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Vaccine Pre-clinical Test Request");
 
-        jButton1.setText("Accept");
+        jButton1.setText("Select");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -278,6 +276,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
             txtName.setText(v1.getVaccineName());
             txtType.setText(v1.getVaccineType());
             txtDetail.setText(v1.getDetail());
+            txtTime.setText(v1.getCreatedTime());
             for (Animal a : v1.getAnimalDirectory().getAnimalList()) 
             {
                 total += a.getTotal();
@@ -300,6 +299,8 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        v1.getPhases().get(0).setEndDate(new Date());
+        v1.getPhases().get(0).setStatus("Completed");
         JOptionPane.showMessageDialog(null, "To be Completed");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -340,7 +341,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
-                //row[2] = vaccine.getCreatedTime();
+                row[2] = vaccine.getCreatedTime();
                 row[4] = vaccine.getStatus();
                 int size = vaccine.getPhases().size();
                 if (size == 0) {

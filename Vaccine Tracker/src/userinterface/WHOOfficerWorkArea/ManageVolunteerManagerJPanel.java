@@ -9,14 +9,12 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
-import Business.Role.DoctorRole;
 import Business.Role.VolunteerManagerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.HospitalAdminWorkArea.*;
 
 /**
  *
@@ -51,8 +49,6 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         
-//        System.out.println(enterprise);
-//        System.out.println(enterprise.getUserAccountDirectory());
         for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
             if (userAccount.getRole() instanceof VolunteerManagerRole) {
                 Object[] row = new Object[3];

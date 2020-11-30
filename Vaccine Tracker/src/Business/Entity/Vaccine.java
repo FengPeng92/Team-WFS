@@ -36,10 +36,6 @@ public class Vaccine {
         this.createdTime = new Date();
         this.animalDirectory = new AnimalDirectory();
         this.status = status;
-        //String name, String description, String status
-        Phase phase = new Phase("Preclinical", "", "Started");
-        phases.add(phase);
-        //System.out.println(createdTime);
     }
 
     public String getVaccineName() {

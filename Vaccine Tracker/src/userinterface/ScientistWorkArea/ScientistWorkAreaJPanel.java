@@ -6,6 +6,7 @@ package userinterface.ScientistWorkArea;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.Phase;
 import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -41,11 +42,8 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(account.getUsername());
-        //listEnterprise = new ArrayList<Enterprise>();
         
         populate();
-        //populateAll();
-        //populateSelect();
     }
    
     public void populateSelect() {
@@ -82,13 +80,12 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = vaccine.getVaccineType();
             row[1] = vaccine;
-            //row[2] = vaccine.getCreatedTime();
+            row[2] = vaccine.getCreatedTime();
             row[4] = vaccine.getStatus();
             int size = vaccine.getPhases().size();
             if (size == 0) {
                 dtm.addRow(row);
-            } else {
-                
+            } else {               
                 row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
                 row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
                 dtm.addRow(row);
@@ -97,9 +94,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         }
         
     }
-    
-    
-    
+     
 
     
     /**
@@ -369,8 +364,11 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         if (selectAccept >= 0) {
             Vaccine v1 = (Vaccine)jTable1.getValueAt(selectAccept, 1);
             
-            v1.setStatus("request phase 1");
+            v1.setStatus("Preclinical");
+            Phase preclinical = new Phase("Preclinical", "", "Still testing");
+            v1.getPhases().add(preclinical);
             populate();
+            JOptionPane.showMessageDialog(null, "Preclinical test request.");
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select a row");

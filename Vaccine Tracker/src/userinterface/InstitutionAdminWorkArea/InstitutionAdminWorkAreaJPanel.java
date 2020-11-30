@@ -16,6 +16,7 @@ import Business.WorkQueue.ReportToWHORequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -51,9 +52,6 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         populate();
         
     }
-    
-   
-
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -185,6 +183,7 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             selectedVaccine = (Vaccine) jTable1.getValueAt(selectedRow, 0);
             ReportToWHORequest request = new ReportToWHORequest(selectedVaccine);
+            request.getVaccine().getPhases().get(request.getVaccine().getPhases().size()-1).setEndDate(new Date());
             request.setSender(userAccount);
             system.getWorkQueue().getWorkRequestList().add(request);
             JOptionPane.showMessageDialog(null, "Report successfully!");
@@ -212,13 +211,11 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         if (enterprise.getVaccineDirectory().getVaccineList() == null) {
             System.out.println("null");
         }
-        //System.out.println("1");
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-            //System.out.println("2");
             Object[] row = new Object[5];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            //row[2] = vaccine.getCreatedTime();
+            row[2] = vaccine.getCreatedTime();
             int size = vaccine.getPhases().size();
             if (size == 0) {
                 dtm.addRow(row);

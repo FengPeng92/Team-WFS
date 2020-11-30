@@ -57,10 +57,10 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
     public void populatePhase(String phaseName) {
         for (Phase phase : v1.getPhases()) {
             if (phase.getName().equals(phaseName)) {
-                txtStart.setText(phase.getStartDate());
-                txtEnd.setText(phase.getEndDate());
+                txtStart.setText(phase.getStartDate() == null ? "" : phase.getStartDate());
+                txtEnd.setText(phase.getEndDate() == null ? "" : phase.getEndDate());
                 txtStatus.setText(phase.getStatus());
-                txtRate.setText(String.valueOf(phase.getEffectiveRate()));
+                txtRate.setText(String.valueOf(phase.getEffectiveRate()).equals("") ? "0" : String.valueOf(phase.getEffectiveRate()));
                 txtDescription.setText(phase.getDescription());
             }
         }
@@ -153,8 +153,18 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(txtDescription);
 
         jButton2.setText("Update Vaccine Info");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Save Vaccine Info");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -317,6 +327,14 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         populatePhase(selectedRow);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

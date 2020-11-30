@@ -61,7 +61,7 @@
                                       <Component id="jLabel11" min="-2" pref="102" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                                          <Component id="jTextField4" min="-2" pref="124" max="-2" attributes="0"/>
+                                          <Component id="txtUpdateName" min="-2" pref="124" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel9" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
                                   </Group>
@@ -73,12 +73,12 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel13" min="-2" pref="102" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="jTextField6" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Component id="txtUpdatePassword" min="-2" pref="124" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel12" min="-2" pref="102" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="jTextField5" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Component id="txtUpdateUsername" min="-2" pref="124" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
@@ -162,12 +162,12 @@
                                       <EmptySpace min="95" pref="95" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel12" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jTextField5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="txtUpdateUsername" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel13" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jTextField6" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="txtUpdatePassword" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -178,7 +178,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel11" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jTextField4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="txtUpdateName" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -343,7 +343,10 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="txtUpdateName">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
@@ -355,19 +358,28 @@
         <Property name="text" type="java.lang.String" value="Username: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="txtUpdateUsername">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="text" type="java.lang.String" value="Password: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="txtUpdatePassword">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>

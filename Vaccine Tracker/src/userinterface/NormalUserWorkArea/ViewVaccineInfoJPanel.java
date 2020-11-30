@@ -62,7 +62,7 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
         for (Phase phase : selectedVaccine.getPhases()) {
             if (phase.getName().equals(phaseName)) {
                 txtStartTime.setText(phase.getStartDate());
-                txtEndTime.setText(phase.getEndDate().equals("") ? "Not Finished" : phase.getEndDate());
+                txtEndTime.setText(phase.getEndDate() == null ? "Not Finished" : phase.getEndDate());
                 txtStatus.setText(phase.getStatus());
                 txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
                 txtDescription.setText(phase.getDescription());

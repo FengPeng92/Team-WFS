@@ -358,8 +358,6 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             system.getWorkQueue().getVaccineShootRequestList().add(newRequest);
             newRequest.setSender(userAccount);
             
-            //To be done
-            //newRequest.setReceiver(selectedHospital.getUserAccountDirectory());
             JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row.");
