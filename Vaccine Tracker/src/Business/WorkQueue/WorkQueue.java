@@ -4,6 +4,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Enterprise.Enterprise;
 import Business.Entity.User;
 import Business.Entity.Vaccine;
 import java.util.ArrayList;
@@ -76,5 +77,27 @@ public class WorkQueue {
             }
         }  
         return null;
+    }
+    
+    public List<WorkRequest> getAllScientistRequestTesterList() {
+        List<WorkRequest> requests = new ArrayList<>();
+        
+        for (WorkRequest workRequest : workRequestList) {
+            if (workRequest instanceof ScientistRequestTesterRequest) {
+                requests.add(workRequest);
+            }
+        }
+        return requests;
+    }
+
+    public List<WorkRequest> getScientistRequestTesterByEnterprise(Enterprise enterprise) {   
+        List<WorkRequest> requests = new ArrayList<>();
+        
+        for (WorkRequest request : getAllScientistRequestTesterList()) {
+            if (((ScientistRequestTesterRequest)request).getEnterprise() == enterprise) {
+                requests.add(request);
+            }
+        }
+        return requests;
     }
 }

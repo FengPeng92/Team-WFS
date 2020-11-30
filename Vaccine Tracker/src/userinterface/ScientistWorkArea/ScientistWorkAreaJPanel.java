@@ -10,6 +10,8 @@ import Business.Entity.Phase;
 import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ScientistRequestTesterRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -367,6 +369,9 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             v1.setStatus("Preclinical");
             Phase preclinical = new Phase("Preclinical", "", "Still testing");
             v1.getPhases().add(preclinical);
+            
+            WorkRequest request = new ScientistRequestTesterRequest(v1, enterprise);
+            system.getWorkQueue().getWorkRequestList().add(request);
             populate();
             JOptionPane.showMessageDialog(null, "Preclinical test request.");
         }

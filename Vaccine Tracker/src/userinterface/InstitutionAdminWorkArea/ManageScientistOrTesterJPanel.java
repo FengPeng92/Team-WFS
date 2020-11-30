@@ -10,6 +10,7 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Vaccine;
 import Business.Organization.Organization;
+import static Business.Organization.Organization.Type.Scientist;
 import Business.Role.DoctorRole;
 import Business.Role.Role;
 import Business.Role.ScientistRole;
@@ -49,7 +50,6 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         jLabel3.setText(userAccount.getUsername());
         
         populate();
-        initialize();
     }
 
     /**
@@ -114,6 +114,8 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Identity: ");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scientist", "Tester" }));
+
         jLabel5.setText("Name: ");
 
         jLabel6.setText("Username: ");
@@ -136,6 +138,8 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         jLabel9.setText("Update A Staff Information");
 
         jLabel10.setText("Identity: ");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scientist", "Tester", " " }));
 
         txtUpdateName.setEnabled(false);
 
@@ -376,6 +380,11 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
                     txtUpdateName.setText(u.getEmployee().getName());
                     txtUpdateUsername.setText(u.getUsername());
                     txtUpdatePassword.setText(u.getPassword());
+                    if (u.getRole() instanceof ScientistRole) {
+                        jComboBox2.setSelectedIndex(0);
+                    } else {
+                        jComboBox2.setSelectedIndex(1);
+                    }
                     u1 = u;
                 }
             }
@@ -456,13 +465,4 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
         }
     }
     
-    private void initialize(){
-        jComboBox1.removeAllItems();
-        jComboBox1.addItem("Scientist");
-        jComboBox1.addItem("Tester");
-        
-        jComboBox2.removeAllItems();
-        jComboBox2.addItem("Scientist");
-        jComboBox2.addItem("Tester");
-    }
 }

@@ -360,6 +360,9 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
             Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new DoctorRole());
             populateTable();
+            txtAddName.setText("");
+            txtAddUsername.setText("");
+            txtAddPassword.setText("");
         } else {
             JOptionPane.showMessageDialog(null, "Please fill in all updated information");
         }
