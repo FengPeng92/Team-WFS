@@ -31,6 +31,9 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
+        jPanel1.setSize(300, 700);
+        container.setSize(1000, 700);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -55,6 +58,12 @@ public class MainJFrame extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 700));
+
+        jSplitPane1.setMaximumSize(new java.awt.Dimension(1300, 700));
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(1300, 700));
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(300, 700));
 
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,11 +131,13 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(loginJLabel)
                 .addGap(26, 26, 26)
                 .addComponent(jButton1)
-                .addContainerGap(544, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
 
+        container.setMaximumSize(new java.awt.Dimension(1000, 700));
+        container.setPreferredSize(new java.awt.Dimension(1000, 700));
         container.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(container);
 
@@ -154,7 +165,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 //Step 2.a: check against each enterprise
                 for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
                     userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    System.out.println(userAccount);
                     if(userAccount==null){
                        //Step 3:check against each organization for each enterprise
                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){

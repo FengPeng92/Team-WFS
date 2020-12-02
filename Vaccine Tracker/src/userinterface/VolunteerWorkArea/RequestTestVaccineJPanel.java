@@ -12,6 +12,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +34,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     private Vaccine selectedVaccine;
     private Enterprise selectedHospital;
     private VaccineShootRequest newRequest;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public RequestTestVaccineJPanel() {
     }
 
@@ -51,7 +53,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     
     //To be Completed
     public void populateHospitalByVaccine() {
-        DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
+        DefaultTableModel dtm =(DefaultTableModel) tableHospital.getModel();
         dtm.setRowCount(0);
         
         for (Enterprise enterprise: system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
@@ -82,7 +84,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
-                row[2] = vaccine.getCreatedTime();
+                row[2] = ft.format(vaccine.getCreatedTime());
                 int size = vaccine.getPhases().size();
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -101,7 +103,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                     Object[] row = new Object[5];
                     row[0] = vaccine;
                     row[1] = vaccine.getVaccineType();
-                    row[2] = vaccine.getCreatedTime();
+                    row[2] = ft.format(vaccine.getCreatedTime());
                     int size = vaccine.getPhases().size();
                     row[3] = vaccine.getPhases().get(size-1).getName();
                     row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -122,7 +124,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getCreatedTime();
+            row[2] = ft.format(vaccine.getCreatedTime());
             int size = vaccine.getPhases().size();
             row[3] = vaccine.getPhases().get(size-1).getName();
             row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -140,7 +142,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
-                row[2] = vaccine.getCreatedTime();
+                row[2] = ft.format(vaccine.getCreatedTime());
                 int size = vaccine.getPhases().size();
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -358,8 +360,6 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             system.getWorkQueue().getVaccineShootRequestList().add(newRequest);
             newRequest.setSender(userAccount);
             
-            //To be done
-            //newRequest.setReceiver(selectedHospital.getUserAccountDirectory());
             JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row.");

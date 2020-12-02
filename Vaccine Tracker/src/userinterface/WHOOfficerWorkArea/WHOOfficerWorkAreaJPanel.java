@@ -4,13 +4,9 @@
  */
 package userinterface.WHOOfficerWorkArea;
 
-import userinterface.ScientistWorkArea.*;
-import userinterface.HospitalAdminWorkArea.*;
-import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Vaccine;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ReportToWHORequest;
@@ -47,7 +43,8 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(userAccount.getUsername());
-    }
+        populateTable();
+;    }
     
    public void populateTable() {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();

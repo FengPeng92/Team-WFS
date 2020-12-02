@@ -11,7 +11,11 @@ import Business.Entity.Animal;
 import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ScientistRequestTesterRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,11 +30,11 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
-    private Vaccine v1;
+    private WorkRequest selectedRequest;
     /**
      * Creates new form PreclinicalTestJPanel
      */
-    public PreclinicalTestJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, Vaccine v1) {
+    public PreclinicalTestJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, WorkRequest selectedRequest) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -38,12 +42,11 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system = system;
-        this.v1 = v1;
+        this.selectedRequest = selectedRequest;
         
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(account.getUsername());
         
-        initialize();
         populate();
     }
 
@@ -96,6 +99,8 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
         jLabel3.setText("Tester Username");
 
         jLabel4.setText("Animal: ");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mouse", "Rabbit", " " }));
 
         jLabel6.setText("Quality: ");
 
@@ -211,32 +216,38 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        TesterWorkAreaJPanel panel = new TesterWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
-        userProcessContainer.add("TesterWorkAreaJPanel", panel);
+//        TesterWorkAreaJPanel panel = new TesterWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+//        userProcessContainer.add("TesterWorkAreaJPanel", panel);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        TesterWorkAreaJPanel panel = (TesterWorkAreaJPanel) component;
+        panel.populate();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String pick = (String)jComboBox1.getSelectedItem();
-        int total = Integer.parseInt(txtTotal.getText());
-        int number = Integer.parseInt(txtNumber.getText());
-        String description = txtDescription.getText();
-        Animal animal = new Animal(pick, total, number, (number*100)/total, description);
-        v1.getAnimalDirectory().getAnimalList().add(animal);
+        try {
+            String pick = (String)jComboBox1.getSelectedItem();
+            int total = Integer.parseInt(txtTotal.getText());
+            int number = Integer.parseInt(txtNumber.getText());
+            String description = txtDescription.getText();
+            Animal animal = new Animal(pick, total, number, (number*100)/total, description);
+            ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList().add(animal);
+
+            populate();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Please fill in information in integer");
+        }
         
-        populate();
         
-        // Animal(String animalName, double quantity, double effective, double effectiveRate, String description
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void initialize(){
-        jComboBox1.removeAllItems();
-        jComboBox1.addItem("Mouse");
-        jComboBox1.addItem("Rabbit");
-    }
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -261,7 +272,7 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) jTable2.getModel();
         dtm.setRowCount(0);
         
-        for (Animal animal : v1.getAnimalDirectory().getAnimalList()) {
+        for (Animal animal : ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList()) {
             Object[] row = new Object[5];
             row[0] = animal.getAnimalName();
             row[1] = animal.getTotal();

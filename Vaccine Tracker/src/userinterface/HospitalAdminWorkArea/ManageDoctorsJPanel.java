@@ -59,8 +59,6 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) tableDoctors.getModel();
         dtm.setRowCount(0);
         
-//        System.out.println(enterprise);
-//        System.out.println(enterprise.getUserAccountDirectory());
         for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
             if (userAccount.getRole() instanceof DoctorRole) {
                 Object[] row = new Object[3];
@@ -362,6 +360,9 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
             Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new DoctorRole());
             populateTable();
+            txtAddName.setText("");
+            txtAddUsername.setText("");
+            txtAddPassword.setText("");
         } else {
             JOptionPane.showMessageDialog(null, "Please fill in all updated information");
         }

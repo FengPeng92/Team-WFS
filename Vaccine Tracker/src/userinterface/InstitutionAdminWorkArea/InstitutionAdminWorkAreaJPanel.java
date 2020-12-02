@@ -12,9 +12,13 @@ import Business.Entity.Vaccine;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ReportToWHORequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +33,8 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private Vaccine selectedVaccine;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -41,15 +47,13 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         
+        
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(account.getUsername());
         
         populate();
         
     }
-    
-   
-
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -101,6 +105,11 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setText("Vaccine Report Request");
 
         jButton2.setText("Report to WHO");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Manage Scientist or Tester");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +178,22 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            selectedVaccine = (Vaccine) jTable1.getValueAt(selectedRow, 0);
+            ReportToWHORequest request = new ReportToWHORequest(selectedVaccine);
+            request.getVaccine().getPhases().get(request.getVaccine().getPhases().size()-1).setEndDate(new Date());
+            request.setSender(userAccount);
+            system.getWorkQueue().getWorkRequestList().add(request);
+            JOptionPane.showMessageDialog(null, "Report successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -188,13 +213,11 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         if (enterprise.getVaccineDirectory().getVaccineList() == null) {
             System.out.println("null");
         }
-        //System.out.println("1");
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-            //System.out.println("2");
             Object[] row = new Object[5];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            //row[2] = vaccine.getCreatedTime();
+            row[2] = ft.format(vaccine.getCreatedTime());
             int size = vaccine.getPhases().size();
             if (size == 0) {
                 dtm.addRow(row);

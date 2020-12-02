@@ -7,11 +7,11 @@ package userinterface.VolunteerWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Vaccine;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +28,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private Vaccine selectedVaccine;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -63,7 +64,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
-                row[2] = vaccine.getCreatedTime();
+                row[2] = ft.format(vaccine.getCreatedTime());
                 int size = vaccine.getPhases().size();
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -80,7 +81,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getCreatedTime();
+            row[2] = ft.format(vaccine.getCreatedTime());
             int size = vaccine.getPhases().size();
             row[3] = vaccine.getPhases().get(size-1).getName();
             row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -99,7 +100,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
                     Object[] row = new Object[5];
                     row[0] = vaccine;
                     row[1] = vaccine.getVaccineType();
-                    row[2] = vaccine.getCreatedTime();
+                    row[2] = ft.format(vaccine.getCreatedTime());
                     row[3] = vaccine.getPhases().get(size-1).getName();
                     row[4] = vaccine.getPhases().get(size-1).getStatus();
                     dtm.addRow(row);
@@ -119,7 +120,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
-                row[2] = vaccine.getCreatedTime();
+                row[2] = ft.format(vaccine.getCreatedTime());
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
                 dtm.addRow(row);
@@ -203,6 +204,11 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -299,6 +305,13 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxInstitution;

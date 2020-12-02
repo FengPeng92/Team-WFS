@@ -4,19 +4,16 @@
  */
 package userinterface.VolunteerManagerWorkArea;
 
-import userinterface.ScientistWorkArea.*;
-import userinterface.HospitalAdminWorkArea.*;
-import userinterface.DoctorWorkArea.*;
+
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Entity.Questionary;
 import Business.Entity.User;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
+import Business.Role.Role;
+import Business.Role.VolunteerRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VolunteerApplicationRequest;
 import Business.WorkQueue.WorkRequest;
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -55,7 +52,6 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         
-        System.out.println(system.getWorkQueue().getVolunteerApplicationRequestList().size());
         for (WorkRequest request : system.getWorkQueue().getVolunteerApplicationRequestList()) {
             Object[] row = new Object[4];
             row[0] = ((VolunteerApplicationRequest)request).getUser();
@@ -91,7 +87,6 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         } else {
             radioSmokingNo.setSelected(true);
         }
-        System.out.println(applicationRequest.getQuestionary().getTestResult());
         if (applicationRequest.getQuestionary().getTestResult().equals("No")) {
             radioTestNo.setSelected(true);
         } else if (applicationRequest.getQuestionary().getTestResult().equals("Positive")) {
@@ -401,11 +396,15 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void agreeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agreeBtnActionPerformed
         // TODO add your handling code here:
         ((VolunteerApplicationRequest)selectedRequest).setIsQualified(true);
+        Role role = new VolunteerRole();
+        ((VolunteerApplicationRequest)selectedRequest).getUser().getUserAccount().setRole(role);
+        JOptionPane.showMessageDialog(null, "This person became a volunteer");
     }//GEN-LAST:event_agreeBtnActionPerformed
 
     private void disagreeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disagreeBtnActionPerformed
         // TODO add your handling code here:
         ((VolunteerApplicationRequest)selectedRequest).setIsQualified(false);
+        JOptionPane.showMessageDialog(null, "This person is not qualified to become a volunteer");
     }//GEN-LAST:event_disagreeBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

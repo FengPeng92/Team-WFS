@@ -11,6 +11,7 @@ import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private Vaccine selectedVaccine;
     private User user;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -66,7 +68,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
-                row[2] = vaccine.getCreatedTime();
+                row[2] = ft.format(vaccine.getCreatedTime());
                 int size = vaccine.getPhases().size();
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -83,7 +85,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getCreatedTime();
+            row[2] = ft.format(vaccine.getCreatedTime());
             int size = vaccine.getPhases().size();
             row[3] = vaccine.getPhases().get(size-1).getName();
             row[4] = vaccine.getPhases().get(size-1).getStatus();
@@ -102,7 +104,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
                     Object[] row = new Object[5];
                     row[0] = vaccine;
                     row[1] = vaccine.getVaccineType();
-                    row[2] = vaccine.getCreatedTime();
+                    row[2] = ft.format(vaccine.getCreatedTime());
                     row[3] = vaccine.getPhases().get(size-1).getName();
                     row[4] = vaccine.getPhases().get(size-1).getStatus();
                     dtm.addRow(row);
@@ -122,7 +124,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
-                row[2] = vaccine.getCreatedTime();
+                row[2] = ft.format(vaccine.getCreatedTime());
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
                 dtm.addRow(row);

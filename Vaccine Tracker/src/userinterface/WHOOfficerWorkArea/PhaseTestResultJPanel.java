@@ -14,11 +14,9 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ReportToWHORequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.util.List;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -32,6 +30,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private WorkRequest selectedWorkRequest;
     private Phase phase;
     private Vaccine selectedVaccine;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Creates new form PhaseTestResultJPanel
      */
@@ -50,9 +49,9 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         txtVaccineName.setText(selectedVaccine.getVaccineName());
         txtPhase.setText(String.valueOf(selectedVaccine.getPhases()));
         txtVaccineType.setText(selectedVaccine.getVaccineType());
-        txtCreateTime.setText(selectedVaccine.getCreatedTime());
+        txtCreateTime.setText(ft.format(selectedVaccine.getCreatedTime()));
         txtStartTime.setText(phase.getStartDate());
-        txtEndTime.setText(phase.getEndDate());
+        txtEndTime.setText(phase.getEndDate() == null ? "" : phase.getEndDate());
         txtStatus.setText(phase.getStatus());
         txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
         txtDescription.setText(phase.getDescription());
@@ -342,9 +341,23 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Plesase choose if can go to next stage");
             return;
         } else if (jRadioBtnYes.isSelected()) {
+            ((ReportToWHORequest)selectedWorkRequest).setIsChecked(true);
+            if (selectedVaccine.getPhases().size() == 1) {
+                Phase phase1 = new Phase("Phase 1", "", "Still testing");
+                selectedVaccine.getPhases().add(phase1);
+            } else if (selectedVaccine.getPhases().size() == 2) {
+                Phase phase2 = new Phase("Phase 2", "", "Still testing");
+                selectedVaccine.getPhases().add(phase2);
+            } else if (selectedVaccine.getPhases().size() == 3) {
+                Phase phase3 = new Phase("Phase 3", "", "Still testing");
+                selectedVaccine.getPhases().add(phase3);
+            } else if (selectedVaccine.getPhases().size() == 4) {
+                Phase approve = new Phase("Approve", "", "Still testing");
+                selectedVaccine.getPhases().add(approve);
+            }
             
         } else if (jRadioBtnNo.isSelected()) {
-            
+            ((ReportToWHORequest)selectedWorkRequest).setIsChecked(false);
         }
         
     }//GEN-LAST:event_submitBtnActionPerformed
