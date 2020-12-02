@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ScientistRequestTesterRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +29,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private Vaccine selectedVaccine;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     //public ArrayList<Enterprise> listEnterprise;
     /**
@@ -79,10 +81,11 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            System.out.println(vaccine.getVaccineName());
             Object[] row = new Object[5];
             row[0] = vaccine.getVaccineType();
             row[1] = vaccine;
-            row[2] = vaccine.getCreatedTime();
+            row[2] = ft.format(vaccine.getCreatedTime());
             row[4] = vaccine.getStatus();
             int size = vaccine.getPhases().size();
             if (size == 0) {

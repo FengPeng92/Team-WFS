@@ -22,18 +22,17 @@ public class Vaccine {
     private String detail;
     private Date createdTime;
     private List<Enterprise> hospitalList;
-    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     private String status;
     
     private AnimalDirectory animalDirectory;
 
-    public Vaccine(String vaccineName, String vaccineType, String detail, String status) {
+    public Vaccine(String vaccineName, String vaccineType, String detail, String status, Date createdTime) {
         this.vaccineName = vaccineName;
         this.vaccineType = vaccineType;
         this.detail = detail;
         this.phases = new ArrayList<>();
         this.hospitalList = new ArrayList<>();
-        this.createdTime = new Date();
+        this.createdTime = createdTime;
         this.animalDirectory = new AnimalDirectory();
         this.status = status;
     }
@@ -70,8 +69,8 @@ public class Vaccine {
         this.detail = detail;
     }
 
-    public String getCreatedTime() {      
-        return ft.format(createdTime);
+    public Date getCreatedTime() {
+        return this.createdTime;
     }
 
     public void setCreatedTime(Date createdTime) {

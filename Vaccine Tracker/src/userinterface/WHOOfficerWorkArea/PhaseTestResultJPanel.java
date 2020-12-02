@@ -14,6 +14,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ReportToWHORequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,6 +30,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private WorkRequest selectedWorkRequest;
     private Phase phase;
     private Vaccine selectedVaccine;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Creates new form PhaseTestResultJPanel
      */
@@ -47,7 +49,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         txtVaccineName.setText(selectedVaccine.getVaccineName());
         txtPhase.setText(String.valueOf(selectedVaccine.getPhases()));
         txtVaccineType.setText(selectedVaccine.getVaccineType());
-        txtCreateTime.setText(selectedVaccine.getCreatedTime());
+        txtCreateTime.setText(ft.format(selectedVaccine.getCreatedTime()));
         txtStartTime.setText(phase.getStartDate());
         txtEndTime.setText(phase.getEndDate() == null ? "" : phase.getEndDate());
         txtStatus.setText(phase.getStatus());

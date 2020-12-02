@@ -12,6 +12,9 @@ import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -26,6 +29,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private Vaccine v1;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Creates new form VaccineInfoJPanel
      */
@@ -46,7 +50,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
     
     public void populate() {
         txtName.setText(v1.getVaccineName());
-        txtTime.setText(v1.getCreatedTime());
+        txtTime.setText(ft.format(v1.getCreatedTime()));
         txtType.setText(v1.getVaccineType());
         txtDetail.setText(v1.getDetail()); 
         for (Phase phase : v1.getPhases()) {
@@ -107,6 +111,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
 
+        setEnabled(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jLabel1.setText("Institution Name");
@@ -117,15 +122,22 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Vaccine Name: ");
 
+        txtName.setEnabled(false);
+
         jLabel5.setText("Create Time:");
+
+        txtTime.setEnabled(false);
 
         jLabel6.setText("Detail: ");
 
         txtDetail.setColumns(20);
         txtDetail.setRows(5);
+        txtDetail.setEnabled(false);
         jScrollPane1.setViewportView(txtDetail);
 
         jLabel7.setText("Vaccine Type: ");
+
+        txtType.setEnabled(false);
 
         jLabel8.setText("Phase: ");
 
@@ -138,11 +150,19 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Start Time: ");
 
+        txtStart.setEnabled(false);
+
         jLabel10.setText("End Time:");
+
+        txtEnd.setEnabled(false);
+
+        txtStatus.setEnabled(false);
 
         jLabel11.setText("Status: ");
 
         jLabel12.setText("Effective Rate: ");
+
+        txtRate.setEnabled(false);
 
         jLabel13.setText("%");
 
@@ -150,6 +170,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
+        txtDescription.setEnabled(false);
         jScrollPane2.setViewportView(txtDescription);
 
         jButton2.setText("Update Vaccine Info");
@@ -315,10 +336,17 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
-        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+//        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+//        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ScientistWorkAreaJPanel sysAdminwjp = (ScientistWorkAreaJPanel) component;
+        sysAdminwjp.populate();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -330,10 +358,21 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        txtName.setEnabled(true);
+        txtType.setEnabled(true);
+        txtDetail.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        v1.setVaccineName(txtName.getText());
+        v1.setVaccineType(txtType.getText());
+        v1.setDetail(txtDetail.getText());
+        txtName.setEnabled(false);
+        txtType.setEnabled(false);
+        txtDetail.setEnabled(false);
+        JOptionPane.showMessageDialog(null, "Vaccine updated successfully.");
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

@@ -11,6 +11,7 @@ import Business.Entity.Phase;
 import Business.Entity.Vaccine;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +29,7 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
     private Enterprise selectedenterprise;
     private EcoSystem system;
     private Vaccine selectedVaccine;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public ViewVaccineInfoJPanel() {
         
     }
@@ -43,7 +45,7 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
         labelUserName.setText(userAccount.getUsername());
         txtVaccineName.setText(selectedVaccine.getVaccineName());
         txtVaccineType.setText(selectedVaccine.getVaccineType());
-        txtCreateTime.setText(selectedVaccine.getCreatedTime());
+        txtCreateTime.setText(ft.format(selectedVaccine.getCreatedTime()));
         txtDetail.setText(selectedVaccine.getDetail());
         
         populatePhaseBox();

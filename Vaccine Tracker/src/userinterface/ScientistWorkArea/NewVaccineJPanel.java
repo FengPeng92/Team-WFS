@@ -11,6 +11,8 @@ import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -169,10 +171,17 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
-        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+//        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+//        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ScientistWorkAreaJPanel sysAdminwjp = (ScientistWorkAreaJPanel) component;
+        sysAdminwjp.populate();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -183,16 +192,17 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
         
  
         if ((name != null) || (type != null)) {
-            Vaccine vaccine = new Vaccine(name, type, detail, "create the vaccine");
+            Vaccine vaccine = new Vaccine(name, type, detail, "create the vaccine", new Date());
             enterprise.getVaccineDirectory().getVaccineList().add(vaccine);
+            JOptionPane.showMessageDialog(null, "Vaccine developed successfully.");
         }
         else {
             JOptionPane.showMessageDialog(null, "input the name or type");
         }
-        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
-        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+//        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+//        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

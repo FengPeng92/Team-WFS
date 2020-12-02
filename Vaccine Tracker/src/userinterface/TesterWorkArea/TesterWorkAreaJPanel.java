@@ -16,6 +16,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ScientistRequestTesterRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private WorkRequest selectedRequest;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * Creates new form DoctorWorkAreaJPanel
@@ -265,7 +267,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
 //        }
 //        return;
 
-        if (selectedRequest == null) {
+        if (selectedRequest != null) {
             PreclinicalTestJPanel panel = new PreclinicalTestJPanel(userProcessContainer, userAccount, organization, enterprise, system, selectedRequest);
             userProcessContainer.add("InstitutionAdminWorkAreaJPanel", panel);
             CardLayout layout = (CardLayout)userProcessContainer.getLayout();
@@ -314,7 +316,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
             txtName.setText(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getVaccineName());
             txtType.setText(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getVaccineType());
             txtDetail.setText(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getDetail());
-            txtTime.setText(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getCreatedTime());
+            txtTime.setText((ft.format(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getCreatedTime())));
             
             for (Animal a : ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList()) 
             {
@@ -404,7 +406,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[5];
                 row[0] = scientistRequest;
                 row[1] = scientistRequest.getVaccine().getVaccineType();
-                row[2] = scientistRequest.getVaccine().getCreatedTime();
+                row[2] = ft.format(scientistRequest.getVaccine().getCreatedTime());
                 row[3] = scientistRequest.getVaccine().getPhases().get(scientistRequest.getVaccine().getPhases().size()-1).getName();
                 row[4] = scientistRequest.getVaccine().getStatus();
                 dtm.addRow(row);
