@@ -302,6 +302,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the username.");
         } else {
             UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
+            //User searchUser = system.getUserDirectory().searchUserByUserAccount(userAccount)
             if (searchAccount == null) {
                 DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
                 dtm.setRowCount(0);

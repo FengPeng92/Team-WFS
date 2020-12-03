@@ -204,6 +204,8 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
                     UserAccount account = userEnterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NormalUserRole());
                     User user = new User(account, email, age);
                     userEnterprise.getUserDirectory().getUserList().add(user);
+                    //system.getUserAccountDirectory().getUserAccountList().add(account);
+                    //system.getUserDirectory().getUserList().add(user);
                     JOptionPane.showMessageDialog(null, "Register successfully!");
                 } else {
                     JOptionPane.showMessageDialog(null, "The two passwords you entered did not match.");

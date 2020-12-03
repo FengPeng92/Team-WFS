@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ReportToWHORequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,7 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private Vaccine selectedVaccine;
     private WorkRequest selectedWorkRequest;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -55,7 +57,7 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = whoRequest.getVaccine();
             row[1] = whoRequest.getVaccine().getVaccineType();
-            row[2] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStartDate();
+            row[2] = ft.format(whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStartDate());
             row[3] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getName();
             row[4] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStatus();
             dtm.addRow(row);

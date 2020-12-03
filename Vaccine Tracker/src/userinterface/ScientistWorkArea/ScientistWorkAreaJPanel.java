@@ -339,6 +339,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             Enterprise e1 = (Enterprise)jTable2.getValueAt(selectEnterprise, 0);
             selectedVaccine.getHospitalList().add(e1);
             populateSelect();
+            populateAll();
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select a row");

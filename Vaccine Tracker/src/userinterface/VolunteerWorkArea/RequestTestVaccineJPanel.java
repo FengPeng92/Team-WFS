@@ -52,17 +52,15 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     }
     
     //To be Completed
-    public void populateHospitalByVaccine() {
+    public void populateHospitalByVaccine(Vaccine vaccine) {
         DefaultTableModel dtm =(DefaultTableModel) tableHospital.getModel();
         dtm.setRowCount(0);
         
-        for (Enterprise enterprise: system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Hospital) {
+        for (Enterprise enterprise: vaccine.getHospitalList()) {
                 Object[] row = new Object[3];
                 row[0] = enterprise;
-                
                 dtm.addRow(row);
-            }
+            
         }
     }
     
@@ -80,7 +78,8 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Institution) {
+                for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
@@ -89,7 +88,9 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
                 dtm.addRow(row);
+                }
             }
+            
         }
     }
     
@@ -220,13 +221,13 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
 
         tableHospital.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Hospital", "Address", "Phone"
+                "Hospital"
             }
         ));
         jScrollPane2.setViewportView(tableHospital);
@@ -246,6 +247,11 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         });
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -343,6 +349,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         
         if (selectedRow >= 0) {
             selectedVaccine = (Vaccine)tableVaccine.getValueAt(selectedRow, 0);
+            populateHospitalByVaccine(selectedVaccine);
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row.");
         }
@@ -357,7 +364,9 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             String shootingId = system.getWorkQueue().getVaccineShootRequestList().size() + selectedHospital.getName();
             
             newRequest = new VaccineShootRequest(selectedVaccine, shootingId);
-            system.getWorkQueue().getVaccineShootRequestList().add(newRequest);
+            newRequest.setStatus("Request to Shoot");
+            system.getWorkQueue().getWorkRequestList().add(newRequest);
+            System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
             newRequest.setSender(userAccount);
             
             JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
@@ -379,6 +388,13 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
        
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

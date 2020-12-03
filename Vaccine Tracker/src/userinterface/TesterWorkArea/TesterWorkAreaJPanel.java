@@ -51,6 +51,9 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(account.getUsername());
         
+        
+        
+        
         populate();     
     }
     
@@ -183,9 +186,14 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(25, 25, 25)
-                                .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
@@ -196,9 +204,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2))))
+                                .addComponent(jButton2)))
                         .addGap(122, 122, 122))))
         );
         layout.setVerticalGroup(
@@ -241,7 +247,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,6 +281,11 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
+        txtDetail.setText("");
+        txtName.setText("");
+        txtRate.setText("");
+        txtTime.setText("");
+        txtType.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -328,7 +339,10 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
             }
             else {
                 txtRate.setText(String.valueOf(((number*100)/total)));
+                int size = ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().size();
+                ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(size-1).setEffectiveRate(((number*100)/total));
             }
+            
             populate();
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
@@ -340,7 +354,11 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setEndDate(new Date());
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setStatus("Completed");
         ((ScientistRequestTesterRequest)selectedRequest).setIsTested(true);
+        populate();
         JOptionPane.showMessageDialog(null, "Report to Admin");
+        
+        
+                
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
