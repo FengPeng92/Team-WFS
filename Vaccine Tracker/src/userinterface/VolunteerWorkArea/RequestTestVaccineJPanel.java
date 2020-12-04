@@ -7,6 +7,7 @@ package userinterface.VolunteerWorkArea;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.User;
 import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -34,11 +35,12 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     private Vaccine selectedVaccine;
     private Enterprise selectedHospital;
     private VaccineShootRequest newRequest;
+    private User selectedUser;
     private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public RequestTestVaccineJPanel() {
     }
 
-    RequestTestVaccineJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system) {
+    RequestTestVaccineJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, User selectedUser) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -46,6 +48,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.system = system;
+        this.selectedUser = selectedUser;
         
         jLabel3.setText(userAccount.getUsername());
         populateInstitution();
@@ -357,22 +360,28 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        int selectedRow = tableHospital.getSelectedRow();
-        
-        if (selectedRow >= 0) {
-            selectedHospital = (Enterprise)tableHospital.getValueAt(selectedRow, 0);
-            String shootingId = system.getWorkQueue().getVaccineShootRequestList().size() + selectedHospital.getName();
-            
-            newRequest = new VaccineShootRequest(selectedVaccine, shootingId);
-            newRequest.setStatus("Request to Shoot");
-            system.getWorkQueue().getWorkRequestList().add(newRequest);
-            System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
-            newRequest.setSender(userAccount);
-            
-            JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
+        if (selectedUser.getVaccine() != null) {
+            JOptionPane.showMessageDialog(null, "You have areadly made an appoinment.");
         } else {
-            JOptionPane.showMessageDialog(null, "Please select a row.");
+            int selectedRow = tableHospital.getSelectedRow();
+        
+            if (selectedRow >= 0) {
+                selectedHospital = (Enterprise)tableHospital.getValueAt(selectedRow, 0);
+                String shootingId = system.getWorkQueue().getVaccineShootRequestList().size() + selectedHospital.getName();
+
+                newRequest = new VaccineShootRequest(selectedVaccine, shootingId, selectedUser);
+                newRequest.setStatus("Request to Shoot");
+                system.getWorkQueue().getWorkRequestList().add(newRequest);
+                selectedUser.setVaccine(selectedVaccine);
+                System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
+                newRequest.setSender(userAccount);
+
+                JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a row.");
+            }
         }
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -380,7 +389,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         if (newRequest == null) {
             JOptionPane.showMessageDialog(null, "Please book an appoinmnet first. ");
         } else {
-            TestAppoinmentViewJPanel testAppoinmentViewJPanel = new TestAppoinmentViewJPanel(userProcessContainer, userAccount, organization, enterprise, system, newRequest);
+            TestAppoinmentViewJPanel testAppoinmentViewJPanel = new TestAppoinmentViewJPanel(userProcessContainer, userAccount, organization, enterprise, system, newRequest, selectedUser);
             userProcessContainer.add("TestAppoinmentViewJPanel", testAppoinmentViewJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

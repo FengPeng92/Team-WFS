@@ -5,6 +5,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Entity.User;
 import Business.Entity.Vaccine;
 
 /**
@@ -14,15 +15,19 @@ import Business.Entity.Vaccine;
 public class VaccineShootRequest extends WorkRequest {
     private String shootingId;
     private Vaccine vaccine;
-    private String status;
+    private String shootingStatus;
     private String hasAntibody;
+    private User user;
+    private boolean hasTest;
 
-    public VaccineShootRequest(Vaccine vaccine, String shootingId) {
+    public VaccineShootRequest(Vaccine vaccine, String shootingId, User user) {
         super();
         this.vaccine = vaccine;
-        this.status = "Request to Shoot";
+        this.shootingStatus = "Request to Shoot";
         this.shootingId = shootingId;
         this.hasAntibody = "Not tested";
+        this.user = user;
+        this.hasTest = false;
     }
 
     public Vaccine getVaccine() {
@@ -33,12 +38,12 @@ public class VaccineShootRequest extends WorkRequest {
         this.vaccine = vaccine;
     }
 
-    public String getStatus() {
-        return status;
+    public String getShootingStatus() {
+        return shootingStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setShootingStatus(String shootingStatus) {
+        this.shootingStatus = shootingStatus;
     }
 
     public String getHasAntibody() {
@@ -55,6 +60,22 @@ public class VaccineShootRequest extends WorkRequest {
 
     public void setShootingId(String shootingId) {
         this.shootingId = shootingId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isHasTest() {
+        return hasTest;
+    }
+
+    public void setHasTest(boolean hasTest) {
+        this.hasTest = hasTest;
     }
     
     

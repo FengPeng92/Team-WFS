@@ -7,6 +7,7 @@ package userinterface.VolunteerWorkArea;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.User;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
@@ -29,10 +30,11 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private VaccineShootRequest newRequest;
+    private User selectedUser;
     public TestAppoinmentViewJPanel() {
     }
 
-    TestAppoinmentViewJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, VaccineShootRequest newRequest) {
+    TestAppoinmentViewJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, VaccineShootRequest newRequest, User selectedUser) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -41,6 +43,7 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.system = system;
         this.newRequest = newRequest;
+        this.selectedUser = selectedUser;
         
         jLabel3.setText(userAccount.getUsername());
         txtDetail.setText(newRequest.getVaccine().getDetail());
@@ -248,6 +251,7 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         system.getWorkQueue().getVaccineShootRequestList().remove(newRequest);
+        selectedUser.setVaccine(null);
         JOptionPane.showMessageDialog(null, "Cancel the appoinmnet successfully.");
     }//GEN-LAST:event_btnCancelActionPerformed
 

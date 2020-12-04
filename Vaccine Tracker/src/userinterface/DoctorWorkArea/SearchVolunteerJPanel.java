@@ -7,6 +7,7 @@ package userinterface.DoctorWorkArea;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.User;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
@@ -32,6 +33,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private VaccineShootRequest selectedShoot;
+    private User searchUser;
     public SearchVolunteerJPanel() {
         initComponents();
     }
@@ -46,22 +48,23 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         this.system = system;
     }
     
-    public void populateTable(UserAccount userAccount) {
+    public void populateTable(User searchUser) {
         DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
         dtm.setRowCount(0);
         
         List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
         
         for (WorkRequest workRequest : requests) {
-            if (workRequest.getSender() == userAccount) {
+            if (((VaccineShootRequest)workRequest).getUser() == searchUser) {
                 Object[] row = new Object[6];
                 row[0] = ((VaccineShootRequest)workRequest).getShootingId();
-                row[1] = userAccount;
-                row[2] = userAccount.getEmployee().getName();
+                row[1] = searchUser.getUserAccount();
+                row[2] = searchUser.getUserAccount().getEmployee().getName();
                 row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
                 int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
                 row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
                 row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
+                row[6] = ((VaccineShootRequest) workRequest).getShootingStatus();
                 
                 dtm.addRow(row);
             }
@@ -77,13 +80,13 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         for (WorkRequest workRequest : requests) {           
             Object[] row = new Object[6];
             row[0] = ((VaccineShootRequest)workRequest).getShootingId();
-            row[1] = userAccount;
-            row[2] = userAccount.getEmployee().getName();
+            row[1] = ((VaccineShootRequest)workRequest).getUser().getUserAccount();
+            row[2] = ((VaccineShootRequest)workRequest).getUser().getUserAccount().getEmployee().getName();
             row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
             int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
             row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
             row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
-
+            row[6] = ((VaccineShootRequest) workRequest).getShootingStatus();
             dtm.addRow(row);
             
         }
@@ -146,13 +149,13 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
 
         tableResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ShootingId", "Username", "Name", "Vaccine", "Phase", "Has Antibody"
+                "ShootingId", "Username", "Name", "Vaccine", "Phase", "Has Antibody", "Shooting Status"
             }
         ));
         jScrollPane1.setViewportView(tableResults);
@@ -181,6 +184,11 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         radioYes.setText("Yes");
 
         btnConfirm.setText("Confirm");
+        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -301,14 +309,18 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         if (searchUsername.equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter the username.");
         } else {
-            UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
+//            UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
+//            System.out.println(searchAccount.getUsername());
             //User searchUser = system.getUserDirectory().searchUserByUserAccount(userAccount)
-            if (searchAccount == null) {
-                DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
-                dtm.setRowCount(0);
+            UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
+            System.out.println(searchAccount.getUsername());
+            searchUser = system.getUserDirectory().searchUserByUserAccount(searchAccount);
+            if (searchUser == null) {
+//                DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
+//                dtm.setRowCount(0);
                 JOptionPane.showMessageDialog(null, "No search results");
             } else {
-                populateTable(searchAccount);
+                populateTable(searchUser);
             }
         }
         
@@ -334,20 +346,62 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 }
             }
             
-            if (radioYes.isSelected()) {
-                selectedShoot.setHasAntibody("Yes");
-                populateTable(selectedShoot.getSender());
-            } else if (radioNo.isSelected()) {
-                selectedShoot.setHasAntibody("No");
-                populateTable(selectedShoot.getSender());
-            } else {
-                JOptionPane.showMessageDialog(null, "Please select a radio button");
+            txtSelectUsername.setText(selectedShoot.getUser().getUserAccount().getUsername());
+            txtSelectedVaccine.setText(selectedShoot.getVaccine().getVaccineName());
+            
+            if (selectedShoot.isHasTest()) {
+               
+               if (selectedShoot.getHasAntibody().equals("Yes")) {
+                   radioYes.setSelected(true);                  
+               } else {
+                   radioNo.setSelected(true);
+               }
             }
+//            if (radioYes.isSelected()) {
+//                selectedShoot.setHasAntibody("Yes");
+//                populateTable(selectedShoot.getSender());
+//            } else if (radioNo.isSelected()) {
+//                selectedShoot.setHasAntibody("No");
+//                populateTable(selectedShoot.getSender());
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Please select a radio button");
+//            }
             
         } else {
-            JOptionPane.showMessageDialog(null, "Please enter the username.");
+            JOptionPane.showMessageDialog(null, "Please selected a row");
         }
     }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+        // TODO add your handling code here:
+        if (selectedShoot == null) {
+            JOptionPane.showMessageDialog(null, "Please selected a volunteer first.");
+        } else if (selectedShoot.getShootingStatus().equals("Finished")) {
+            if (selectedShoot.isHasTest()) {
+                if (selectedShoot.getHasAntibody().equals("Yes")) {
+                   radioYes.setSelected(true);                  
+               } else {
+                   radioNo.setSelected(true);
+               }
+                JOptionPane.showMessageDialog(null, "This person has been tested.");
+            } else {
+                if (radioYes.isSelected()) {
+                    selectedShoot.setHasAntibody("Yes");
+                    selectedShoot.setHasTest(true);
+                    populateTable(selectedShoot.getUser());
+                } else if (radioNo.isSelected()) {
+                    selectedShoot.setHasTest(true);
+                    selectedShoot.setHasAntibody("No");
+                    populateTable(selectedShoot.getUser());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please selected Yes or No.");
+                }            
+               
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "This volunteer hasn't gotten vaccine yet.");
+        }
+    }//GEN-LAST:event_btnConfirmActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

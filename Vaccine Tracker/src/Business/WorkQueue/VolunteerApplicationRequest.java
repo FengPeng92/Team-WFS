@@ -18,12 +18,14 @@ public class VolunteerApplicationRequest extends WorkRequest {
     private boolean isQualified;
     private String description;
     private User user;
+    private boolean isChecked;
 
     public VolunteerApplicationRequest(Questionary questionary, boolean isQualified, String description) {
         
         this.questionary = questionary;
         this.isQualified = isQualified;
         this.description = description;
+        this.isChecked = false;
     }
 
     public Questionary getQuestionary() {
@@ -56,6 +58,14 @@ public class VolunteerApplicationRequest extends WorkRequest {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isIsChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
     }
     
     

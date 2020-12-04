@@ -9,6 +9,7 @@ import userinterface.HospitalAdminWorkArea.*;
 import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.User;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -28,6 +29,7 @@ public class VolunteerWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
+    private User user;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -39,6 +41,8 @@ public class VolunteerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system = system;
+        
+        user = enterprise.getUserDirectory().searchUserByUserAccount(userAccount);
         
         jLabel3.setText(userAccount.getUsername());
         
@@ -131,7 +135,7 @@ public class VolunteerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        RequestTestVaccineJPanel requestTestVaccineJPanel = new RequestTestVaccineJPanel(userProcessContainer, userAccount, organization, enterprise, system);
+        RequestTestVaccineJPanel requestTestVaccineJPanel = new RequestTestVaccineJPanel(userProcessContainer, userAccount, organization, enterprise, system, user);
         userProcessContainer.add("RequestTestVaccineJPanel", requestTestVaccineJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
