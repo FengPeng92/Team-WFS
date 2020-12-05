@@ -214,19 +214,23 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
             System.out.println("null");
         }
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-            Object[] row = new Object[5];
-            row[0] = vaccine;
-            row[1] = vaccine.getVaccineType();
-            row[2] = ft.format(vaccine.getCreatedTime());
             int size = vaccine.getPhases().size();
-            if (size == 0) {
-                dtm.addRow(row);
-            } else {
-                
-                row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-                row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
-                dtm.addRow(row);
+            if (vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus().equals("Finished")) {
+                Object[] row = new Object[5];
+                row[0] = vaccine;
+                row[1] = vaccine.getVaccineType();
+                row[2] = ft.format(vaccine.getCreatedTime());
+
+                if (size == 0) {
+                    dtm.addRow(row);
+                } else {
+
+                    row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+                    row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
+                    dtm.addRow(row);
+                }
             }
+            
             
         }
         

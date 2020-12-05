@@ -336,15 +336,22 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        
+        
         if (!txtUpdateName.getText().equals("") && !txtUpdateUsername.getText().equals("") && !txtUpdatePassword.getText().equals("")) {
-            selectedDoctor.getEmployee().setName(txtUpdateName.getText());
-            selectedDoctor.setUsername(txtUpdateUsername.getText());
-            selectedDoctor.setPassword(txtUpdatePassword.getText());
-            txtUpdateName.setEnabled(false);
-            txtUpdateUsername.setEnabled(false);
-            txtUpdatePassword.setEnabled(false);
-            populateTable();
-            JOptionPane.showMessageDialog(null, "Update successfully");
+            String username = txtUpdateUsername.getText();
+            if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+                selectedDoctor.getEmployee().setName(txtUpdateName.getText());
+                selectedDoctor.setUsername(txtUpdateUsername.getText());
+                selectedDoctor.setPassword(txtUpdatePassword.getText());
+                txtUpdateName.setEnabled(false);
+                txtUpdateUsername.setEnabled(false);
+                txtUpdatePassword.setEnabled(false);
+                populateTable();
+                JOptionPane.showMessageDialog(null, "Update successfully");
+            } else {
+                JOptionPane.showMessageDialog(null, "UserAccount is already existed");
+            }           
         } else {
             JOptionPane.showMessageDialog(null, "Please fill in all updated information");
         }
@@ -353,19 +360,25 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        String name = txtAddName.getText();
         String username = txtAddUsername.getText();
-        String password = txtAddPassword.getText();
-        if (!name.equals("") && !username.equals("") && !password.equals("")) {
-            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new DoctorRole());
-            populateTable();
-            txtAddName.setText("");
-            txtAddUsername.setText("");
-            txtAddPassword.setText("");
+        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            String name = txtAddName.getText();
+        
+            String password = txtAddPassword.getText();
+            if (!name.equals("") && !username.equals("") && !password.equals("")) {
+                Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new DoctorRole());
+                populateTable();
+                txtAddName.setText("");
+                txtAddUsername.setText("");
+                txtAddPassword.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please fill in all updated information");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Please fill in all updated information");
+            JOptionPane.showMessageDialog(null, "UserAccount is already existed");
         }
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
 

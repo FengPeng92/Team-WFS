@@ -342,18 +342,19 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         } else if (jRadioBtnYes.isSelected()) {
             ((ReportToWHORequest)selectedWorkRequest).setIsChecked(true);
             if (selectedVaccine.getPhases().size() == 1) {
-                Phase phase1 = new Phase("Phase 1", "", "Still testing");
-                System.out.println(phase1);
-                selectedVaccine.getPhases().add(phase1);
+                ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(0).setStatus("Finished");
             } else if (selectedVaccine.getPhases().size() == 2) {
-                Phase phase2 = new Phase("Phase 2", "", "Still testing");
-                selectedVaccine.getPhases().add(phase2);
+                ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(1).setStatus("Finished");
+//                Phase phase2 = new Phase("Phase 2", "", "Started");
+//                selectedVaccine.getPhases().add(phase2);
             } else if (selectedVaccine.getPhases().size() == 3) {
-                Phase phase3 = new Phase("Phase 3", "", "Still testing");
-                selectedVaccine.getPhases().add(phase3);
+                ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(2).setStatus("Finished");
+//                Phase phase3 = new Phase("Phase 3", "", "Started");
+//                selectedVaccine.getPhases().add(phase3);
             } else if (selectedVaccine.getPhases().size() == 4) {
-                Phase approve = new Phase("Approve", "", "Still testing");
-                selectedVaccine.getPhases().add(approve);
+                ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(3).setStatus("Finished");
+//                Phase approve = new Phase("Approve", "", "Started");
+//                selectedVaccine.getPhases().add(approve);
             }
             JOptionPane.showMessageDialog(null, "submit successfully");
             

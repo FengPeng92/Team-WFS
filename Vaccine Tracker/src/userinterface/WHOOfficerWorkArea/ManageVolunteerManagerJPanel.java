@@ -305,16 +305,22 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        String name = txtName.getText();
         String username = txtUserName.getText();
-        String password = txtPassword.getText();
-        if (!name.equals("") && !username.equals("") && !password.equals("")) {
-            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new VolunteerManagerRole());
-            populateTable();
+        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            String name = txtName.getText();
+        
+            String password = txtPassword.getText();
+            if (!name.equals("") && !username.equals("") && !password.equals("")) {
+                Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new VolunteerManagerRole());
+                populateTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please fill in all updated information");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Please fill in all updated information");
+            JOptionPane.showMessageDialog(null, "This userAccount is already existed.");
         }
+        
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed

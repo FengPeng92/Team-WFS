@@ -6,6 +6,7 @@
 package Business.Network;
 
 import Business.Enterprise.EnterpriseDirectory;
+import Business.Entity.VaccineDirectory;
 
 /**
  *
@@ -14,9 +15,11 @@ import Business.Enterprise.EnterpriseDirectory;
 public class Network {
     private String name;
     private EnterpriseDirectory enterpriseDirectory;
+    private VaccineDirectory vaccineDirectory;
     
     public Network(){
         enterpriseDirectory=new EnterpriseDirectory();
+        vaccineDirectory = new VaccineDirectory();
     }
     public String getName() {
         return name;
@@ -29,10 +32,16 @@ public class Network {
     public EnterpriseDirectory getEnterpriseDirectory() {
         return enterpriseDirectory;
     }
+
+    public VaccineDirectory getVaccineDirectory() {
+        return vaccineDirectory;
+    }
     
     @Override
     public String toString(){
         return name;
     }
+    
+    
     
 }

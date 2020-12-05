@@ -67,4 +67,13 @@ public class EnterpriseDirectory {
         }
         return null;             
     }
+    
+    public boolean checkEnterpriseIsUnique(String name) {
+        for (Enterprise enterprise : enterpriseList) {
+            if (enterprise.getName().equals(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

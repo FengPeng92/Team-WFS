@@ -16,6 +16,7 @@ import Business.Role.WHOOfficerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -248,26 +249,33 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         
-        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-        
         String username = usernameJTextField.getText();
-        String password = String.valueOf(passwordJPasswordField.getPassword());
-        String name = nameJTextField.getText();
         
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         
-        Role role = null;
-        if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Hospital) {
-             role = new HospitalAdminRole();
-        } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Institution) {
-             role = new InstitutionAdminRole();
-        } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.People) {
-            role = new NormalUserRole();
-        } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.WHO) {
-            role = new WHOOfficerRole();
+        
+            String password = String.valueOf(passwordJPasswordField.getPassword());
+            String name = nameJTextField.getText();
+
+            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+
+            Role role = null;
+            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Hospital) {
+                 role = new HospitalAdminRole();
+            } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Institution) {
+                 role = new InstitutionAdminRole();
+            } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.People) {
+                role = new NormalUserRole();
+            } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.WHO) {
+                role = new WHOOfficerRole();
+            }
+            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, role);
+            populateTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "UserAccount is already existed!");
         }
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, role);
-        populateTable();
+        
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 

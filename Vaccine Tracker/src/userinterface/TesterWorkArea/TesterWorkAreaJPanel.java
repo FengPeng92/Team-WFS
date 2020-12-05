@@ -274,6 +274,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
 //        return;
 
         if (selectedRequest != null) {
+            ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setStatus("Testing");
             PreclinicalTestJPanel panel = new PreclinicalTestJPanel(userProcessContainer, userAccount, organization, enterprise, system, selectedRequest);
             userProcessContainer.add("InstitutionAdminWorkAreaJPanel", panel);
             CardLayout layout = (CardLayout)userProcessContainer.getLayout();
@@ -352,7 +353,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setEndDate(new Date());
-        ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setStatus("Completed");
+        ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setStatus("Finished");
         ((ScientistRequestTesterRequest)selectedRequest).setIsTested(true);
         populate();
         JOptionPane.showMessageDialog(null, "Report to Admin");

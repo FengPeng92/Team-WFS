@@ -35,6 +35,15 @@ public class VaccineDirectory {
         }       
         return null;
     }
+
+    public boolean checkVaccineIsUnique(String name) {
+        for (Vaccine vaccine : vaccineList) {
+            if (vaccine.getVaccineName().equals(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
     
     
     

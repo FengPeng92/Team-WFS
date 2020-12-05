@@ -337,24 +337,28 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String pick = (String)jComboBox1.getSelectedItem();
-        String name = jTextField1.getText();
         String username = jTextField2.getText();
-        String password = jTextField3.getText();
-        if ((name != null) && (username != null) && (password != null)) {
-            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-            if ("Scientist".equals(pick)) {
-                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ScientistRole());
+        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            String pick = (String)jComboBox1.getSelectedItem();
+            String name = jTextField1.getText();
+
+            String password = jTextField3.getText();
+            if ((name != null) && (username != null) && (password != null)) {
+                Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+                if ("Scientist".equals(pick)) {
+                    UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ScientistRole());
+                }
+                else if ("Tester".equals(pick)) {
+                    UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new TesterRole());
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "please input the value");
+                }
+                populate();
             }
-            else if ("Tester".equals(pick)) {
-                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new TesterRole());
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "please input the value");
-            }
-            populate();
-        }
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "This userAccount is already existed.");
+        }             
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

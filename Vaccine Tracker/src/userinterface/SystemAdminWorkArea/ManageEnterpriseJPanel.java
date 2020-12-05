@@ -195,10 +195,15 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
 
         String name = nameJTextField.getText();
+        if (network.getEnterpriseDirectory().checkEnterpriseIsUnique(name)) {
+            Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
 
-        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+            populateTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Enterprise is already existed!");
+        }
 
-        populateTable();
+        
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
