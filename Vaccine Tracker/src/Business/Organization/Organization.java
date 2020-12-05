@@ -5,6 +5,7 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
+import Business.Entity.UserDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
@@ -22,6 +23,7 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
+    private UserDirectory userDirectory;
     
     public enum Type{
         InstitutionAdmin("Institution Admin Organization"), Doctor("Doctor Organization"),
@@ -55,6 +57,16 @@ public abstract class Organization {
         }
         return userAccountDirectory;
     }
+
+    public UserDirectory getUserDirectory() {
+        if (userDirectory == null) {
+            userAccountDirectory = new UserAccountDirectory();
+        }
+        return userDirectory;
+    }
+
+    
+    
 
     public int getOrganizationID() {
         return organizationID;

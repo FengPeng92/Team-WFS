@@ -64,7 +64,8 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Institution) {
+                for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
@@ -73,7 +74,9 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
                 row[3] = vaccine.getPhases().get(size-1).getName();
                 row[4] = vaccine.getPhases().get(size-1).getStatus();
                 dtm.addRow(row);
+                }
             }
+            
         }
     }
     

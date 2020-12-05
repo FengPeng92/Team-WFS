@@ -52,7 +52,10 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         
-        for (WorkRequest request : system.getWorkQueue().getVolunteerApplicationRequestList()) {
+        System.out.println(system.getWorkQueue().getVolunteerApplicationRequestList().size());
+        
+        for (WorkRequest request : system.getWorkQueue().getVolunteerApplicationRequestList()) {           
+            if (((VolunteerApplicationRequest)request).isIsChecked()) continue;
             Object[] row = new Object[4];
             row[0] = ((VolunteerApplicationRequest)request).getUser();
             row[1] = ((VolunteerApplicationRequest)request).getUser().getUserAccount().getEmployee().getName();
@@ -396,14 +399,18 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void agreeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agreeBtnActionPerformed
         // TODO add your handling code here:
         ((VolunteerApplicationRequest)selectedRequest).setIsQualified(true);
+        ((VolunteerApplicationRequest)selectedRequest).setIsChecked(true);
         Role role = new VolunteerRole();
         ((VolunteerApplicationRequest)selectedRequest).getUser().getUserAccount().setRole(role);
+        populateTable();
         JOptionPane.showMessageDialog(null, "This person became a volunteer");
     }//GEN-LAST:event_agreeBtnActionPerformed
 
     private void disagreeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disagreeBtnActionPerformed
         // TODO add your handling code here:
         ((VolunteerApplicationRequest)selectedRequest).setIsQualified(false);
+        ((VolunteerApplicationRequest)selectedRequest).setIsChecked(true);
+        populateTable();
         JOptionPane.showMessageDialog(null, "This person is not qualified to become a volunteer");
     }//GEN-LAST:event_disagreeBtnActionPerformed
 

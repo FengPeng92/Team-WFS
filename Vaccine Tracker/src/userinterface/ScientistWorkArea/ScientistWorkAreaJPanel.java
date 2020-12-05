@@ -86,7 +86,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = vaccine.getVaccineType();
             row[1] = vaccine;
             row[2] = ft.format(vaccine.getCreatedTime());
-            row[4] = vaccine.getStatus();
+            //row[4] = vaccine.getStatus();
             int size = vaccine.getPhases().size();
             if (size == 0) {
                 dtm.addRow(row);
@@ -146,7 +146,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Vaccine Type", "Vaccine Name", "Create Time", "Phase", "Status"
+                "Vaccine Type", "Vaccine Name", "Create Time", "Phase", "Phase Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -338,8 +338,8 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         if (selectEnterprise >= 0) {
             Enterprise e1 = (Enterprise)jTable2.getValueAt(selectEnterprise, 0);
             selectedVaccine.getHospitalList().add(e1);
-            populateAll();
             populateSelect();
+            populateAll();
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select a row");
@@ -353,9 +353,42 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         
         int selectAccept = jTable1.getSelectedRow();
         if (selectAccept >= 0) {
+            
             selectedVaccine = (Vaccine)jTable1.getValueAt(selectAccept, 1);
-            populateAll();
-            populateSelect();
+            int size = selectedVaccine.getPhases().size();
+            if (size == 0) {
+                JOptionPane.showMessageDialog(null, "Please finish preclinical test first.");
+            } else if (size ==  1 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
+                Phase phase1 = new Phase("Phase 1", "", "Started");
+                System.out.println(phase1);
+                selectedVaccine.getPhases().add(phase1);
+                populateAll();
+                populateSelect();
+                populate();
+            } else if (size ==  2 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
+                Phase phase2 = new Phase("Phase 2", "", "Started");
+                System.out.println(phase2);
+                selectedVaccine.getPhases().add(phase2);
+                populateAll();
+                populateSelect();
+                populate();
+            } else if (size ==  3 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")){
+                Phase phase3 = new Phase("Phase 3", "", "Started");
+                System.out.println(phase3);
+                selectedVaccine.getPhases().add(phase3);
+                populateAll();
+                populateSelect();
+                populate();
+            } else if (size ==  4 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
+                Phase approve = new Phase("Approve", "", "Started");
+                System.out.println(approve);
+                selectedVaccine.getPhases().add(approve);
+                populateAll();
+                populateSelect();
+                populate();
+            } else {
+                JOptionPane.showMessageDialog(null, "The last phase of testing has not been completed. ");
+            } 
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select a row");
@@ -371,7 +404,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             Vaccine v1 = (Vaccine)jTable1.getValueAt(selectAccept, 1);
             
             v1.setStatus("Preclinical");
-            Phase preclinical = new Phase("Preclinical", "", "Still testing");
+            Phase preclinical = new Phase("Preclinical", "", "Started");
             v1.getPhases().add(preclinical);
             
             WorkRequest request = new ScientistRequestTesterRequest(v1, enterprise);

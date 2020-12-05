@@ -181,34 +181,42 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         try {
-            String name = txtName.getText();
             String username = txtUsername.getText();
-            String password = txtPassword.getText();
-            String repassword = txtRepassword.getText();
-            String email = txtEmail.getText();
-            int age = Integer.parseInt(txtAge.getText());
+            if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+                String name = txtName.getText();
+            
+                String password = txtPassword.getText();
+                String repassword = txtRepassword.getText();
+                String email = txtEmail.getText();
+                int age = Integer.parseInt(txtAge.getText());
 
-            if (name.equals("") || username.equals("") || password.equals("") || repassword.equals("") || email.equals("")) {
-                JOptionPane.showMessageDialog(null, "Please fill in all information.");
-            } else {
-                if (password.equals(repassword)) {
-                    Enterprise userEnterprise = null;
-                    for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-                        if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.People) {
-                            userEnterprise = enterprise;
-                            break;
-                        }
-                    }
-                    
-                    Employee employee = userEnterprise.getEmployeeDirectory().createEmployee(name);
-                    UserAccount account = userEnterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NormalUserRole());
-                    User user = new User(account, email, age);
-                    userEnterprise.getUserDirectory().getUserList().add(user);
-                    JOptionPane.showMessageDialog(null, "Register successfully!");
+                if (name.equals("") || username.equals("") || password.equals("") || repassword.equals("") || email.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please fill in all information.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "The two passwords you entered did not match.");
+                    if (password.equals(repassword)) {
+                        Enterprise userEnterprise = null;
+                        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
+                            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.People) {
+                                userEnterprise = enterprise;
+                                break;
+                            }
+                        }
+
+                        Employee employee = userEnterprise.getEmployeeDirectory().createEmployee(name);
+                        UserAccount account = userEnterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NormalUserRole());
+                        User user = new User(account, email, age);
+                        userEnterprise.getUserDirectory().getUserList().add(user);
+                        //system.getUserAccountDirectory().getUserAccountList().add(account);
+                        //system.getUserDirectory().getUserList().add(user);
+                        JOptionPane.showMessageDialog(null, "Register successfully!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "The two passwords you entered did not match.");
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "This userAccount is already existed. ");
             }
+            
            
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Age must be integer");

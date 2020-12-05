@@ -53,8 +53,9 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel dtm=(DefaultTableModel) tableShootingRequest.getModel();
         dtm.setRowCount(0);
+        System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " confirm");
         
-        for (WorkRequest workRequest : enterprise.getWorkQueue().getVaccineShootRequestList()) {
+        for (WorkRequest workRequest : system.getWorkQueue().getVaccineShootRequestList()) {
             if (((VaccineShootRequest) workRequest).getStatus().equals("Request to Shoot")) {
                 Object[] row = new Object[5];
                 row[0] = workRequest;
@@ -63,6 +64,7 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
                 int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
                 row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
                 row[4] = ((VaccineShootRequest) workRequest).getStatus();
+                dtm.addRow(row);
             }                        
         }
     }

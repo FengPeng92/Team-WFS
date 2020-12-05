@@ -24,7 +24,6 @@ public class Phase {
     List<User> volunteers; 
     private String status;
     private String WHOdescription;
-    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
     public Phase(String name, String description, String status) {
         this.name = name;
@@ -44,16 +43,16 @@ public class Phase {
         this.name = name;
     }
 
-    public String getStartDate() {
-        return ft.format(startDate);
+    public Date getStartDate() {
+        return this.startDate;
     }
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
-        return ft.format(endDate);
+    public Date getEndDate() {
+        return this.endDate;
     }
 
     public void setEndDate(Date endDate) {
@@ -98,6 +97,11 @@ public class Phase {
 
     public void setWHOdescription(String WHOdescription) {
         this.WHOdescription = WHOdescription;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
     
     

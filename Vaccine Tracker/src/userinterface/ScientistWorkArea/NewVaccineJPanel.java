@@ -191,13 +191,18 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
         String detail = jTextArea1.getText();
         
  
-        if ((name != null) || (type != null)) {
-            Vaccine vaccine = new Vaccine(name, type, detail, "create the vaccine", new Date());
-            enterprise.getVaccineDirectory().getVaccineList().add(vaccine);
-            JOptionPane.showMessageDialog(null, "Vaccine developed successfully.");
+        if (!name.equals("") && !type.equals("") && !detail.equals("")) {
+            if (system.getNetworkList().get(0).getVaccineDirectory().checkVaccineIsUnique(name)) {
+                Vaccine vaccine = new Vaccine(name, type, detail, "create the vaccine", new Date());
+                enterprise.getVaccineDirectory().getVaccineList().add(vaccine);
+                system.getNetworkList().get(0).getVaccineDirectory().getVaccineList().add(vaccine);
+                JOptionPane.showMessageDialog(null, "Vaccine developed successfully.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Vaccine name cannot be repeat. ");
+            }            
         }
         else {
-            JOptionPane.showMessageDialog(null, "input the name or type");
+            JOptionPane.showMessageDialog(null, "Please fill in all information. ");
         }
 //        ScientistWorkAreaJPanel panel = new ScientistWorkAreaJPanel(userProcessContainer, userAccount, organization, enterprise, system);
 //        userProcessContainer.add("ScientistWorkAreaJPanel", panel);
