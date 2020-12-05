@@ -54,13 +54,16 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         
         for (WorkRequest request : system.getWorkQueue().getReportToWHORequestList()) {
             ReportToWHORequest whoRequest = (ReportToWHORequest)request;
-            Object[] row = new Object[5];
-            row[0] = whoRequest.getVaccine();
-            row[1] = whoRequest.getVaccine().getVaccineType();
-            row[2] = ft.format(whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStartDate());
-            row[3] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getName();
-            row[4] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStatus();
-            dtm.addRow(row);
+            if (!whoRequest.isIsChecked()) {
+                Object[] row = new Object[5];
+                row[0] = whoRequest.getVaccine();
+                row[1] = whoRequest.getVaccine().getVaccineType();
+                row[2] = ft.format(whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStartDate());
+                row[3] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getName();
+                row[4] = whoRequest.getVaccine().getPhases().get(whoRequest.getVaccine().getPhases().size()-1).getStatus();
+                dtm.addRow(row);
+            }
+            
         }
         
     }

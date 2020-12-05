@@ -12,6 +12,7 @@ import Business.Entity.User;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VolunteerApplicationRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -346,10 +347,10 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 questionary.setTestResult("Negitive");
             }
             
-            VolunteerApplicationRequest application = new VolunteerApplicationRequest(questionary, false, "");
-            application.setSender(userAccount);
-            application.setUser(user);
-            application.setStatus("Requested");
+            WorkRequest application = new VolunteerApplicationRequest(questionary, false, "");
+            ((VolunteerApplicationRequest)application).setSender(userAccount);
+            ((VolunteerApplicationRequest)application).setUser(user);
+            ((VolunteerApplicationRequest)application).setStatus("Requested");
             
             system.getWorkQueue().getWorkRequestList().add(application);
             JOptionPane.showMessageDialog(null, "reported successfully.");

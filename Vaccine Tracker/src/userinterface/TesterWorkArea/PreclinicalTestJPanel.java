@@ -233,10 +233,10 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             String pick = (String)jComboBox1.getSelectedItem();
-            int total = Integer.parseInt(txtTotal.getText());
-            int number = Integer.parseInt(txtNumber.getText());
+            double total = Double.parseDouble(txtTotal.getText());
+            double number = Double.parseDouble(txtNumber.getText());
             String description = txtDescription.getText();
-            Animal animal = new Animal(pick, total, number, (number*100)/total, description);
+            Animal animal = new Animal(pick, total, number, (number*100.0)/total, description);
             ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList().add(animal);
 
             populate();

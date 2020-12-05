@@ -11,12 +11,12 @@ package Business.Entity;
  */
 public class Animal {
     private String animalName;
-    private int effectiveRate;
+    private double effectiveRate;
     private String description;
-    private int total;
-    private int number;
+    private double total;
+    private double number;
 
-    public Animal(String animalName, int total, int number, int effectiveRate, String description) {
+    public Animal(String animalName, double total, double number, double effectiveRate, String description) {
         this.animalName = animalName;
         this.effectiveRate = effectiveRate;
         this.description = description;
@@ -36,7 +36,7 @@ public class Animal {
         return effectiveRate;
     }
 
-    public void setEffectiveRate(int effectiveRate) {
+    public void setEffectiveRate(double effectiveRate) {
         this.effectiveRate = effectiveRate;
     }
 
@@ -48,21 +48,23 @@ public class Animal {
         this.description = description;
     }    
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public int getNumber() {
+    public double getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(double number) {
         this.number = number;
     }
+
+    
 
 
 }

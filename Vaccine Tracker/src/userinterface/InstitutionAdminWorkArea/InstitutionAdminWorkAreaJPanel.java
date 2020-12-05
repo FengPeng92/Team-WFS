@@ -186,8 +186,10 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
             selectedVaccine = (Vaccine) jTable1.getValueAt(selectedRow, 0);
             ReportToWHORequest request = new ReportToWHORequest(selectedVaccine);
             request.getVaccine().getPhases().get(request.getVaccine().getPhases().size()-1).setEndDate(new Date());
+            request.getVaccine().getPhases().get(request.getVaccine().getPhases().size()-1).setStatus("Check Pending");
             request.setSender(userAccount);
             system.getWorkQueue().getWorkRequestList().add(request);
+            populate();
             JOptionPane.showMessageDialog(null, "Report successfully!");
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row.");
@@ -215,25 +217,16 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
             int size = vaccine.getPhases().size();
-            if (vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus().equals("Finished")) {
+            if (size == 0) continue;
+            if (vaccine.getPhases().get(size-1).getStatus().equals("Reported")) {
                 Object[] row = new Object[5];
                 row[0] = vaccine;
                 row[1] = vaccine.getVaccineType();
                 row[2] = ft.format(vaccine.getCreatedTime());
-
-                if (size == 0) {
-                    dtm.addRow(row);
-                } else {
-
-                    row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-                    row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
-                    dtm.addRow(row);
-                }
+                row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
+                row[4] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getStatus();
+                dtm.addRow(row);
             }
-            
-            
         }
-        
-        
     }
 }

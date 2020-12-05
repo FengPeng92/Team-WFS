@@ -353,6 +353,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         
         int selectAccept = jTable1.getSelectedRow();
         if (selectAccept >= 0) {
+            
             selectedVaccine = (Vaccine)jTable1.getValueAt(selectAccept, 1);
             int size = selectedVaccine.getPhases().size();
             if (size == 0) {
@@ -363,25 +364,28 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 selectedVaccine.getPhases().add(phase1);
                 populateAll();
                 populateSelect();
+                populate();
             } else if (size ==  2 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
                 Phase phase2 = new Phase("Phase 2", "", "Started");
                 System.out.println(phase2);
                 selectedVaccine.getPhases().add(phase2);
                 populateAll();
                 populateSelect();
-                
+                populate();
             } else if (size ==  3 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")){
                 Phase phase3 = new Phase("Phase 3", "", "Started");
                 System.out.println(phase3);
                 selectedVaccine.getPhases().add(phase3);
                 populateAll();
                 populateSelect();
+                populate();
             } else if (size ==  4 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
                 Phase approve = new Phase("Approve", "", "Started");
                 System.out.println(approve);
                 selectedVaccine.getPhases().add(approve);
                 populateAll();
                 populateSelect();
+                populate();
             } else {
                 JOptionPane.showMessageDialog(null, "The last phase of testing has not been completed. ");
             } 

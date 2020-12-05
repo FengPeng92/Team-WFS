@@ -14,9 +14,11 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ReportToWHORequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userinterface.TesterWorkArea.TesterWorkAreaJPanel;
 
 /**
  *
@@ -330,6 +332,10 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        WHOOfficerWorkAreaJPanel panel = (WHOOfficerWorkAreaJPanel) component;
+        panel.populateTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
@@ -357,6 +363,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
 //                selectedVaccine.getPhases().add(approve);
             }
             JOptionPane.showMessageDialog(null, "submit successfully");
+            system.getWorkQueue().getReportToWHORequestList().remove(selectedWorkRequest);
             
         } else if (jRadioBtnNo.isSelected()) {
             ((ReportToWHORequest)selectedWorkRequest).setIsChecked(false);

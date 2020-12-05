@@ -54,8 +54,8 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         System.out.println(system.getWorkQueue().getVolunteerApplicationRequestList().size());
         
-        for (WorkRequest request : system.getWorkQueue().getVolunteerApplicationRequestList()) {
-            if (((VolunteerApplicationRequest)selectedRequest).isIsChecked()) continue;
+        for (WorkRequest request : system.getWorkQueue().getVolunteerApplicationRequestList()) {           
+            if (((VolunteerApplicationRequest)request).isIsChecked()) continue;
             Object[] row = new Object[4];
             row[0] = ((VolunteerApplicationRequest)request).getUser();
             row[1] = ((VolunteerApplicationRequest)request).getUser().getUserAccount().getEmployee().getName();
