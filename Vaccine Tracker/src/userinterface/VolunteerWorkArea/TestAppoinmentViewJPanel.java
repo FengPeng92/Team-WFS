@@ -47,7 +47,7 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
         
         jLabel3.setText(userAccount.getUsername());
         txtDetail.setText(newRequest.getVaccine().getDetail());
-        txtHospital.setText(newRequest.getReceiver().getUsername());
+        txtHospital.setText(newRequest.getHospital().getName());
         int size = newRequest.getVaccine().getPhases().size();
         txtDescription.setText(newRequest.getVaccine().getPhases().get(size-1).getDescription());
         txtPhase.setText(newRequest.getVaccine().getPhases().get(size-1).getName());
@@ -250,9 +250,20 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        system.getWorkQueue().getVaccineShootRequestList().remove(newRequest);
-        selectedUser.setVaccine(null);
-        JOptionPane.showMessageDialog(null, "Cancel the appoinmnet successfully.");
+        if (system.getWorkQueue().getVaccineShootRequestList().remove(newRequest)) {
+            selectedUser.setVaccine(null);
+            txtCreateTime.setText("");
+            txtDescription.setText("");
+            txtDetail.setText("");
+            txtHospital.setText("");
+            txtPhase.setText("");
+            txtVaccine.setText("");
+            txtVaccineType.setText("");
+            JOptionPane.showMessageDialog(null, "Cancel the appoinmnet successfully.");
+        } else {
+            JOptionPane.showMessageDialog(null, "You are not cancel successfully.");
+        }
+        
     }//GEN-LAST:event_btnCancelActionPerformed
 
 
