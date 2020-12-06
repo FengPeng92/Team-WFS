@@ -11,7 +11,9 @@ import Business.Entity.User;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,12 +31,13 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
-    private VaccineShootRequest newRequest;
+    private WorkRequest newRequest;
     private User selectedUser;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public TestAppoinmentViewJPanel() {
     }
 
-    TestAppoinmentViewJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, VaccineShootRequest newRequest, User selectedUser) {
+    TestAppoinmentViewJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, WorkRequest newRequest, User selectedUser) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -46,13 +49,14 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
         this.selectedUser = selectedUser;
         
         jLabel3.setText(userAccount.getUsername());
-        txtDetail.setText(newRequest.getVaccine().getDetail());
-        txtHospital.setText(newRequest.getHospital().getName());
-        int size = newRequest.getVaccine().getPhases().size();
-        txtDescription.setText(newRequest.getVaccine().getPhases().get(size-1).getDescription());
-        txtPhase.setText(newRequest.getVaccine().getPhases().get(size-1).getName());
-        txtVaccine.setText(newRequest.getVaccine().getVaccineName());
-        txtVaccineType.setText(newRequest.getVaccine().getVaccineType());
+        txtDetail.setText(((VaccineShootRequest)newRequest).getVaccine().getDetail());
+        txtHospital.setText(((VaccineShootRequest)newRequest).getHospital().getName());
+        int size = ((VaccineShootRequest)newRequest).getVaccine().getPhases().size();
+        txtDescription.setText(((VaccineShootRequest)newRequest).getVaccine().getPhases().get(size-1).getDescription());
+        txtPhase.setText(((VaccineShootRequest)newRequest).getVaccine().getPhases().get(size-1).getName());
+        txtVaccine.setText(((VaccineShootRequest)newRequest).getVaccine().getVaccineName());
+        txtVaccineType.setText(((VaccineShootRequest)newRequest).getVaccine().getVaccineType());
+        txtCreateTime.setText(ft.format(((VaccineShootRequest)newRequest).getVaccine().getCreatedTime()));
     }
 
     /**
@@ -102,6 +106,12 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
         jLabel6.setText("Description: ");
 
         jLabel7.setText("Create Time: ");
+
+        txtCreateTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCreateTimeActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Details: ");
 
@@ -250,7 +260,9 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        if (system.getWorkQueue().getVaccineShootRequestList().remove(newRequest)) {
+        ((VaccineShootRequest)newRequest).getHospital().getUserDirectory().getUserList().remove(selectedUser);
+        if (system.getWorkQueue().getWorkRequestList().remove(newRequest)) {
+            
             selectedUser.setVaccine(null);
             txtCreateTime.setText("");
             txtDescription.setText("");
@@ -265,6 +277,10 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtCreateTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreateTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCreateTimeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,6 +12,7 @@ import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -34,7 +35,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private Vaccine selectedVaccine;
     private Enterprise selectedHospital;
-    private VaccineShootRequest newRequest;
+    private WorkRequest newRequest;
     private User selectedUser;
     private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public RequestTestVaccineJPanel() {
@@ -80,29 +81,28 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
         dtm.setRowCount(0);
         
-        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Institution) {
-                for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-                Object[] row = new Object[5];
-                row[0] = vaccine;
-                row[1] = vaccine.getVaccineType();
-                row[2] = ft.format(vaccine.getCreatedTime());
-                int size = vaccine.getPhases().size();
-                row[3] = vaccine.getPhases().get(size-1).getName();
-                row[4] = vaccine.getPhases().get(size-1).getStatus();
-                dtm.addRow(row);
+        for (Vaccine vaccine : system.getNetworkList().get(0).getVaccineDirectory().getVaccineList()) {
+            //if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Institution) {
+                //for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+            Object[] row = new Object[5];
+            row[0] = vaccine;
+            row[1] = vaccine.getVaccineType();
+            row[2] = ft.format(vaccine.getCreatedTime());
+            int size = vaccine.getPhases().size();
+            row[3] = vaccine.getPhases().get(size-1).getName();
+            row[4] = vaccine.getPhases().get(size-1).getStatus();
+            dtm.addRow(row);
                 }
-            }
+            //}
             
-        }
+        //}
     }
     
     public void populateVaccineByName(String name) {
         DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
         dtm.setRowCount(0);
         
-        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+        for (Vaccine vaccine : system.getNetworkList().get(0).getVaccineDirectory().getVaccineList()) {
                 if (vaccine.getVaccineName().equals(name)) {
                     Object[] row = new Object[5];
                     row[0] = vaccine;
@@ -114,8 +114,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                     dtm.addRow(row);
                     break;
                 }
-                
-            }
+            
         }
     }
     
@@ -370,13 +369,12 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 String shootingId = system.getWorkQueue().getVaccineShootRequestList().size() + selectedHospital.getName();
 
                 newRequest = new VaccineShootRequest(selectedVaccine, shootingId, selectedUser, selectedHospital);
-                newRequest.setStatus("Request to Shoot");
-                system.getWorkQueue().getWorkRequestList().add(newRequest);
+                selectedHospital.getUserDirectory().getUserList().add(selectedUser);
+                ((VaccineShootRequest)newRequest).setShootingStatus("Request to Shoot");               
                 selectedUser.setVaccine(selectedVaccine);
                 System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
                 newRequest.setSender(userAccount);
-                //newRequest.setReceiver(selectedHospital);
-
+                system.getWorkQueue().getWorkRequestList().add(newRequest);
                 JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
             } else {
                 JOptionPane.showMessageDialog(null, "Please select a row.");

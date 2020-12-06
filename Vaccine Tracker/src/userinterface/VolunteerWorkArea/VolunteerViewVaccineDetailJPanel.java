@@ -110,6 +110,7 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
 
+        setEnabled(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jLabel1.setText("Volunteer");
@@ -131,14 +132,21 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Vaccine Name: ");
 
+        txtVaccineName.setEnabled(false);
+
         jLabel5.setText("Create Time:");
 
+        txtCreateTime.setEnabled(false);
+
         jLabel7.setText("Vaccine Type: ");
+
+        txtVaccineType.setEnabled(false);
 
         jLabel6.setText("Detail: ");
 
         txtDetail.setColumns(20);
         txtDetail.setRows(5);
+        txtDetail.setEnabled(false);
         jScrollPane1.setViewportView(txtDetail);
 
         jLabel8.setText("Phase: ");
@@ -152,11 +160,19 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Start Time: ");
 
+        txtStartTime.setEnabled(false);
+
         jLabel10.setText("End Time:");
+
+        txtEndTime.setEnabled(false);
 
         jLabel11.setText("Status: ");
 
+        txtStatus.setEnabled(false);
+
         jLabel12.setText("Effective Rate: ");
+
+        txtEffectiveRate.setEnabled(false);
 
         jLabel13.setText("%");
 
@@ -164,6 +180,7 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
+        txtDescription.setEnabled(false);
         jScrollPane2.setViewportView(txtDescription);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

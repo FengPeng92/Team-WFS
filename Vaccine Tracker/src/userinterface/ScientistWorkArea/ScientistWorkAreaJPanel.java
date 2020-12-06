@@ -404,7 +404,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             
             Vaccine v1 = (Vaccine)jTable1.getValueAt(selectAccept, 1);
             
-            if (v1.getStatus().equals("")) {
+            if (v1.getPhases().size() == 0) {
                 v1.setStatus("Preclinical");
                 Phase preclinical = new Phase("Preclinical", "", "Started");
                 v1.getPhases().add(preclinical);
