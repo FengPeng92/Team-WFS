@@ -4,18 +4,13 @@
  */
 package userinterface.InstitutionAdminWorkArea;
 
-import userinterface.HospitalAdminWorkArea.*;
-import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Vaccine;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ReportToWHORequest;
-import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
-import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;

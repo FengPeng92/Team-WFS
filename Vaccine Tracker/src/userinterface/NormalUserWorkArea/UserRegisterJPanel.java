@@ -11,6 +11,9 @@ import Business.Enterprise.Enterprise;
 import Business.Entity.User;
 import Business.Role.NormalUserRole;
 import Business.UserAccount.UserAccount;
+import Business.Util.SendEmail;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -178,6 +181,17 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public boolean emailVlidation(String email) {
+        String regex = "^[a-zA-Z0-9_+&*-] + (?:\\\\.[a-zA-Z0-9_+&*-]\n" +
+"+ )*@(?:[a-zA-Z0-9-]+\\\\.) + [a-zA-Z]{2, 7}";
+        Pattern pattern = Pattern.compile(regex);
+        
+        Matcher matcher = pattern.matcher(email);
+        if(matcher.matches()){
+            return true;
+        }
+        return false;
+    }
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         try {
@@ -189,34 +203,37 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
                 String repassword = txtRepassword.getText();
                 String email = txtEmail.getText();
                 int age = Integer.parseInt(txtAge.getText());
-
-                if (name.equals("") || username.equals("") || password.equals("") || repassword.equals("") || email.equals("")) {
+                if (emailVlidation(email)) {
+                    if (name.equals("") || username.equals("") || password.equals("") || repassword.equals("") || email.equals("")) {
                     JOptionPane.showMessageDialog(null, "Please fill in all information.");
-                } else {
-                    if (password.equals(repassword)) {
-                        Enterprise userEnterprise = null;
-                        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-                            if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.People) {
-                                userEnterprise = enterprise;
-                                break;
-                            }
-                        }
-
-                        Employee employee = userEnterprise.getEmployeeDirectory().createEmployee(name);
-                        UserAccount account = userEnterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NormalUserRole());
-                        User user = new User(account, email, age);
-                        userEnterprise.getUserDirectory().getUserList().add(user);
-                        //system.getUserAccountDirectory().getUserAccountList().add(account);
-                        //system.getUserDirectory().getUserList().add(user);
-                        JOptionPane.showMessageDialog(null, "Register successfully!");
                     } else {
-                        JOptionPane.showMessageDialog(null, "The two passwords you entered did not match.");
-                    }
-                }
-            } else {
+                        if (password.equals(repassword)) {
+                            Enterprise userEnterprise = null;
+                            for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
+                                if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.People) {
+                                    userEnterprise = enterprise;
+                                    break;
+                                }
+                            }
+
+                            Employee employee = userEnterprise.getEmployeeDirectory().createEmployee(name);
+                            UserAccount account = userEnterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NormalUserRole());
+                            User user = new User(account, email, age);
+                            userEnterprise.getUserDirectory().getUserList().add(user);
+                            SendEmail send = new SendEmail(email);
+                            send.userRegister();
+                            JOptionPane.showMessageDialog(null, "Register successfully!");
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "The two passwords you entered did not match.");
+                            }
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Email is not qualified. "); 
+                        }
+                } else {
                 JOptionPane.showMessageDialog(null, "This userAccount is already existed. ");
-            }
-            
+            }  
            
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Age must be integer");

@@ -8,7 +8,6 @@ package userinterface.DoctorWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
-import Business.Role.VolunteerRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
 import Business.WorkQueue.WorkRequest;

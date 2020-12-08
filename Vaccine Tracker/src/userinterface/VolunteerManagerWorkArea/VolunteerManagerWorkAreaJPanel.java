@@ -12,6 +12,7 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Role.VolunteerRole;
 import Business.UserAccount.UserAccount;
+import Business.Util.SendEmail;
 import Business.WorkQueue.VolunteerApplicationRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
@@ -403,6 +404,8 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         Role role = new VolunteerRole();
         ((VolunteerApplicationRequest)selectedRequest).getUser().getUserAccount().setRole(role);
         populateTable();
+        SendEmail send = new SendEmail(((VolunteerApplicationRequest)selectedRequest).getUser().getEmail());
+        send.VolunteerAgree();
         JOptionPane.showMessageDialog(null, "This person became a volunteer");
     }//GEN-LAST:event_agreeBtnActionPerformed
 

@@ -4,13 +4,9 @@
  */
 package userinterface.TesterWorkArea;
 
-import userinterface.ScientistWorkArea.*;
-import userinterface.HospitalAdminWorkArea.*;
-import userinterface.DoctorWorkArea.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Animal;
-import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ScientistRequestTesterRequest;
@@ -91,6 +87,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
+        setEnabled(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jLabel1.setText("Institution Name");
@@ -125,14 +122,21 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Vaccine Name: ");
 
+        txtName.setEnabled(false);
+
         jLabel6.setText("Create Time:");
 
+        txtTime.setEnabled(false);
+
         jLabel7.setText("Vaccine Type: ");
+
+        txtType.setEnabled(false);
 
         jLabel8.setText("Detail: ");
 
         txtDetail.setColumns(20);
         txtDetail.setRows(5);
+        txtDetail.setEnabled(false);
         jScrollPane2.setViewportView(txtDetail);
 
         jButton2.setText("Go To Test");
@@ -143,6 +147,8 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         jLabel9.setText("Preclinical Effective Rate: ");
+
+        txtRate.setEnabled(false);
 
         jLabel13.setText("%");
 
