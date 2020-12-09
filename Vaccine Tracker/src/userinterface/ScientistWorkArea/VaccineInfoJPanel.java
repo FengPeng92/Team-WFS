@@ -365,13 +365,6 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        for (Vaccine v : enterprise.getVaccineDirectory().getVaccineList()) {
-            if (v.getVaccineName() == null ? txtName.getText() == null : v.getVaccineName().equals(txtName.getText())) {
-                JOptionPane.showMessageDialog(null, "Name is exist");
-                return;
-            }
-        }
         v1.setVaccineName(txtName.getText());
         v1.setVaccineType(txtType.getText());
         v1.setDetail(txtDetail.getText());

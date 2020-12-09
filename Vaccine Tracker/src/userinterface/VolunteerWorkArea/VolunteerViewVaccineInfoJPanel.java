@@ -59,17 +59,15 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
         dtm.setRowCount(0);
         
-        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-                Object[] row = new Object[5];
-                row[0] = vaccine;
-                row[1] = vaccine.getVaccineType();
-                row[2] = ft.format(vaccine.getCreatedTime());
-                int size = vaccine.getPhases().size();
-                row[3] = vaccine.getPhases().get(size-1).getName();
-                row[4] = vaccine.getPhases().get(size-1).getStatus();
-                dtm.addRow(row);
-            }
+        for (Vaccine vaccine : system.getNetworkList().get(0).getVaccineDirectory().getVaccineList()) {
+            Object[] row = new Object[5];
+            row[0] = vaccine;
+            row[1] = vaccine.getVaccineType();
+            row[2] = ft.format(vaccine.getCreatedTime());
+            int size = vaccine.getPhases().size();
+            row[3] = vaccine.getPhases().get(size-1).getName();
+            row[4] = vaccine.getPhases().get(size-1).getStatus();
+            dtm.addRow(row);
         }
     }
     
@@ -93,8 +91,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm =(DefaultTableModel) tableVaccine.getModel();
         dtm.setRowCount(0);
         
-        for (Enterprise enterprise : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
+        for (Vaccine vaccine : system.getNetworkList().get(0).getVaccineDirectory().getVaccineList()) {
                 int size = vaccine.getPhases().size();
                 if (vaccine.getPhases().get(size-1).getName().equals(phaseName)) {
                     Object[] row = new Object[5];
@@ -106,7 +103,7 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
                     dtm.addRow(row);
                 }
                 
-            }
+            
         }
     }
     

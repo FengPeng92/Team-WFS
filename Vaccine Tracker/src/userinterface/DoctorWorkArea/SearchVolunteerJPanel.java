@@ -52,11 +52,12 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
         dtm.setRowCount(0);
         
-        List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
+        List<WorkRequest> requests = system.getWorkQueue().getVaccineShootRequestList();
+        System.out.println(requests.size());
         
         for (WorkRequest workRequest : requests) {
             if (((VaccineShootRequest)workRequest).getUser() == searchUser) {
-                Object[] row = new Object[6];
+                Object[] row = new Object[7];
                 row[0] = ((VaccineShootRequest)workRequest).getShootingId();
                 row[1] = searchUser.getUserAccount();
                 row[2] = searchUser.getUserAccount().getEmployee().getName();
@@ -75,19 +76,22 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
         dtm.setRowCount(0);
         
-        List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
+        List<WorkRequest> requests = system.getWorkQueue().getVaccineShootRequestList();
         
-        for (WorkRequest workRequest : requests) {           
-            Object[] row = new Object[6];
-            row[0] = ((VaccineShootRequest)workRequest).getShootingId();
-            row[1] = ((VaccineShootRequest)workRequest).getUser().getUserAccount();
-            row[2] = ((VaccineShootRequest)workRequest).getUser().getUserAccount().getEmployee().getName();
-            row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
-            int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
-            row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
-            row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
-            row[6] = ((VaccineShootRequest) workRequest).getShootingStatus();
-            dtm.addRow(row);
+        for (WorkRequest workRequest : requests) {
+            if (enterprise.getUserDirectory().getUserList().contains(((VaccineShootRequest)workRequest).getUser())) {
+                Object[] row = new Object[7];
+                row[0] = ((VaccineShootRequest)workRequest).getShootingId();
+                row[1] = ((VaccineShootRequest)workRequest).getUser().getUserAccount();
+                row[2] = ((VaccineShootRequest)workRequest).getUser().getUserAccount().getEmployee().getName();
+                row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
+                int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
+                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+                row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
+                row[6] = ((VaccineShootRequest) workRequest).getShootingStatus();
+                dtm.addRow(row);
+            }
+            
             
         }
     }
@@ -312,9 +316,11 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
 //            UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
 //            System.out.println(searchAccount.getUsername());
             //User searchUser = system.getUserDirectory().searchUserByUserAccount(userAccount)
-            UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
-            System.out.println(searchAccount.getUsername());
-            searchUser = system.getUserDirectory().searchUserByUserAccount(searchAccount);
+//            System.out.println(searchUsername);
+//            UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
+//            System.out.println(searchAccount);
+            searchUser = enterprise.getUserDirectory().searchUserByUserName(searchUsername);
+            System.out.println(searchUser);
             if (searchUser == null) {
 //                DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
 //                dtm.setRowCount(0);
@@ -334,7 +340,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         // TODO add your handling code here:
         int selectedRow = tableResults.getSelectedRow();
-        List<WorkRequest> requests = enterprise.getWorkQueue().getVaccineShootRequestList();
+        List<WorkRequest> requests = system.getWorkQueue().getVaccineShootRequestList();
         
         
         if (selectedRow >= 0) {

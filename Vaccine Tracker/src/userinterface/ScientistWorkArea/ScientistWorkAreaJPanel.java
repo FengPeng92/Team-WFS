@@ -302,7 +302,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -401,16 +401,23 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectAccept = jTable1.getSelectedRow();
         if (selectAccept >= 0) {
+            
             Vaccine v1 = (Vaccine)jTable1.getValueAt(selectAccept, 1);
             
-            v1.setStatus("Preclinical");
-            Phase preclinical = new Phase("Preclinical", "", "Started");
-            v1.getPhases().add(preclinical);
+            if (v1.getPhases().size() == 0) {
+                v1.setStatus("Preclinical");
+                Phase preclinical = new Phase("Preclinical", "", "Started");
+                v1.getPhases().add(preclinical);
+
+                WorkRequest request = new ScientistRequestTesterRequest(v1, enterprise);
+                system.getWorkQueue().getWorkRequestList().add(request);
+                populate();
+                JOptionPane.showMessageDialog(null, "Preclinical test request.");
+            } else {
+                JOptionPane.showMessageDialog(null, "You already test the preclinical. ");
+            }
             
-            WorkRequest request = new ScientistRequestTesterRequest(v1, enterprise);
-            system.getWorkQueue().getWorkRequestList().add(request);
-            populate();
-            JOptionPane.showMessageDialog(null, "Preclinical test request.");
+            
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select a row");

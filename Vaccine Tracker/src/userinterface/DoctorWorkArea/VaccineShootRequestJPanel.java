@@ -8,7 +8,6 @@ package userinterface.DoctorWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
-import Business.Role.VolunteerRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
 import Business.WorkQueue.WorkRequest;
@@ -56,14 +55,14 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
         System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " confirm");
         
         for (WorkRequest workRequest : system.getWorkQueue().getVaccineShootRequestList()) {
-            if (((VaccineShootRequest) workRequest).getStatus().equals("Request to Shoot")) {
+            if (((VaccineShootRequest) workRequest).getShootingStatus().equals("Request to Shoot")) {
                 Object[] row = new Object[5];
                 row[0] = workRequest;
                 row[1] = workRequest.getSender();
                 row[2] = ((VaccineShootRequest) workRequest).getVaccine().getVaccineName();
                 int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
                 row[3] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
-                row[4] = ((VaccineShootRequest) workRequest).getStatus();
+                row[4] = ((VaccineShootRequest) workRequest).getShootingStatus();
                 dtm.addRow(row);
             }                        
         }
@@ -103,7 +102,7 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Shooting ID", "Volunteer", "Vaccine", "Phase", "Status"
+                "Shooting ID", "Volunteer", "Vaccine", "Phase", "Shooting Status"
             }
         ));
         jScrollPane1.setViewportView(tableShootingRequest);
@@ -181,8 +180,8 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
         int selectedRow = tableShootingRequest.getSelectedRow();
         
         if (selectedRow >= 0) {
-           VaccineShootRequest workRequest = (VaccineShootRequest)tableShootingRequest.getValueAt(selectedRow, 0);
-           workRequest.setStatus("Finished");
+           WorkRequest workRequest = (WorkRequest)tableShootingRequest.getValueAt(selectedRow, 0);
+           ((VaccineShootRequest) workRequest).setShootingStatus("Finished");
            populateTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row.");

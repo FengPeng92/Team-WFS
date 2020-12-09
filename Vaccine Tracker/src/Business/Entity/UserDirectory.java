@@ -37,6 +37,17 @@ public class UserDirectory {
         return null;
     }
     
+    public User searchUserByUserName(String username) {
+        for (User user :userList) {
+            if (user.getUserAccount().getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+    
+    
+    
     
     
     

@@ -8,11 +8,7 @@ package userinterface.InstitutionAdminWorkArea;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
-import Business.Entity.Vaccine;
 import Business.Organization.Organization;
-import static Business.Organization.Organization.Type.Scientist;
-import Business.Role.DoctorRole;
-import Business.Role.Role;
 import Business.Role.ScientistRole;
 import Business.Role.TesterRole;
 import Business.UserAccount.UserAccount;
@@ -343,13 +339,7 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
             String name = jTextField1.getText();
 
             String password = jTextField3.getText();
-            if ((name != null) && (username != null) && (password != null) ) {
-                for (UserAccount u : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                    if (u.getUsername() == null ? name == null : u.getUsername().equals(name)) {
-                        JOptionPane.showMessageDialog(null, "Username is exist");
-                        return;
-                    }
-                }
+            if ((name != null) && (username != null) && (password != null)) {
                 Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
                 if ("Scientist".equals(pick)) {
                     UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ScientistRole());
@@ -370,12 +360,6 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        for (UserAccount u : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                    if (u.getUsername() == null ? txtUpdateName.getText() == null : u.getUsername().equals(txtUpdateName.getText())) {
-                        JOptionPane.showMessageDialog(null, "Username is exist");
-                        return;
-                    }
-        }
         u1.getEmployee().setName(txtUpdateName.getText());
         u1.setUsername(txtUpdateUsername.getText());
         u1.setPassword(txtUpdatePassword.getText());

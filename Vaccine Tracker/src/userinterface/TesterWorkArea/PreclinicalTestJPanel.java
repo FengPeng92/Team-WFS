@@ -8,7 +8,6 @@ package userinterface.TesterWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Animal;
-import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ScientistRequestTesterRequest;

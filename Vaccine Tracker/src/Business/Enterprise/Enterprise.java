@@ -59,9 +59,10 @@ public abstract class Enterprise extends Organization{
         organizationDirectory=new OrganizationDirectory();
         if (type == EnterpriseType.Hospital || type == EnterpriseType.Institution) {
             vaccineDirectory = new VaccineDirectory();
+            
         } 
         
-        if (type == EnterpriseType.People) {
+        if (type == EnterpriseType.People || type == EnterpriseType.Hospital) {
             userDirectory = new UserDirectory();
         }
     }

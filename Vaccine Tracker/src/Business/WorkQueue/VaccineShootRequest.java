@@ -5,6 +5,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Enterprise.Enterprise;
 import Business.Entity.User;
 import Business.Entity.Vaccine;
 
@@ -19,8 +20,9 @@ public class VaccineShootRequest extends WorkRequest {
     private String hasAntibody;
     private User user;
     private boolean hasTest;
+    private Enterprise hospital;
 
-    public VaccineShootRequest(Vaccine vaccine, String shootingId, User user) {
+    public VaccineShootRequest(Vaccine vaccine, String shootingId, User user, Enterprise hospital) {
         super();
         this.vaccine = vaccine;
         this.shootingStatus = "Request to Shoot";
@@ -28,6 +30,7 @@ public class VaccineShootRequest extends WorkRequest {
         this.hasAntibody = "Not tested";
         this.user = user;
         this.hasTest = false;
+        this.hospital = hospital;
     }
 
     public Vaccine getVaccine() {
@@ -76,6 +79,14 @@ public class VaccineShootRequest extends WorkRequest {
 
     public void setHasTest(boolean hasTest) {
         this.hasTest = hasTest;
+    }
+
+    public Enterprise getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Enterprise hospital) {
+        this.hospital = hospital;
     }
     
     
