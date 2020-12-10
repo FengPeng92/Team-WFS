@@ -54,13 +54,12 @@ public class MainJFrame extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 750));
-        setPreferredSize(new java.awt.Dimension(900, 750));
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setMaximumSize(new java.awt.Dimension(800, 800));
         jSplitPane1.setPreferredSize(new java.awt.Dimension(800, 800));
 
+        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
         jPanel1.setMaximumSize(new java.awt.Dimension(900, 100));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 100));
 
