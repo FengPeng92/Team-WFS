@@ -121,7 +121,7 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(102, 153, 255));
 
         jLabel1.setText("Institution Name");
 

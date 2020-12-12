@@ -175,7 +175,7 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
         jLabel1.setText("Normal User");
 

@@ -177,7 +177,7 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel5.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel5.setBackground(new java.awt.Color(102, 153, 255));
 
         jLabel1.setText("WHO Officer");
 
