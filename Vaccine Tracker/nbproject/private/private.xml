@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
-            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/Business/Util/SendEmail.java</file>
-            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/ManageEnterpriseAdminJPanel.java</file>
-            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/WHOOfficerWorkArea/PhaseTestResultJPanel.java</file>
-            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/HospitalAdminWorkArea/HospitalAdminWorkAreaJPanel.java</file>
+            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/HospitalAdminWorkArea/ManageDoctorsJPanel.java</file>
+            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/DoctorWorkArea/DoctorWorkAreaJPanel.java</file>
             <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/MainJFrame.java</file>
-            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/TesterWorkArea/TesterWorkAreaJPanel.java</file>
-            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/ManageNetworkJPanel.java</file>
+            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/AdminJPanel.java</file>
+            <file>file:/Users/fengpeng/Desktop/Vaccine%20Tracker/src/userinterface/InstitutionAdminWorkArea/InstitutionAdminWorkAreaJPanel.java</file>
         </group>
     </open-files>
 </project-private>

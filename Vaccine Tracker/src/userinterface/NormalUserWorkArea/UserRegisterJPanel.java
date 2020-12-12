@@ -182,15 +182,42 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean emailVlidation(String email) {
-        String regex = "^[a-zA-Z0-9_+&*-] + (?:\\\\.[a-zA-Z0-9_+&*-]\n" +
-"+ )*@(?:[a-zA-Z0-9-]+\\\\.) + [a-zA-Z]{2, 7}";
+        /*String regex = "^[a-zA-Z0-9_+&*-] + (?:\\\\.[a-zA-Z0-9_+&*-]\n" +"+ )*@(?:[a-zA-Z0-9-]+\\\\.) + [a-zA-Z]{2, 7}";
         Pattern pattern = Pattern.compile(regex);
         
         Matcher matcher = pattern.matcher(email);
         if(matcher.matches()){
             return true;
         }
-        return false;
+        return false;*/
+        int check = 0;
+         if(email == null) {
+             return false;
+         }
+
+         if(email.indexOf("@") > 0 && email.indexOf('@') == email.lastIndexOf('@') && email.indexOf('@') < email.length()-1) {
+             check += 1;
+         }
+
+         if(email.indexOf('.',email.indexOf('@')) > email.indexOf('@')+1 ) {
+             check += 1;
+         }
+
+         if(email.indexOf('.') < email.indexOf('@')-1 || email.indexOf('.') > email.indexOf('@')+1 ) {
+             check += 1;
+         }
+
+         if(email.indexOf('@') > 1 ) {
+             check += 1;
+         }
+         
+         if(email.endsWith("com") || email.endsWith("org") || email.endsWith("cn") ||email.endsWith("net")) {
+             check += 1;
+         }
+         if(check == 5) {
+             return true;
+         }
+         return false;
     }
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
@@ -237,6 +264,7 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
            
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Age must be integer");
+            return;
         }
         
     }//GEN-LAST:event_btnRegisterActionPerformed
