@@ -147,9 +147,9 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         add(txtType, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 265, 123, 35));
 
         jLabel8.setText("Phase: ");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 157, 128, 35));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 128, 35));
 
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 155, 136, 39));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 136, 39));
 
         jButton1.setText("View");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -157,44 +157,44 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 155, -1, 39));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, -1, 39));
 
         jLabel9.setText("Start Time: ");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 212, 128, 35));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 128, 35));
 
         txtStart.setEnabled(false);
-        add(txtStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 212, 136, 35));
+        add(txtStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 136, 35));
 
         jLabel10.setText("End Time:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 265, 128, 35));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 128, 35));
 
         txtEnd.setEnabled(false);
-        add(txtEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 265, 136, 35));
+        add(txtEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 136, 35));
 
         txtStatus.setEnabled(false);
-        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 318, 138, 35));
+        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 138, 35));
 
         jLabel11.setText("Status: ");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 318, 128, 35));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 128, 35));
 
         jLabel12.setText("Effective Rate: ");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 371, 128, 35));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 128, 35));
 
         txtRate.setEnabled(false);
-        add(txtRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 371, 58, 35));
+        add(txtRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 58, 35));
 
         jLabel13.setText("%");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 373, 44, 30));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 370, 44, 30));
 
         jLabel14.setText("Description: ");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 424, 128, 35));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 128, 35));
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
         txtDescription.setEnabled(false);
         jScrollPane2.setViewportView(txtDescription);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, -1, 123));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, -1, 123));
 
         jButton2.setText("Update Vaccine Info");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +215,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Vaccine Information Detail");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 99, 574, 37));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 574, 37));
 
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -240,7 +240,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +260,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/ScientistWorkArea/u=4210943012,2730126747&fm=26&gp=0.jpg"))); // NOI18N
-        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 210, 700, 610));
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 700, 610));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

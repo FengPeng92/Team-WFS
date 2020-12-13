@@ -262,7 +262,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/WHOOfficerWorkArea/World-Health-Organization-Logo.jpg"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 540, 600));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 540, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

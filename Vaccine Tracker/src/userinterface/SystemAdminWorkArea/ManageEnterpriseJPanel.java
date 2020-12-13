@@ -145,7 +145,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 51, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/SystemAdminWorkArea/u=2997877044,3948604516&fm=26&gp=0.jpg"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 490, 470));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 490, 470));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed

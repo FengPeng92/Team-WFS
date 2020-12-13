@@ -97,6 +97,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
+        container.setBackground(new java.awt.Color(255, 255, 255));
         container.setMaximumSize(new java.awt.Dimension(900, 650));
         container.setPreferredSize(new java.awt.Dimension(900, 650));
         container.setLayout(new java.awt.CardLayout());
