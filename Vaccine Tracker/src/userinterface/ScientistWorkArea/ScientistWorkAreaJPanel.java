@@ -323,7 +323,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             Enterprise e1 = (Enterprise)jTable2.getValueAt(selectEnterprise, 0);
             //selectedVaccine.getHospitalList().add(e1);
             Phase phase = selectedVaccine.getPhases().get( selectedVaccine.getPhases().size()-1);
-            selectedVaccine.getHospitalList().put(e1, phase);
+            selectedVaccine.getHospitalList().put(e1, new Phase(phase.getName(), "", "Started"));
             System.out.print("After:" + selectedVaccine.getHospitalList().size());
             populateSelect();
             populateAll();

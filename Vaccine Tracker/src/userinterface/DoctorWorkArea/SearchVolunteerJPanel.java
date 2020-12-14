@@ -106,6 +106,11 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         int denominator = 0;
         
         
+        for (Enterprise enterprise :vaccine.getHospitalList().keySet()) {
+            System.out.print("before: " + enterprise.getName() + vaccine.getHospitalList().get(enterprise).getEffectiveRate() + " ");
+            System.out.println("before:" + vaccine.getHospitalList().get(enterprise).getNumerator() + " " + vaccine.getHospitalList().get(enterprise).getDenominator());
+        } 
+        
         for (User user : vaccine.getPhases().get(size-1).getVolunteers()) {
             if (enterprise.getUserDirectory().getUserList().contains(user)) {
                 denominator++;
@@ -125,8 +130,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         vaccine.getHospitalList().get(enterprise).setEffectiveRate(result);
         
         for (Enterprise enterprise :vaccine.getHospitalList().keySet()) {
-            System.out.print(enterprise.getName() + vaccine.getHospitalList().get(enterprise).getEffectiveRate() + " ");
-            System.out.println(vaccine.getHospitalList().get(enterprise).getNumerator() + " " + vaccine.getHospitalList().get(enterprise).getDenominator());
+            System.out.print("after: " + enterprise.getName() + vaccine.getHospitalList().get(enterprise).getEffectiveRate() + " ");
+            System.out.println("after: " + vaccine.getHospitalList().get(enterprise).getNumerator() + " " + vaccine.getHospitalList().get(enterprise).getDenominator());
         } 
     }
 
