@@ -64,7 +64,13 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
                 txtStart.setText(phase.getStartDate() == null ? "" : ft.format(phase.getStartDate()));
                 txtEnd.setText(phase.getEndDate() == null ? "" : ft.format(phase.getEndDate()));
                 txtStatus.setText(phase.getStatus());
-                txtRate.setText(String.valueOf(phase.getEffectiveRate()).equals("") ? "0" : String.valueOf(phase.getEffectiveRate()));
+                if (phase.getEffectiveRate() == 0) {
+                    txtRate.setText("0");
+                } else {
+                    String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
+                    txtRate.setText(effective);
+                }
+                //txtRate.setText(String.valueOf(phase.getEffectiveRate()).equals("") ? "0" : String.valueOf(phase.getEffectiveRate()));
                 txtDescription.setText(phase.getDescription());
             }
         }
@@ -99,7 +105,6 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtRate = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
@@ -182,10 +187,7 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 128, 35));
 
         txtRate.setEnabled(false);
-        add(txtRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 58, 35));
-
-        jLabel13.setText("%");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 370, 44, 30));
+        add(txtRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 140, 35));
 
         jLabel14.setText("Description: ");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 128, 35));
@@ -319,7 +321,6 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;

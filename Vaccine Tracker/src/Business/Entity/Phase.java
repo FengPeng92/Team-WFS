@@ -24,6 +24,8 @@ public class Phase {
     List<User> volunteers; 
     private String status;
     private String WHOdescription;
+    private int numerator = 0;
+    private int denominator = 0;
 
     public Phase(String name, String description, String status) {
         this.name = name;
@@ -98,6 +100,24 @@ public class Phase {
     public void setWHOdescription(String WHOdescription) {
         this.WHOdescription = WHOdescription;
     }
+
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
+    }
+
+    public int getDenominator() {
+        return denominator;
+    }
+
+    public void setDenominator(int denominator) {
+        this.denominator = denominator;
+    }
+    
+    
 
     @Override
     public String toString() {

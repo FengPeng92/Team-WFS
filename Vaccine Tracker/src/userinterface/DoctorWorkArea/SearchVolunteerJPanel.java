@@ -8,6 +8,7 @@ package userinterface.DoctorWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.User;
+import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineShootRequest;
@@ -96,6 +97,23 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
             
             
         }
+    }
+    
+    public void calculateEffectiveRate(VaccineShootRequest selectedShoot) {
+        Vaccine vaccine = selectedShoot.getVaccine();
+        int size = vaccine.getPhases().size();
+        
+        int number = 0;
+        int denominator = vaccine.getPhases().get(size-1).getVolunteers().size();
+        vaccine.getPhases().get(size-1).setDenominator(denominator);
+        
+        for (User user : vaccine.getPhases().get(size-1).getVolunteers()) {
+            if (user.isResult()) {
+                number++;
+            }
+        }
+        
+        vaccine.getPhases().get(size-1).setEffectiveRate(number/denominator);
     }
 
     /**
@@ -355,17 +373,23 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
             } else {
                 if (radioYes.isSelected()) {
                     selectedShoot.setHasAntibody("Yes");
+                    selectedShoot.getUser().setResult(true);
                     selectedShoot.setHasTest(true);
                     populateTable(selectedShoot.getUser());
+                    calculateEffectiveRate(selectedShoot);
                 } else if (radioNo.isSelected()) {
                     selectedShoot.setHasTest(true);
+                    selectedShoot.getUser().setResult(false);
                     selectedShoot.setHasAntibody("No");
                     populateTable(selectedShoot.getUser());
+                    calculateEffectiveRate(selectedShoot);
                 } else {
                     JOptionPane.showMessageDialog(null, "Please selected Yes or No.");
-                }            
-               
+                }                            
             }
+            
+            
+            
         } else {
             JOptionPane.showMessageDialog(null, "This volunteer hasn't gotten vaccine yet.");
         }

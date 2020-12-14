@@ -65,7 +65,13 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
                 txtStartTime.setText(ft.format(phase.getStartDate()));
                 txtEndTime.setText(ft.format(phase.getEndDate()) == null ? "Not Finished" : ft.format(phase.getEndDate()));
                 txtStatus.setText(phase.getStatus());
-                txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
+                if (phase.getEffectiveRate() == 0) {
+                    txtEffectiveRate.setText("0");
+                } else {
+                    String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
+                    txtEffectiveRate.setText(effective);
+                }
+                //txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
                 txtDescription.setText(phase.getDescription());
             }
         }
@@ -103,7 +109,6 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
         txtStatus = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtEffectiveRate = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
@@ -200,10 +205,7 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 371, 128, 35));
 
         txtEffectiveRate.setEnabled(false);
-        add(txtEffectiveRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 371, 58, 35));
-
-        jLabel13.setText("%");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(676, 373, 44, 30));
+        add(txtEffectiveRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(612, 371, 130, 35));
 
         jLabel14.setText("Description: ");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 424, 128, 35));
@@ -230,7 +232,7 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(128, 128, 128)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(labelUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +281,6 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;

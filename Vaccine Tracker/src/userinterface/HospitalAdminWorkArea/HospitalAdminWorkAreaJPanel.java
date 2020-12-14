@@ -58,7 +58,9 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
             row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate();
+            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate() 
+                    +" (" + vaccine.getPhases().get(vaccine.getPhases().size()-1).getNumerator() + "/" + 
+                    vaccine.getPhases().get(vaccine.getPhases().size()-1).getDenominator() + ")";
             dtm.addRow(row);
         }
         
@@ -72,7 +74,9 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         row[0] = vaccine;
         row[1] = vaccine.getVaccineType();
         row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-        row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate();
+        row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate() 
+                    +" (" + vaccine.getPhases().get(vaccine.getPhases().size()-1).getNumerator() + "/" + 
+                    vaccine.getPhases().get(vaccine.getPhases().size()-1).getDenominator() + ")";
         
         dtm.addRow(row);
     }

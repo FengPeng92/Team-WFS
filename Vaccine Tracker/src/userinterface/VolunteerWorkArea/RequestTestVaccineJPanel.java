@@ -357,7 +357,8 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 selectedHospital.getUserDirectory().getUserList().add(selectedUser);
                 ((VaccineShootRequest)newRequest).setShootingStatus("Request to Shoot");               
                 selectedUser.setVaccine(selectedVaccine);
-                selectedVaccine.getUserList().add(selectedUser);
+                int size = selectedVaccine.getPhases().size();
+                selectedVaccine.getPhases().get(size-1).getVolunteers().add(selectedUser);
                 System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
                 newRequest.setSender(userAccount);
                 system.getWorkQueue().getWorkRequestList().add(newRequest);

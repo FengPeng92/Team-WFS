@@ -208,7 +208,13 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
             String description = txtDescription.getText();
             Animal animal = new Animal(pick, total, number, (number*100.0)/total, description);
             ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList().add(animal);
-
+            int a = ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).getNumerator();
+            int b = ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).getDenominator();
+            a += number;
+            b += total;
+            ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setNumerator(a);
+            
+            ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setDenominator(b);
             populate();
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Please fill in information in integer");
