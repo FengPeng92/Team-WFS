@@ -88,8 +88,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 row[1] = ((VaccineShootRequest)workRequest).getUser().getUserAccount();
                 row[2] = ((VaccineShootRequest)workRequest).getUser().getUserAccount().getEmployee().getName();
                 row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
-                int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
-                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+                int index = ((VaccineShootRequest) workRequest).getUser().getPhaseIndex();
+                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(index).getName();
                 row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
                 row[6] = ((VaccineShootRequest) workRequest).getShootingStatus();
                 dtm.addRow(row);

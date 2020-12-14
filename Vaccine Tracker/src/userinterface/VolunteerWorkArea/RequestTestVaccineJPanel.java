@@ -360,7 +360,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 int size = selectedVaccine.getPhases().size();
                 selectedUser.setPhaseIndex(size-1);
                 selectedVaccine.getPhases().get(size-1).getVolunteers().add(selectedUser);
-                System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
+                System.out.println(selectedUser.getPhaseIndex());
                 newRequest.setSender(userAccount);
                 system.getWorkQueue().getWorkRequestList().add(newRequest);
                 JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");

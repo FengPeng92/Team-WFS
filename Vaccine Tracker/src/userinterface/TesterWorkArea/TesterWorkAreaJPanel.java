@@ -290,7 +290,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
 //        return;
 
         int selectedRow = jTable1.getSelectedRow();
-        int total = 0, number = 0;
+        double total = 0, number = 0;
         if (selectedRow >= 0) {
             selectedRequest = (WorkRequest)jTable1.getValueAt(selectedRow, 0);
             txtName.setText(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getVaccineName());

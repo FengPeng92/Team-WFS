@@ -246,7 +246,7 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
             selectedVaccine = (Vaccine) jTable1.getValueAt(selectedRow, 0);
             ReportToWHORequest request = system.getWorkQueue().searchReportedVaccine(selectedVaccine);
             if (request != null) {
-                 system.getWorkQueue().getReportToWHORequestList().remove(request);
+                 system.getWorkQueue().getWorkRequestList().remove(request);
             }
             request = new ReportToWHORequest(selectedVaccine);
             request.getVaccine().getPhases().get(request.getVaccine().getPhases().size()-1).setEndDate(new Date());
