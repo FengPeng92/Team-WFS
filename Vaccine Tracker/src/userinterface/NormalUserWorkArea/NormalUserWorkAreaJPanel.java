@@ -172,6 +172,8 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Institution Name: ");
 
+        boxInstitution.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel5.setText("Phase: ");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -218,6 +220,7 @@ public class NormalUserWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        boxPhase.setBackground(new java.awt.Color(255, 255, 255));
         boxPhase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Phases", "Preclinical", "Phase 1", "Phase 2", "Phase 3", "Approved" }));
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));

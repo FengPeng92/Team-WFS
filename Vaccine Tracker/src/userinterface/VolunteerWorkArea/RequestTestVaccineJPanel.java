@@ -212,6 +212,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         jLabel5.setText("Institution: ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 120, 112, 32));
 
+        boxInstitution.setBackground(new java.awt.Color(255, 255, 255));
         add(boxInstitution, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 117, 181, 38));
 
         btnSearch.setBackground(new java.awt.Color(255, 255, 255));

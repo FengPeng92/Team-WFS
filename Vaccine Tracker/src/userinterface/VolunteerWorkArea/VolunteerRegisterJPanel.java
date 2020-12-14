@@ -314,6 +314,9 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 questionary.setTestResult("Negitive");
             }
             
+            if (system.getWorkQueue().searchRequestByUser(user) != null) {
+                system.getWorkQueue().getWorkRequestList().remove(system.getWorkQueue().searchRequestByUser(user));
+            }
             WorkRequest application = new VolunteerApplicationRequest(questionary, false, "");
             ((VolunteerApplicationRequest)application).setSender(userAccount);
             ((VolunteerApplicationRequest)application).setUser(user);

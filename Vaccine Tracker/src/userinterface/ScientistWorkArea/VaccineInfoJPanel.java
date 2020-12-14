@@ -120,6 +120,8 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setEnabled(false);
+        setMaximumSize(new java.awt.Dimension(1000, 700));
+        setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -127,13 +129,13 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 157, 128, 35));
 
         txtName.setEnabled(false);
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 157, 123, 35));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 123, 35));
 
         jLabel5.setText("Create Time:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 212, 128, 35));
 
         txtTime.setEnabled(false);
-        add(txtTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 212, 123, 35));
+        add(txtTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 123, 35));
 
         jLabel6.setText("Detail: ");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 333, 128, 35));
@@ -143,17 +145,18 @@ public class VaccineInfoJPanel extends javax.swing.JPanel {
         txtDetail.setEnabled(false);
         jScrollPane1.setViewportView(txtDetail);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 333, -1, 123));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, 123));
 
         jLabel7.setText("Vaccine Type: ");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 265, 128, 35));
 
         txtType.setEnabled(false);
-        add(txtType, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 265, 123, 35));
+        add(txtType, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 123, 35));
 
         jLabel8.setText("Phase: ");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 128, 35));
 
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 136, 39));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));

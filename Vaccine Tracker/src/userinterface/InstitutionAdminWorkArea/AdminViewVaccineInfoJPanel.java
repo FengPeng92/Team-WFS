@@ -176,6 +176,7 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
 
         jLabel14.setText("Description: ");
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,12 +201,15 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Start Time: ");
 
+        btnView.setBackground(new java.awt.Color(255, 255, 255));
         btnView.setText("View");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
+
+        boxPhase.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Phase: ");
 

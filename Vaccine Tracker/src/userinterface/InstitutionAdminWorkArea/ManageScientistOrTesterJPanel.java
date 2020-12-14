@@ -109,6 +109,7 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Identity: ");
 
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scientist", "Tester" }));
 
         jLabel5.setText("Name: ");
@@ -135,6 +136,7 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Identity: ");
 
+        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scientist", "Tester", " " }));
 
         txtUpdateName.setEnabled(false);
