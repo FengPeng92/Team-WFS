@@ -56,7 +56,6 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         List<WorkRequest> requests = system.getWorkQueue().getVaccineShootRequestList();
-        System.out.println(requests.size());
         
         for (WorkRequest workRequest : requests) {
             if (((VaccineShootRequest)workRequest).getUser() == searchUser) {
@@ -115,7 +114,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 }
             }      
         }
-        System.out.println("number" + number);
+        System.out.println(number);
+        System.out.println(denominator);
         vaccine.getHospitalList().get(enterprise).setNumerator(number);
         vaccine.getHospitalList().get(enterprise).setDenominator(denominator);
 //        vaccine.getPhases().get(size-1).setNumerator(number);
@@ -123,8 +123,11 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         double result = (double)number * 100.0/(double)denominator;
         //vaccine.getPhases().get(size-1).setEffectiveRate(result);
         vaccine.getHospitalList().get(enterprise).setEffectiveRate(result);
-        System.out.println("Rate" + vaccine.getPhases().get(size-1).getEffectiveRate());
         
+        for (Enterprise enterprise :vaccine.getHospitalList().keySet()) {
+            System.out.print(enterprise.getName() + vaccine.getHospitalList().get(enterprise).getEffectiveRate() + " ");
+            System.out.println(vaccine.getHospitalList().get(enterprise).getNumerator() + " " + vaccine.getHospitalList().get(enterprise).getDenominator());
+        } 
     }
 
     /**
@@ -310,7 +313,6 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
 //            UserAccount searchAccount = system.getUserAccountDirectory().searchAccountByUsername(searchUsername);
 //            System.out.println(searchAccount);
             searchUser = enterprise.getUserDirectory().searchUserByUserName(searchUsername);
-            System.out.println(searchUser);
             if (searchUser == null) {
 //                DefaultTableModel dtm=(DefaultTableModel) tableResults.getModel();
 //                dtm.setRowCount(0);

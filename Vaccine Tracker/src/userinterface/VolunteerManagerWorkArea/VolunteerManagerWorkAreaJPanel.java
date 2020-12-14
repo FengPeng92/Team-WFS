@@ -55,8 +55,6 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         
-        System.out.println(system.getWorkQueue().getVolunteerApplicationRequestList().size());
-        
         for (WorkRequest request : system.getWorkQueue().getVolunteerApplicationRequestList()) {           
             if (((VolunteerApplicationRequest)request).isIsChecked()) continue;
             Object[] row = new Object[4];

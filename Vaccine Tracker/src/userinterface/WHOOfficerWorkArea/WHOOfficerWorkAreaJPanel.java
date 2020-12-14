@@ -56,7 +56,6 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         
         for (WorkRequest request : system.getWorkQueue().getReportToWHORequestList()) {
             ReportToWHORequest whoRequest = (ReportToWHORequest)request;
-            System.out.print(whoRequest.getVaccine() + " " + whoRequest.isIsChecked());
             if (!whoRequest.isIsChecked()) {
                 Object[] row = new Object[5];
                 row[0] = whoRequest.getVaccine();

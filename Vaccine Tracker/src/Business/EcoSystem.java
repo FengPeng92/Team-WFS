@@ -53,41 +53,27 @@ public class EcoSystem extends Organization{
     }
     
     
-    public boolean checkIfUserIsUnique(String userName, EcoSystem system){
-//        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
-//            return false;
-//        }
-//        for(Network network:networkList){
-//            
-//        }
-
-if(system==null){
-            System.out.println("BUSINESS IS NULL");
-        }
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+   
+    public boolean checkIfUsernameIsUnique(String username) {
+        //return checkIfUserIsUnique(username, business);
+        for (Enterprise enterprise : networkList.get(0).getEnterpriseDirectory().getEnterpriseList()) {
                 for (UserAccount ua : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                    if (ua.getUsername().equalsIgnoreCase(userName)) {
+                    if (ua.getUsername().equalsIgnoreCase(username)) {
                         return false;
                     }
                 }
                 for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                     for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
-                        if (ua.getUsername().equalsIgnoreCase(userName)) {
+                        if (ua.getUsername().equalsIgnoreCase(username)) {
                             return false;
                         }
                     }
                 }
             }
+            return true;
         }
-
-        return true;
-        //return true;
-    }
-
-    public boolean checkIfUsernameIsUnique(String username) {
-        return checkIfUserIsUnique(username, business);
-    }
+    
+        
 
    
 }

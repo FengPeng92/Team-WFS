@@ -84,7 +84,6 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         for (Vaccine vaccine : enterprise.getVaccineDirectory().getVaccineList()) {
-            System.out.println(vaccine.getVaccineName());
             Object[] row = new Object[5];
             row[0] = vaccine.getVaccineType();
             row[1] = vaccine;
@@ -324,8 +323,8 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
             Enterprise e1 = (Enterprise)jTable2.getValueAt(selectEnterprise, 0);
             //selectedVaccine.getHospitalList().add(e1);
             Phase phase = selectedVaccine.getPhases().get( selectedVaccine.getPhases().size()-1);
-            System.out.println(selectedVaccine.getPhases().size());
             selectedVaccine.getHospitalList().put(e1, phase);
+            System.out.print("After:" + selectedVaccine.getHospitalList().size());
             populateSelect();
             populateAll();
         }
@@ -348,7 +347,6 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Please finish preclinical test first.");
             } else if (size ==  1 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
                 Phase phase1 = new Phase("Phase 1", "", "Started");
-                System.out.println(phase1);
                 selectedVaccine.getPhases().add(phase1);
                 for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
                     selectedVaccine.getHospitalList().put(hospital, phase1);
@@ -359,7 +357,6 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 populate();
             } else if (size ==  2 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
                 Phase phase2 = new Phase("Phase 2", "", "Started");
-                System.out.println(phase2);
                 selectedVaccine.getPhases().add(phase2);
                 for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
                     selectedVaccine.getHospitalList().put(hospital, phase2);
@@ -369,7 +366,6 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 populate();
             } else if (size ==  3 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")){
                 Phase phase3 = new Phase("Phase 3", "", "Started");
-                System.out.println(phase3);
                 selectedVaccine.getPhases().add(phase3);
                 for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
                     selectedVaccine.getHospitalList().put(hospital, phase3);

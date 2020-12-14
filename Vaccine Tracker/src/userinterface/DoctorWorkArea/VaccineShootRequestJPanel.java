@@ -54,7 +54,6 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel dtm=(DefaultTableModel) tableShootingRequest.getModel();
         dtm.setRowCount(0);
-        System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " confirm");
         
         for (WorkRequest workRequest : system.getWorkQueue().getVaccineShootRequestList()) {
             if (((VaccineShootRequest) workRequest).getShootingStatus().equals("Request to Shoot") && ((VaccineShootRequest) workRequest).getHospital() == enterprise) {
