@@ -6,7 +6,6 @@
 package Business.Entity;
 
 import Business.Enterprise.Enterprise;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +22,7 @@ public class Vaccine {
     private Date createdTime;
     private List<Enterprise> hospitalList;
     private String status;
-    private List<User> userList;
+    //private List<User> userList;
     
     private AnimalDirectory animalDirectory;
 
@@ -36,7 +35,7 @@ public class Vaccine {
         this.createdTime = createdTime;
         this.animalDirectory = new AnimalDirectory();
         this.status = status;
-        this.userList = new ArrayList<>();
+        //this.userList = new ArrayList<>();
     }
 
     public String getVaccineName() {
@@ -107,18 +106,5 @@ public class Vaccine {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
-    }
-    
-    
-    
-    
-    
     
 }

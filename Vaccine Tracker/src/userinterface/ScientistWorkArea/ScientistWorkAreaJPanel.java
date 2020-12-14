@@ -38,7 +38,8 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
     public ScientistWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
-
+        jScrollPane2.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;

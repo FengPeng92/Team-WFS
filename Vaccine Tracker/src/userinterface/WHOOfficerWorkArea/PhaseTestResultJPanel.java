@@ -56,7 +56,13 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         txtStartTime.setText(ft.format(phase.getStartDate()));
         txtEndTime.setText(ft.format(phase.getEndDate()) == null ? "" : ft.format(phase.getEndDate()));
         txtStatus.setText(phase.getStatus());
-        txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
+        if (phase.getEffectiveRate() == 0) {
+            txtEffectiveRate.setText("TBD");
+        } else {
+            String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
+            txtEffectiveRate.setText(effective);
+        }
+        //txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
         txtDescription.setText(phase.getDescription());
         txtWHODescription.setText(phase.getWHOdescription());
         txtDetail.setText(selectedVaccine.getDetail());
@@ -88,7 +94,6 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtEffectiveRate = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
@@ -109,6 +114,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtEffectiveRate2 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setEnabled(false);
@@ -161,10 +167,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 370, 128, 35));
 
         txtEffectiveRate.setEnabled(false);
-        add(txtEffectiveRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 58, 35));
-
-        jLabel16.setText("%");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 372, 44, 30));
+        add(txtEffectiveRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 130, 35));
 
         jLabel17.setText("Description: ");
         add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 456, 128, 35));
@@ -265,6 +268,9 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/World-Health-Organization-Logo.jpg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 540, 600));
+
+        txtEffectiveRate2.setEnabled(false);
+        add(txtEffectiveRate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 58, 35));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -325,7 +331,6 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -347,6 +352,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextArea txtDetail;
     private javax.swing.JTextField txtEffectiveRate;
+    private javax.swing.JTextField txtEffectiveRate2;
     private javax.swing.JTextField txtEndTime;
     private javax.swing.JTextField txtPhase;
     private javax.swing.JTextField txtStartTime;

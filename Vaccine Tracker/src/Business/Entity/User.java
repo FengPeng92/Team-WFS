@@ -17,6 +17,7 @@ public class User {
     private String email;
     private int age;
     private Vaccine vaccine;
+    private boolean result;
 
     public User(UserAccount userAccount, String email, int age) {
         this.userAccount = userAccount;
@@ -56,6 +57,16 @@ public class User {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
+
+    public boolean isResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
+    }
+    
+    
     
     
 

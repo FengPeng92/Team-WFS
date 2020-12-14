@@ -65,7 +65,13 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
                 txtStartTime.setText(ft.format(phase.getStartDate()));
                 txtEndTime.setText(ft.format(phase.getEndDate()).equals("") ? "Not Finished" : ft.format(phase.getEndDate()));
                 txtStatus.setText(phase.getStatus());
-                txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
+                if (phase.getEffectiveRate() == 0) {
+                    txtEffectiveRate.setText("0");
+                } else {
+                    String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
+                    txtEffectiveRate.setText(effective);
+                }
+                //txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
                 txtDescription.setText(phase.getDescription());
             }
         }
@@ -102,7 +108,6 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
         txtStatus = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtEffectiveRate = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
@@ -195,10 +200,7 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 359, 128, 35));
 
         txtEffectiveRate.setEnabled(false);
-        add(txtEffectiveRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 359, 58, 35));
-
-        jLabel13.setText("%");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(654, 361, 44, 30));
+        add(txtEffectiveRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 359, 130, 35));
 
         jLabel14.setText("Description: ");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 412, 128, 35));
@@ -271,7 +273,6 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
