@@ -306,8 +306,10 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
 //                selectedVaccine.getPhases().add(phase3);
             } else if (selectedVaccine.getPhases().size() == 4) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(3).setStatus("Finished");
-//                Phase approve = new Phase("Approve", "", "Started");
-//                selectedVaccine.getPhases().add(approve);
+                
+                Phase approve = new Phase("Approve", "", "Finished");
+                selectedVaccine.getPhases().add(approve);
+                JOptionPane.showMessageDialog(null, "Congrulation! This vaccine has been approved!"); 
             }
             system.getWorkQueue().getWorkRequestList().remove(selectedWorkRequest);
             txtStatus.setText("Finished");

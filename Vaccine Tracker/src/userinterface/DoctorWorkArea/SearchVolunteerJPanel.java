@@ -115,7 +115,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         }
         System.out.println("number" + number);
         vaccine.getPhases().get(size-1).setNumerator(number);
-        double result = (double)number/(double)denominator;
+        double result = (double)number * 100.0/(double)denominator;
         vaccine.getPhases().get(size-1).setEffectiveRate(result);
         System.out.println("Rate" + vaccine.getPhases().get(size-1).getEffectiveRate());
         

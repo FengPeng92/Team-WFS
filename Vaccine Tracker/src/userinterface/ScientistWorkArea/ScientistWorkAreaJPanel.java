@@ -365,9 +365,8 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
 //                populateSelect();
                 populate();
             } else if (size ==  4 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
-                Phase approve = new Phase("Approve", "", "Started");
-                System.out.println(approve);
-                selectedVaccine.getPhases().add(approve);
+//                Phase approve = new Phase("Approve", "", "Finished");
+//                selectedVaccine.getPhases().add(approve);
 //                populateAll();
 //                populateSelect();
                 populate();
