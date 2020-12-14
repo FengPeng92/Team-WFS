@@ -290,7 +290,7 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
 //        return;
 
         int selectedRow = jTable1.getSelectedRow();
-        int total = 0, number = 0;
+        double total = 0, number = 0;
         if (selectedRow >= 0) {
             selectedRequest = (WorkRequest)jTable1.getValueAt(selectedRow, 0);
             txtName.setText(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getVaccineName());
@@ -323,6 +323,11 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setEndDate(new Date());
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setStatus("Reported");
         ((ScientistRequestTesterRequest)selectedRequest).setIsTested(true);
+        txtDetail.setText("");
+        txtName.setText("");
+        txtRate.setText("");
+        txtTime.setText("");
+        txtType.setText("");
         populate();
         JOptionPane.showMessageDialog(null, "Report to Admin");
         

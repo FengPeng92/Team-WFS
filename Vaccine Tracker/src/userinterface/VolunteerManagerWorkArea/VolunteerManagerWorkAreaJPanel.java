@@ -182,10 +182,12 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel5.setText("Are you alcoholic? ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 471, 164, 34));
 
+        radioAlcoholicYes.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(radioAlcoholicYes);
         radioAlcoholicYes.setText("Yes");
         add(radioAlcoholicYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 471, -1, 34));
 
+        radioAlcoholicNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(radioAlcoholicNo);
         radioAlcoholicNo.setText("No");
         radioAlcoholicNo.addActionListener(new java.awt.event.ActionListener() {
@@ -198,10 +200,12 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel6.setText("Are you smoking? ");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 471, 164, 34));
 
+        radioSmokingYes.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(radioSmokingYes);
         radioSmokingYes.setText("Yes");
         add(radioSmokingYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(624, 471, -1, 34));
 
+        radioSmokingNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(radioSmokingNo);
         radioSmokingNo.setText("No");
         radioSmokingNo.addActionListener(new java.awt.event.ActionListener() {
@@ -214,10 +218,12 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel7.setText("Whether have an allergic reaction? ");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 523, 231, 34));
 
+        radioAllergicYes.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(radioAllergicYes);
         radioAllergicYes.setText("Yes");
         add(radioAllergicYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 523, -1, 34));
 
+        radioAllergicNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(radioAllergicNo);
         radioAllergicNo.setText("No");
         radioAllergicNo.addActionListener(new java.awt.event.ActionListener() {
@@ -230,10 +236,12 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel8.setText("Do you have a cold? ");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 523, 164, 34));
 
+        radioColdYes.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup4.add(radioColdYes);
         radioColdYes.setText("Yes");
         add(radioColdYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 523, -1, 34));
 
+        radioColdNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup4.add(radioColdNo);
         radioColdNo.setText("No");
         radioColdNo.addActionListener(new java.awt.event.ActionListener() {
@@ -246,14 +254,17 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel9.setText("Do you get a covid-19 test? if yes, positive or negtive? ");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 575, 389, 34));
 
+        radioTestNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup5.add(radioTestNo);
         radioTestNo.setText("No");
         add(radioTestNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 575, -1, 34));
 
+        radioTestPositive.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup5.add(radioTestPositive);
         radioTestPositive.setText("Positive");
         add(radioTestPositive, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 575, -1, 34));
 
+        radioTesNegitive.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup5.add(radioTesNegitive);
         radioTesNegitive.setText("Negtive");
         radioTesNegitive.addActionListener(new java.awt.event.ActionListener() {
@@ -359,9 +370,11 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         ((VolunteerApplicationRequest)selectedRequest).setIsChecked(true);
         Role role = new VolunteerRole();
         ((VolunteerApplicationRequest)selectedRequest).getUser().getUserAccount().setRole(role);
-        populateTable();
+        
         SendEmail send = new SendEmail(((VolunteerApplicationRequest)selectedRequest).getUser().getEmail());
         send.VolunteerAgree();
+        system.getWorkQueue().getVolunteerApplicationRequestList().remove(selectedRequest);
+        populateTable();
         JOptionPane.showMessageDialog(null, "This person became a volunteer");
     }//GEN-LAST:event_agreeBtnActionPerformed
 
@@ -369,6 +382,7 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ((VolunteerApplicationRequest)selectedRequest).setIsQualified(false);
         ((VolunteerApplicationRequest)selectedRequest).setIsChecked(true);
+        system.getWorkQueue().getVolunteerApplicationRequestList().remove(selectedRequest);
         populateTable();
         JOptionPane.showMessageDialog(null, "This person is not qualified to become a volunteer");
     }//GEN-LAST:event_disagreeBtnActionPerformed

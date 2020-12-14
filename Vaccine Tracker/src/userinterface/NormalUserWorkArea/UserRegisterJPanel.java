@@ -58,7 +58,6 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtAge = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -96,15 +95,6 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
             }
         });
         add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, 115, 43));
-
-        btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 53, -1, 36));
 
         jLabel7.setText("Age:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 122, 34));
@@ -206,13 +196,8 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

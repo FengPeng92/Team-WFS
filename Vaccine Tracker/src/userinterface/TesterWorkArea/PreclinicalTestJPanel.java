@@ -102,6 +102,7 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
         jLabel4.setText("Animal: ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 408, 123, 34));
 
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mouse", "Rabbit", " " }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 415, 140, -1));
 

@@ -65,7 +65,7 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
         for (Phase phase : selectedVaccine.getPhases()) {
             if (phase.getName().equals(phaseName)) {
                 txtStartTime.setText(ft.format(phase.getStartDate()));
-                txtEndTime.setText(ft.format(phase.getEndDate()) == null ? "Not Finished" : ft.format(phase.getEndDate()));
+                txtEndTime.setText(phase.getEndDate() == null ? "Not Finished" : ft.format(phase.getEndDate()));
                 txtStatus.setText(phase.getStatus());
                 if (phase.getEffectiveRate() == 0) {
                     txtEffectiveRate.setText("0");
@@ -73,7 +73,6 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
                     String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
                     txtEffectiveRate.setText(effective);
                 }
-                //txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
                 txtDescription.setText(phase.getDescription());
             }
         }
@@ -177,6 +176,7 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
 
         jLabel14.setText("Description: ");
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,12 +201,15 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Start Time: ");
 
+        btnView.setBackground(new java.awt.Color(255, 255, 255));
         btnView.setText("View");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
+
+        boxPhase.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Phase: ");
 

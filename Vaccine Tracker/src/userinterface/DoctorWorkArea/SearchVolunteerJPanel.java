@@ -65,8 +65,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 row[1] = searchUser.getUserAccount();
                 row[2] = searchUser.getUserAccount().getEmployee().getName();
                 row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
-                int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
-                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+                int index = ((VaccineShootRequest) workRequest).getUser().getPhaseIndex();
+                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(index).getName();
                 row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
                 row[6] = ((VaccineShootRequest) workRequest).getShootingStatus();
                 
@@ -88,8 +88,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 row[1] = ((VaccineShootRequest)workRequest).getUser().getUserAccount();
                 row[2] = ((VaccineShootRequest)workRequest).getUser().getUserAccount().getEmployee().getName();
                 row[3] = ((VaccineShootRequest)workRequest).getVaccine().getVaccineName();
-                int size = ((VaccineShootRequest) workRequest).getVaccine().getPhases().size();
-                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(size-1).getName();
+                int index = ((VaccineShootRequest) workRequest).getUser().getPhaseIndex();
+                row[4] = ((VaccineShootRequest) workRequest).getVaccine().getPhases().get(index).getName();
                 row[5] = ((VaccineShootRequest) workRequest).getHasAntibody();
                 row[6] = ((VaccineShootRequest) workRequest).getShootingStatus();
                 dtm.addRow(row);
@@ -105,6 +105,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         
         int number = 0;
         int denominator = vaccine.getPhases().get(size-1).getVolunteers().size();
+        System.out.println("denominator" + denominator);
         vaccine.getPhases().get(size-1).setDenominator(denominator);
         
         for (User user : vaccine.getPhases().get(size-1).getVolunteers()) {
@@ -112,8 +113,12 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 number++;
             }
         }
+        System.out.println("number" + number);
+        vaccine.getPhases().get(size-1).setNumerator(number);
+        double result = (double)number * 100.0/(double)denominator;
+        vaccine.getPhases().get(size-1).setEffectiveRate(result);
+        System.out.println("Rate" + vaccine.getPhases().get(size-1).getEffectiveRate());
         
-        vaccine.getPhases().get(size-1).setEffectiveRate(number/denominator);
     }
 
     /**
@@ -374,6 +379,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                     selectedShoot.setHasAntibody("Yes");
                     selectedShoot.getUser().setResult(true);
                     selectedShoot.setHasTest(true);
+                    selectedShoot.getUser().setResult(true);
                     populateTable(selectedShoot.getUser());
                     calculateEffectiveRate(selectedShoot);
                 } else if (radioNo.isSelected()) {

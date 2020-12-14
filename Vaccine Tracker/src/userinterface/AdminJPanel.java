@@ -77,7 +77,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         });
         add(loginJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 290, 89, 39));
         add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 118, 34));
-        add(userNameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 180, 117, 31));
+        add(userNameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 170, 117, 31));
 
         jLabel1.setText("User Name:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 92, 31));

@@ -354,24 +354,27 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 Phase phase2 = new Phase("Phase 2", "", "Started");
                 System.out.println(phase2);
                 selectedVaccine.getPhases().add(phase2);
-                populateAll();
-                populateSelect();
+//                populateAll();
+//                populateSelect();
                 populate();
             } else if (size ==  3 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")){
                 Phase phase3 = new Phase("Phase 3", "", "Started");
                 System.out.println(phase3);
                 selectedVaccine.getPhases().add(phase3);
-                populateAll();
-                populateSelect();
+//                populateAll();
+//                populateSelect();
                 populate();
             } else if (size ==  4 && selectedVaccine.getPhases().get(size-1).getStatus().equals("Finished")) {
                 Phase approve = new Phase("Approve", "", "Started");
                 System.out.println(approve);
                 selectedVaccine.getPhases().add(approve);
-                populateAll();
-                populateSelect();
+//                populateAll();
+//                populateSelect();
                 populate();
+            } else if (size ==  5) {
+                JOptionPane.showMessageDialog(null, "Congrulation! The vaccine has been approved.");
             } else {
+                
                 JOptionPane.showMessageDialog(null, "The last phase of testing has not been completed. ");
             } 
         }

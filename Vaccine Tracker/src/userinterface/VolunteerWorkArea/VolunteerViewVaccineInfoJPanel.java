@@ -166,11 +166,13 @@ public class VolunteerViewVaccineInfoJPanel extends javax.swing.JPanel {
         jLabel4.setText("Institution Name: ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 111, 126, 33));
 
+        boxInstitution.setBackground(new java.awt.Color(255, 255, 255));
         add(boxInstitution, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 111, 159, 33));
 
         jLabel5.setText("Phase: ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 111, 126, 33));
 
+        boxPhase.setBackground(new java.awt.Color(255, 255, 255));
         boxPhase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Phases", "Preclinical", "Phase 1", "Phase 2", "Phase 3", "Approved" }));
         add(boxPhase, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 111, 159, 33));
 

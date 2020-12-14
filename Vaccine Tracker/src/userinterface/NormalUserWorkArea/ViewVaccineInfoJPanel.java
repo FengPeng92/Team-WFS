@@ -63,7 +63,7 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
         for (Phase phase : selectedVaccine.getPhases()) {
             if (phase.getName().equals(phaseName)) {
                 txtStartTime.setText(ft.format(phase.getStartDate()));
-                txtEndTime.setText(ft.format(phase.getEndDate()) == null ? "Not Finished" : ft.format(phase.getEndDate()));
+                txtEndTime.setText(phase.getEndDate() == null ? "Not Finished" : ft.format(phase.getEndDate()));
                 txtStatus.setText(phase.getStatus());
                 if (phase.getEffectiveRate() == 0) {
                     txtEffectiveRate.setText("0");
@@ -124,6 +124,8 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setEnabled(false);
+        setMaximumSize(new java.awt.Dimension(1000, 1000));
+        setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -145,19 +147,19 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 157, 128, 35));
 
         txtVaccineName.setEnabled(false);
-        add(txtVaccineName, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 157, 123, 35));
+        add(txtVaccineName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 123, 35));
 
         jLabel5.setText("Create Time:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 212, 128, 35));
 
         txtCreateTime.setEnabled(false);
-        add(txtCreateTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 212, 123, 35));
+        add(txtCreateTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 123, 35));
 
         jLabel7.setText("Vaccine Type: ");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 265, 128, 35));
 
         txtVaccineType.setEnabled(false);
-        add(txtVaccineType, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 265, 123, 35));
+        add(txtVaccineType, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 123, 35));
 
         jLabel6.setText("Detail: ");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 333, 128, 35));
@@ -167,7 +169,7 @@ public class ViewVaccineInfoJPanel extends javax.swing.JPanel {
         txtDetail.setEnabled(false);
         jScrollPane1.setViewportView(txtDetail);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 333, -1, 123));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, 123));
 
         jLabel8.setText("Phase: ");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 157, 128, 35));

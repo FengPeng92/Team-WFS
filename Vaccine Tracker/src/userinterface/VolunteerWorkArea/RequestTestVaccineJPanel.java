@@ -94,7 +94,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             row[3] = vaccine.getPhases().get(size-1).getName();
             row[4] = vaccine.getPhases().get(size-1).getStatus();
             dtm.addRow(row);
-                }
+        }
             //}
             
         //}
@@ -212,6 +212,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         jLabel5.setText("Institution: ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 120, 112, 32));
 
+        boxInstitution.setBackground(new java.awt.Color(255, 255, 255));
         add(boxInstitution, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 117, 181, 38));
 
         btnSearch.setBackground(new java.awt.Color(255, 255, 255));
@@ -358,8 +359,9 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 ((VaccineShootRequest)newRequest).setShootingStatus("Request to Shoot");               
                 selectedUser.setVaccine(selectedVaccine);
                 int size = selectedVaccine.getPhases().size();
+                selectedUser.setPhaseIndex(size-1);
                 selectedVaccine.getPhases().get(size-1).getVolunteers().add(selectedUser);
-                System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
+                System.out.println(selectedUser.getPhaseIndex());
                 newRequest.setSender(userAccount);
                 system.getWorkQueue().getWorkRequestList().add(newRequest);
                 JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");

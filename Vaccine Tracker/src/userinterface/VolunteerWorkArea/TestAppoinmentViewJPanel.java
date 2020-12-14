@@ -94,24 +94,32 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setEnabled(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("Vaccine: ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 191, 110, 34));
+
+        txtVaccine.setEnabled(false);
         add(txtVaccine, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 189, 128, 39));
 
         jLabel5.setText("Vaccine Type: ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 248, 110, 34));
+
+        txtVaccineType.setEnabled(false);
         add(txtVaccineType, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 246, 128, 39));
 
         jLabel6.setText("Description: ");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 271, 110, 34));
+
+        txtPhase.setEnabled(false);
         add(txtPhase, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 189, 128, 39));
 
         jLabel7.setText("Create Time: ");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 297, 110, 34));
 
+        txtCreateTime.setEnabled(false);
         txtCreateTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCreateTimeActionPerformed(evt);
@@ -124,10 +132,13 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Hospital: ");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 354, 110, 34));
+
+        txtHospital.setEnabled(false);
         add(txtHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 352, 128, 39));
 
         txtDetail.setColumns(20);
         txtDetail.setRows(5);
+        txtDetail.setEnabled(false);
         jScrollPane1.setViewportView(txtDetail);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 419, -1, -1));
@@ -137,6 +148,7 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
+        txtDescription.setEnabled(false);
         jScrollPane2.setViewportView(txtDescription);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 271, -1, -1));
@@ -217,6 +229,7 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
             int size = selectedUser.getVaccine().getPhases().size();
             selectedUser.getVaccine().getPhases().get(size-1).getVolunteers().remove(selectedUser);
             selectedUser.setVaccine(null);
+            selectedUser.setPhaseIndex(0);
             txtCreateTime.setText("");
             txtDescription.setText("");
             txtDetail.setText("");

@@ -119,6 +119,8 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setEnabled(false);
+        setMaximumSize(new java.awt.Dimension(1000, 700));
+        setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -140,19 +142,19 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 145, 128, 35));
 
         txtVaccineName.setEnabled(false);
-        add(txtVaccineName, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 145, 123, 35));
+        add(txtVaccineName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 123, 35));
 
         jLabel5.setText("Create Time:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 200, 128, 35));
 
         txtCreateTime.setEnabled(false);
-        add(txtCreateTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 200, 123, 35));
+        add(txtCreateTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 123, 35));
 
         jLabel7.setText("Vaccine Type: ");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 253, 128, 35));
 
         txtVaccineType.setEnabled(false);
-        add(txtVaccineType, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 253, 123, 35));
+        add(txtVaccineType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 123, 35));
 
         jLabel6.setText("Detail: ");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 321, 128, 35));
@@ -162,11 +164,12 @@ public class VolunteerViewVaccineDetailJPanel extends javax.swing.JPanel {
         txtDetail.setEnabled(false);
         jScrollPane1.setViewportView(txtDetail);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 321, -1, 123));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, 123));
 
         jLabel8.setText("Phase: ");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 145, 128, 35));
 
+        boxPhase.setBackground(new java.awt.Color(255, 255, 255));
         add(boxPhase, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 143, 136, 39));
 
         btnView.setBackground(new java.awt.Color(255, 255, 255));

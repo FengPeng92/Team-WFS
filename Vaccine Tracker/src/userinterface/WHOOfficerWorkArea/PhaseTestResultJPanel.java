@@ -212,6 +212,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
 
         add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 317, -1, -1));
 
+        jRadioBtnYes.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jRadioBtnYes);
         jRadioBtnYes.setText("Yes");
         add(jRadioBtnYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 615, -1, -1));
@@ -219,6 +220,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         jLabel1.setText("Whether can go to next test stage? ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 612, 244, 35));
 
+        jRadioBtnNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jRadioBtnNo);
         jRadioBtnNo.setText("No");
         add(jRadioBtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 615, -1, -1));
@@ -266,6 +268,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/World-Health-Organization-Logo.jpg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 540, 600));
 
@@ -306,13 +309,16 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
 //                Phase approve = new Phase("Approve", "", "Started");
 //                selectedVaccine.getPhases().add(approve);
             }
-            JOptionPane.showMessageDialog(null, "submit successfully");
-            system.getWorkQueue().getReportToWHORequestList().remove(selectedWorkRequest);
+            system.getWorkQueue().getWorkRequestList().remove(selectedWorkRequest);
+            txtStatus.setText("Finished");
+            JOptionPane.showMessageDialog(null, "submit successfully");           
             
         } else if (jRadioBtnNo.isSelected()) {
             int size = ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().size();
             ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().remove(size-1);
             ((ReportToWHORequest)selectedWorkRequest).setIsChecked(true);
+            system.getWorkQueue().getWorkRequestList().remove(selectedWorkRequest);
+            txtStatus.setText("Finished");
             JOptionPane.showMessageDialog(null, "submit successfully");
         }
         

@@ -118,6 +118,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel1.setText("Network");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 225, -1, -1));
 
+        networkJComboBox.setBackground(new java.awt.Color(255, 255, 255));
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 222, 136, -1));
 
@@ -128,6 +129,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel3.setText("Enterprise Type");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 291, -1, -1));
 
+        enterpriseTypeJComboBox.setBackground(new java.awt.Color(255, 255, 255));
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 288, 136, -1));
 
