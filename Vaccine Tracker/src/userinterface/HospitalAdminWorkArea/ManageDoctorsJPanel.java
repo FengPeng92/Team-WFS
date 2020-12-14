@@ -317,7 +317,7 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
             if (!name.equals("") && !username.equals("") && !password.equals("")) {
                 Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
                 UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new DoctorRole());
-                system.getUserAccountDirectory().getUserAccountList().add(account);
+                //system.getUserAccountDirectory().getUserAccountList().add(account);
                 populateTable();
                 txtAddName.setText("");
                 txtAddUsername.setText("");

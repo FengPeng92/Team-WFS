@@ -153,8 +153,12 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
             if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
                 String name = txtName.getText();
             
-                String password = txtRepassword.getText();
-                String repassword = txtRepassword.getText();
+//                String password = txtPassword.getPassword().toString();
+//                String repassword = txtRepassword.getPassword().toString();
+                char[] passwordCharArray = txtPassword.getPassword();
+                String password = String.valueOf(passwordCharArray);
+                char[] repasswordCharArray = txtRepassword.getPassword();
+                String repassword = String.valueOf(repasswordCharArray);
                 String email = txtEmail.getText();
                 int age = Integer.parseInt(txtAge.getText());
                 if (emailVlidation(email)) {
@@ -172,7 +176,7 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
 
                             Employee employee = userEnterprise.getEmployeeDirectory().createEmployee(name);
                             UserAccount account = userEnterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NormalUserRole());
-                            system.getUserAccountDirectory().getUserAccountList().add(account);
+                            //system.getUserAccountDirectory().getUserAccountList().add(account);
                             User user = new User(account, email, age);
                             userEnterprise.getUserDirectory().getUserList().add(user);
                             SendEmail send = new SendEmail(email);

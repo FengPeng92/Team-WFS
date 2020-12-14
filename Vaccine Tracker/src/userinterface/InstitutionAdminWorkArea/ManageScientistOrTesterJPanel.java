@@ -383,11 +383,11 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
                 Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
                 if ("Scientist".equals(pick)) {
                     UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ScientistRole());
-                    system.getUserAccountDirectory().getUserAccountList().add(account);
+                    //system.getUserAccountDirectory().getUserAccountList().add(account);
                 }
                 else if ("Tester".equals(pick)) {
                     UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new TesterRole());
-                    system.getUserAccountDirectory().getUserAccountList().add(account);
+                    //system.getUserAccountDirectory().getUserAccountList().add(account);
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "please input the value");

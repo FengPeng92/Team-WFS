@@ -264,7 +264,7 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
             if (!name.equals("") && !username.equals("") && !password.equals("")) {
                 Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
                 UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new VolunteerManagerRole());
-                system.getUserAccountDirectory().getUserAccountList().add(account);
+                //system.getUserAccountDirectory().getUserAccountList().add(account);
                 populateTable();
             } else {
                 JOptionPane.showMessageDialog(null, "Please fill in all updated information");
