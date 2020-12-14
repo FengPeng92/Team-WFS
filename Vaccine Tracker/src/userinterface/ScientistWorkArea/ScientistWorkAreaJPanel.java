@@ -38,7 +38,8 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
     public ScientistWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
-
+        jScrollPane2.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
@@ -286,7 +287,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/ScientistWorkArea/u=2379368442,2132415513&fm=26&gp=0.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/u=2379368442,2132415513&fm=26&gp=0.jpg"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 590, 370));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -370,7 +371,10 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 populateAll();
                 populateSelect();
                 populate();
+            } else if (size ==  5) {
+                JOptionPane.showMessageDialog(null, "Congrulation! The vaccine has been approved.");
             } else {
+                
                 JOptionPane.showMessageDialog(null, "The last phase of testing has not been completed. ");
             } 
         }

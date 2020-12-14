@@ -99,5 +99,15 @@ public class WorkQueue {
             }
         }
         return requests;
+    } 
+
+    public ReportToWHORequest searchReportedVaccine(Vaccine selectedVaccine) {
+        List<WorkRequest> requests = getReportToWHORequestList();
+        for (WorkRequest request : requests) {
+            if (((ReportToWHORequest)request).getVaccine() == selectedVaccine) {
+                return (ReportToWHORequest)request;
+            }
+        }
+        return null;
     }
 }

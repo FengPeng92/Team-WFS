@@ -162,7 +162,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         jPanel2.add(btnManageAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 265, 294, 48));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/SystemAdminWorkArea/2d6cd3d4d8f67cd6d3b604c87fc4f9a2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/2d6cd3d4d8f67cd6d3b604c87fc4f9a2.jpg"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-170, -70, 940, 840));
 
         jSplitPane.setRightComponent(jPanel2);

@@ -221,7 +221,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/userinterface/HospitalAdminWorkArea/vaccine-research-design-cartoon-scientific-doctor-vector-33886994.jpg"/>
+          <Image iconType="3" name="/Image/vaccine-research-design-cartoon-scientific-doctor-vector-33886994.jpg"/>
         </Property>
       </Properties>
       <Constraints>

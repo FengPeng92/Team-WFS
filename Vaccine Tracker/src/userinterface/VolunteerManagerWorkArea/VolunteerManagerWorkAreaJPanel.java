@@ -359,9 +359,11 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         ((VolunteerApplicationRequest)selectedRequest).setIsChecked(true);
         Role role = new VolunteerRole();
         ((VolunteerApplicationRequest)selectedRequest).getUser().getUserAccount().setRole(role);
-        populateTable();
+        
         SendEmail send = new SendEmail(((VolunteerApplicationRequest)selectedRequest).getUser().getEmail());
         send.VolunteerAgree();
+        system.getWorkQueue().getVolunteerApplicationRequestList().remove(selectedRequest);
+        populateTable();
         JOptionPane.showMessageDialog(null, "This person became a volunteer");
     }//GEN-LAST:event_agreeBtnActionPerformed
 
@@ -369,6 +371,7 @@ public class VolunteerManagerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ((VolunteerApplicationRequest)selectedRequest).setIsQualified(false);
         ((VolunteerApplicationRequest)selectedRequest).setIsChecked(true);
+        system.getWorkQueue().getVolunteerApplicationRequestList().remove(selectedRequest);
         populateTable();
         JOptionPane.showMessageDialog(null, "This person is not qualified to become a volunteer");
     }//GEN-LAST:event_disagreeBtnActionPerformed

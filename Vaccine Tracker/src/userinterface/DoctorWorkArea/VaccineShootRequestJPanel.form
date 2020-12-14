@@ -195,7 +195,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/userinterface/DoctorWorkArea/Get your flu shot cartoon.jpg"/>
+          <Image iconType="3" name="/Image/Get your flu shot cartoon.jpg"/>
         </Property>
       </Properties>
       <Constraints>

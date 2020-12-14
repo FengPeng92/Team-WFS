@@ -323,6 +323,11 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setEndDate(new Date());
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setStatus("Reported");
         ((ScientistRequestTesterRequest)selectedRequest).setIsTested(true);
+        txtDetail.setText("");
+        txtName.setText("");
+        txtRate.setText("");
+        txtTime.setText("");
+        txtType.setText("");
         populate();
         JOptionPane.showMessageDialog(null, "Report to Admin");
         

@@ -163,7 +163,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/userinterface/WHOOfficerWorkArea/dreamstime_xl_187099594.5f335e0f1239e.png"/>
+          <Image iconType="3" name="/Image/dreamstime_xl_187099594.5f335e0f1239e.png"/>
         </Property>
       </Properties>
       <Constraints>

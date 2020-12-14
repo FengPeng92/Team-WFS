@@ -113,7 +113,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/DoctorWorkArea/hospitalicon.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/hospitalicon.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 590, 540));
     }// </editor-fold>//GEN-END:initComponents
 

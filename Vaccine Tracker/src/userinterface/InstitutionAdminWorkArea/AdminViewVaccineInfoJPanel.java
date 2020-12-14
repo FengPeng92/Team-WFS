@@ -65,7 +65,7 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
         for (Phase phase : selectedVaccine.getPhases()) {
             if (phase.getName().equals(phaseName)) {
                 txtStartTime.setText(ft.format(phase.getStartDate()));
-                txtEndTime.setText(ft.format(phase.getEndDate()) == null ? "Not Finished" : ft.format(phase.getEndDate()));
+                txtEndTime.setText(phase.getEndDate() == null ? "Not Finished" : ft.format(phase.getEndDate()));
                 txtStatus.setText(phase.getStatus());
                 if (phase.getEffectiveRate() == 0) {
                     txtEffectiveRate.setText("0");
@@ -73,7 +73,6 @@ public class AdminViewVaccineInfoJPanel extends javax.swing.JPanel {
                     String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
                     txtEffectiveRate.setText(effective);
                 }
-                //txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
                 txtDescription.setText(phase.getDescription());
             }
         }

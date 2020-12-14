@@ -10,9 +10,11 @@ import Business.Entity.Vaccine;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ReportToWHORequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -242,7 +244,11 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         
         if (selectedRow >= 0) {
             selectedVaccine = (Vaccine) jTable1.getValueAt(selectedRow, 0);
-            ReportToWHORequest request = new ReportToWHORequest(selectedVaccine);
+            ReportToWHORequest request = system.getWorkQueue().searchReportedVaccine(selectedVaccine);
+            if (request != null) {
+                 system.getWorkQueue().getReportToWHORequestList().remove(request);
+            }
+            request = new ReportToWHORequest(selectedVaccine);
             request.getVaccine().getPhases().get(request.getVaccine().getPhases().size()-1).setEndDate(new Date());
             request.getVaccine().getPhases().get(request.getVaccine().getPhases().size()-1).setStatus("Check Pending");
             request.setSender(userAccount);

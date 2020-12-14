@@ -48,7 +48,7 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(userAccount.getUsername());
         populateTable();
-;    }
+    }
     
    public void populateTable() {
         DefaultTableModel dtm=(DefaultTableModel) jTable1.getModel();
@@ -56,6 +56,7 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
         
         for (WorkRequest request : system.getWorkQueue().getReportToWHORequestList()) {
             ReportToWHORequest whoRequest = (ReportToWHORequest)request;
+            System.out.print(whoRequest.getVaccine() + " " + whoRequest.isIsChecked());
             if (!whoRequest.isIsChecked()) {
                 Object[] row = new Object[5];
                 row[0] = whoRequest.getVaccine();
@@ -167,7 +168,7 @@ public class WHOOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/WHOOfficerWorkArea/dreamstime_xl_187099594.5f335e0f1239e.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/dreamstime_xl_187099594.5f335e0f1239e.png"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 60, 1060, 680));
     }// </editor-fold>//GEN-END:initComponents
 

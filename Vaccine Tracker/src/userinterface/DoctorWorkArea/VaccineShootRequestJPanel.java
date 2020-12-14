@@ -167,7 +167,7 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/DoctorWorkArea/Get your flu shot cartoon.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Get your flu shot cartoon.jpg"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 990, 700));
     }// </editor-fold>//GEN-END:initComponents
 

@@ -94,7 +94,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             row[3] = vaccine.getPhases().get(size-1).getName();
             row[4] = vaccine.getPhases().get(size-1).getStatus();
             dtm.addRow(row);
-                }
+        }
             //}
             
         //}
@@ -358,6 +358,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 ((VaccineShootRequest)newRequest).setShootingStatus("Request to Shoot");               
                 selectedUser.setVaccine(selectedVaccine);
                 int size = selectedVaccine.getPhases().size();
+                selectedUser.setPhaseIndex(size-1);
                 selectedVaccine.getPhases().get(size-1).getVolunteers().add(selectedUser);
                 System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
                 newRequest.setSender(userAccount);
