@@ -178,7 +178,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 47, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/SystemAdminWorkArea/u=2073656506,3253360056&fm=26&gp=0.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/u=2073656506,3253360056&fm=26&gp=0.jpg"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 440, 320));
     }// </editor-fold>//GEN-END:initComponents
 

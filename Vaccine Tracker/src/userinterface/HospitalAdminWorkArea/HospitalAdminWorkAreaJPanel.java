@@ -195,7 +195,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/HospitalAdminWorkArea/vaccine-research-design-cartoon-scientific-doctor-vector-33886994.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/vaccine-research-design-cartoon-scientific-doctor-vector-33886994.jpg"))); // NOI18N
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1350, 760));
     }// </editor-fold>//GEN-END:initComponents
 

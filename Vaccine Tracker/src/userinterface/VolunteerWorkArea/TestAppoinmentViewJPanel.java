@@ -214,7 +214,7 @@ public class TestAppoinmentViewJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ((VaccineShootRequest)newRequest).getHospital().getUserDirectory().getUserList().remove(selectedUser);
         if (system.getWorkQueue().getWorkRequestList().remove(newRequest)) {
-            
+            selectedUser.getVaccine().getUserList().remove(selectedUser);
             selectedUser.setVaccine(null);
             txtCreateTime.setText("");
             txtDescription.setText("");

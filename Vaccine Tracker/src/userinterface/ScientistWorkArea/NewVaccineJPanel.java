@@ -146,7 +146,7 @@ public class NewVaccineJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/ScientistWorkArea/u=1961232823,3283528058&fm=15&gp=0.jpg"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/u=1961232823,3283528058&fm=15&gp=0.jpg"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 580, 570));
     }// </editor-fold>//GEN-END:initComponents
 

@@ -258,7 +258,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/DoctorWorkArea/volunteer1.jpg"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/volunteer1.jpg"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, 940, 510));
     }// </editor-fold>//GEN-END:initComponents
 

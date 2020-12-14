@@ -286,7 +286,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/ScientistWorkArea/u=2379368442,2132415513&fm=26&gp=0.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/u=2379368442,2132415513&fm=26&gp=0.jpg"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 590, 370));
     }// </editor-fold>//GEN-END:initComponents
 

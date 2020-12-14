@@ -243,7 +243,7 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/WHOOfficerWorkArea/下載.jpg"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/下載.jpg"))); // NOI18N
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 450, 270, 260));
     }// </editor-fold>//GEN-END:initComponents
 

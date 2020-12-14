@@ -23,6 +23,7 @@ public class Vaccine {
     private Date createdTime;
     private List<Enterprise> hospitalList;
     private String status;
+    private List<User> userList;
     
     private AnimalDirectory animalDirectory;
 
@@ -35,6 +36,7 @@ public class Vaccine {
         this.createdTime = createdTime;
         this.animalDirectory = new AnimalDirectory();
         this.status = status;
+        this.userList = new ArrayList<>();
     }
 
     public String getVaccineName() {
@@ -104,6 +106,14 @@ public class Vaccine {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
     
     

@@ -250,7 +250,7 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/HospitalAdminWorkArea/u=2842511349,2106666337&fm=26&gp=0.jpg"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/u=2842511349,2106666337&fm=26&gp=0.jpg"))); // NOI18N
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 590, 500));
     }// </editor-fold>//GEN-END:initComponents
 
