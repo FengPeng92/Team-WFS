@@ -198,7 +198,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         
         String username = usernameJTextField.getText();
         
-        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+        if (system.checkIfUsernameIsUnique(username)) {
             Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         
         

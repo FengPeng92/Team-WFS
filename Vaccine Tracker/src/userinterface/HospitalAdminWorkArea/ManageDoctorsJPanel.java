@@ -310,7 +310,7 @@ public class ManageDoctorsJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         String username = txtAddUsername.getText();
-        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+        if (system.checkIfUsernameIsUnique(username)) {
             String name = txtAddName.getText();
         
             String password = txtAddPassword.getText();

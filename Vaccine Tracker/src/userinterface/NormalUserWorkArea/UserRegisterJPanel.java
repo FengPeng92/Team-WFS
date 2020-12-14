@@ -150,7 +150,7 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             String username = txtUsername.getText();
-            if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            if (system.checkIfUsernameIsUnique(username)) {
                 String name = txtName.getText();
             
 //                String password = txtPassword.getPassword().toString();

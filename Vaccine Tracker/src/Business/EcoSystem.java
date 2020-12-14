@@ -5,10 +5,12 @@
  */
 package Business;
 
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 
 /**
@@ -50,13 +52,42 @@ public class EcoSystem extends Organization{
         this.networkList = networkList;
     }
     
-    public boolean checkIfUserIsUnique(String userName){
-        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
-            return false;
+    
+    public boolean checkIfUserIsUnique(String userName, EcoSystem system){
+//        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+//            return false;
+//        }
+//        for(Network network:networkList){
+//            
+//        }
+
+if(system==null){
+            System.out.println("BUSINESS IS NULL");
         }
-        for(Network network:networkList){
-            
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (UserAccount ua : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                    if (ua.getUsername().equalsIgnoreCase(userName)) {
+                        return false;
+                    }
+                }
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                        if (ua.getUsername().equalsIgnoreCase(userName)) {
+                            return false;
+                        }
+                    }
+                }
+            }
         }
+
         return true;
+        //return true;
     }
+
+    public boolean checkIfUsernameIsUnique(String username) {
+        return checkIfUserIsUnique(username, business);
+    }
+
+   
 }

@@ -374,7 +374,7 @@ public class ManageScientistOrTesterJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String username = jTextField2.getText();
-        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+        if (system.checkIfUsernameIsUnique(username)) {
             String pick = (String)jComboBox1.getSelectedItem();
             String name = jTextField1.getText();
 

@@ -257,7 +257,7 @@ public class ManageVolunteerManagerJPanel extends javax.swing.JPanel {
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         String username = txtUserName.getText();
-        if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+        if (system.checkIfUsernameIsUnique(username)) {
             String name = txtName.getText();
         
             String password = txtPassword.getText();
