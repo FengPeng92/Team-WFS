@@ -39,7 +39,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     public PhaseTestResultJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, WorkRequest selectedWorkRequest) {
         initComponents();
         
-        this.userAccount = userAccount;
+        this.userAccount = account;
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.selectedenterprise = enterprise;
@@ -57,7 +57,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         txtEndTime.setText(ft.format(phase.getEndDate()) == null ? "" : ft.format(phase.getEndDate()));
         txtStatus.setText(phase.getStatus());
         if (phase.getEffectiveRate() == 0) {
-            txtEffectiveRate.setText("TBD");
+            txtEffectiveRate.setText("0");
         } else {
             String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
             txtEffectiveRate.setText(effective);
@@ -66,6 +66,8 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         txtDescription.setText(phase.getDescription());
         txtWHODescription.setText(phase.getWHOdescription());
         txtDetail.setText(selectedVaccine.getDetail());
+        jLabel4.setText(enterprise.getName());
+        jLabel6.setText(userAccount.getUsername());
     }
 
     /**

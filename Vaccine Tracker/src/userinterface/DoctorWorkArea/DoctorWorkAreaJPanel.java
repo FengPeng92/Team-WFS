@@ -34,6 +34,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system = system;
+        jLabel1.setText(enterprise.getName());
+        jLabel3.setText(userAccount.getUsername());
         
     }
 

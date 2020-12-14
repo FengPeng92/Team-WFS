@@ -18,6 +18,7 @@ public class User {
     private int age;
     private Vaccine vaccine;
     private boolean result;
+    private boolean isTested;
     private int phaseIndex = 0;
 
     public User(UserAccount userAccount, String email, int age) {
@@ -74,6 +75,16 @@ public class User {
     public void setPhaseIndex(int phaseIndex) {
         this.phaseIndex = phaseIndex;
     }
+
+    public boolean isIsTested() {
+        return isTested;
+    }
+
+    public void setIsTested(boolean isTested) {
+        this.isTested = isTested;
+    }
+    
+    
 
     
 

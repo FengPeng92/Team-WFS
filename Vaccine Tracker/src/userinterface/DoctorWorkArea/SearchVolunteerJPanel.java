@@ -49,6 +49,8 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.system = system;
+        jLabel1.setText(enterprise.getName());
+        jLabel3.setText(userAccount.getUsername());
     }
     
     public void populateTable(User searchUser) {
@@ -112,7 +114,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         } 
         
         for (User user : vaccine.getPhases().get(size-1).getVolunteers()) {
-            if (enterprise.getUserDirectory().getUserList().contains(user)) {
+            if (enterprise.getUserDirectory().getUserList().contains(user) && user.isIsTested()) {
                 denominator++;
                 if (user.isResult()) {
                     number++;
@@ -393,11 +395,13 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                     selectedShoot.getUser().setResult(true);
                     selectedShoot.setHasTest(true);
                     selectedShoot.getUser().setResult(true);
+                    selectedShoot.getUser().setIsTested(true);
                     populateTable(selectedShoot.getUser());
                     calculateEffectiveRate(selectedShoot);
                 } else if (radioNo.isSelected()) {
                     selectedShoot.setHasTest(true);
                     selectedShoot.getUser().setResult(false);
+                    selectedShoot.getUser().setIsTested(true);
                     selectedShoot.setHasAntibody("No");
                     populateTable(selectedShoot.getUser());
                     calculateEffectiveRate(selectedShoot);

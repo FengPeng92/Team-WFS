@@ -240,6 +240,26 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             WorkRequest request = new ReportToInstitutionRequest();
             ((ReportToInstitutionRequest)request).setVaccine(selectedVaccine);
             system.getWorkQueue().getWorkRequestList().add(request);
+            int size = selectedVaccine.getPhases().size();
+            
+            int num = selectedVaccine.getPhases().get(size-1).getNumerator();
+            num += selectedVaccine.getHospitalList().get(enterprise).getNumerator();
+            int de = selectedVaccine.getPhases().get(size-1).getDenominator();
+            de += selectedVaccine.getHospitalList().get(enterprise).getDenominator();
+            selectedVaccine.getPhases().get(size-1).setNumerator(num);
+            selectedVaccine.getPhases().get(size-1).setDenominator(de);
+            double result = (double)num * 100.0 / (double)de;
+            selectedVaccine.getPhases().get(size-1).setEffectiveRate(result);
+            
+//            int a = 0, b = 0;
+//            for (WorkRequest workrequest : system.getWorkQueue().getReportToWHORequestList()) {
+//                if (((ReportToInstitutionRequest)request).getVaccine() == selectedVaccine) {
+//                    
+//                    int size = ((ReportToInstitutionRequest)request).getVaccine().getPhases().size();
+//                    
+//                    a += ((ReportToInstitutionRequest)request).getVaccine().getPhases().get(size-1).setNumerator(a);
+//                }
+//            }
             JOptionPane.showMessageDialog(null, "Report successfully");
         } else {
             JOptionPane.showMessageDialog(null, "Please selected a vaccine.");
