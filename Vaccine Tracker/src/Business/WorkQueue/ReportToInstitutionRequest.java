@@ -5,8 +5,10 @@
  */
 package Business.WorkQueue;
 
+import Business.Entity.User;
 import Business.Entity.Vaccine;
-
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *

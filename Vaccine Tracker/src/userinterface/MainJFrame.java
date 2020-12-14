@@ -31,7 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setLocationRelativeTo(null);
-        //jButton1.setVisible(false);
+        
         AdminJPanel adminJPanel = new AdminJPanel(container, system);
         container.add("AdminJPanel", adminJPanel);
         CardLayout layout=(CardLayout)container.getLayout();
@@ -54,7 +54,6 @@ public class MainJFrame extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 100));
@@ -93,10 +92,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        container.setMaximumSize(new java.awt.Dimension(900, 650));
+        container.setBackground(new java.awt.Color(255, 255, 255));
+        container.setMaximumSize(new java.awt.Dimension(1000, 700));
         container.setPreferredSize(new java.awt.Dimension(1000, 700));
         container.setLayout(new java.awt.CardLayout());
-        getContentPane().add(container, java.awt.BorderLayout.CENTER);
+        getContentPane().add(container, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

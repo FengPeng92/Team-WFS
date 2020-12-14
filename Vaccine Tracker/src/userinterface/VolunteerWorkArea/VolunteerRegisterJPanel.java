@@ -86,26 +86,38 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Volunteer Questionary");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 117, 710, 33));
 
         jLabel5.setText("Are you alcoholic? ");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 178, 342, 34));
 
         jLabel6.setText("Are you Smoking?");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 242, 342, 34));
 
         jLabel7.setText("Have you ever had an allergic reaction? ");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 308, 342, 34));
 
         jLabel8.setText("Do you have a cold? ");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 376, 342, 34));
 
         jLabel9.setText("Do you get a covid-19 test? if yes, positive or negtive? ");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 437, -1, 34));
 
+        radioAlcoholicYes.setBackground(new java.awt.Color(255, 255, 255));
         groupAlcoholic.add(radioAlcoholicYes);
         radioAlcoholicYes.setText("Yes");
+        add(radioAlcoholicYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 178, -1, 34));
 
+        radioAlcoholicNo.setBackground(new java.awt.Color(255, 255, 255));
         groupAlcoholic.add(radioAlcoholicNo);
         radioAlcoholicNo.setText("No");
         radioAlcoholicNo.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +125,9 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 radioAlcoholicNoActionPerformed(evt);
             }
         });
+        add(radioAlcoholicNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(599, 178, -1, 34));
 
+        radioSmokingNo.setBackground(new java.awt.Color(255, 255, 255));
         groupSmoking.add(radioSmokingNo);
         radioSmokingNo.setText("No");
         radioSmokingNo.addActionListener(new java.awt.event.ActionListener() {
@@ -121,10 +135,14 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 radioSmokingNoActionPerformed(evt);
             }
         });
+        add(radioSmokingNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(599, 242, -1, 34));
 
+        radioSmokingYes.setBackground(new java.awt.Color(255, 255, 255));
         groupSmoking.add(radioSmokingYes);
         radioSmokingYes.setText("Yes");
+        add(radioSmokingYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 242, -1, 34));
 
+        radioAllergicNo.setBackground(new java.awt.Color(255, 255, 255));
         groupAllergic.add(radioAllergicNo);
         radioAllergicNo.setText("No");
         radioAllergicNo.addActionListener(new java.awt.event.ActionListener() {
@@ -132,10 +150,14 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 radioAllergicNoActionPerformed(evt);
             }
         });
+        add(radioAllergicNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(607, 308, -1, 34));
 
+        radioAllergicYes.setBackground(new java.awt.Color(255, 255, 255));
         groupAllergic.add(radioAllergicYes);
         radioAllergicYes.setText("Yes");
+        add(radioAllergicYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 308, -1, 34));
 
+        radioColdNo.setBackground(new java.awt.Color(255, 255, 255));
         groupCold.add(radioColdNo);
         radioColdNo.setText("No");
         radioColdNo.addActionListener(new java.awt.event.ActionListener() {
@@ -143,10 +165,14 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 radioColdNoActionPerformed(evt);
             }
         });
+        add(radioColdNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(607, 376, -1, 34));
 
+        radioColdYes.setBackground(new java.awt.Color(255, 255, 255));
         groupCold.add(radioColdYes);
         radioColdYes.setText("Yes");
+        add(radioColdYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 376, -1, 34));
 
+        radioTesNegitive.setBackground(new java.awt.Color(255, 255, 255));
         groupTest.add(radioTesNegitive);
         radioTesNegitive.setText("Negtive");
         radioTesNegitive.addActionListener(new java.awt.event.ActionListener() {
@@ -154,26 +180,35 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 radioTesNegitiveActionPerformed(evt);
             }
         });
+        add(radioTesNegitive, new org.netbeans.lib.awtextra.AbsoluteConstraints(727, 437, -1, 34));
 
+        radioTestNo.setBackground(new java.awt.Color(255, 255, 255));
         groupTest.add(radioTestNo);
         radioTestNo.setText("No");
+        add(radioTestNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 437, -1, 34));
 
+        radioTestPositive.setBackground(new java.awt.Color(255, 255, 255));
         groupTest.add(radioTestPositive);
         radioTestPositive.setText("Positive");
+        add(radioTestPositive, new org.netbeans.lib.awtextra.AbsoluteConstraints(607, 437, -1, 34));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 515, 137, 50));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 69, -1, 38));
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -190,7 +225,7 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(156, 156, 156)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,93 +242,11 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radioAlcoholicYes)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(radioAlcoholicNo))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radioSmokingYes)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(radioSmokingNo))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(radioAllergicYes)
-                                            .addComponent(radioColdYes)
-                                            .addComponent(radioTestNo))
-                                        .addGap(44, 44, 44)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(radioTestPositive)
-                                                .addGap(47, 47, 47)
-                                                .addComponent(radioTesNegitive))
-                                            .addComponent(radioColdNo)
-                                            .addComponent(radioAllergicNo)))))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(399, 399, 399)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(941, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioAlcoholicYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioAlcoholicNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioSmokingYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioSmokingNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioAllergicYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioAllergicNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioColdYes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioColdNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioTestNo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioTesNegitive, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioTestPositive, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(655, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/volunteer2.png"))); // NOI18N
+        jLabel10.setText("jLabel10");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 540, 340));
     }// </editor-fold>//GEN-END:initComponents
 
     private void radioAlcoholicNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAlcoholicNoActionPerformed
@@ -384,6 +337,7 @@ public class VolunteerRegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

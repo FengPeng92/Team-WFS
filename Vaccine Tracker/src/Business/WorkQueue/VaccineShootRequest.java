@@ -89,9 +89,17 @@ public class VaccineShootRequest extends WorkRequest {
         this.hospital = hospital;
     }
     
+    
+    
+    
+    
     @Override
     public String toString() {
         return shootingId;
     }
-     
+    
+    
+    
+    
+    
 }
