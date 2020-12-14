@@ -57,7 +57,7 @@ public class VaccineShootRequestJPanel extends javax.swing.JPanel {
         System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " confirm");
         
         for (WorkRequest workRequest : system.getWorkQueue().getVaccineShootRequestList()) {
-            if (((VaccineShootRequest) workRequest).getShootingStatus().equals("Request to Shoot")) {
+            if (((VaccineShootRequest) workRequest).getShootingStatus().equals("Request to Shoot") && ((VaccineShootRequest) workRequest).getHospital() == enterprise) {
                 Object[] row = new Object[5];
                 row[0] = workRequest;
                 row[1] = workRequest.getSender();

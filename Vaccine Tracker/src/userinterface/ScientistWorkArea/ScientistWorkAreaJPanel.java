@@ -56,7 +56,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
     public void populateSelect() {
         DefaultTableModel dtm2=(DefaultTableModel) jTable3.getModel();
         dtm2.setRowCount(0);
-        for (Enterprise e : selectedVaccine.getHospitalList()) {
+        for (Enterprise e : selectedVaccine.getHospitalList().keySet()) {
             Object[] row = new Object[1];
             row[0] = e;
             dtm2.addRow(row);
@@ -67,7 +67,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm1=(DefaultTableModel) jTable2.getModel();
         dtm1.setRowCount(0);
         for (Enterprise h : system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList()) {
-            if (h.getEnterpriseType() == Enterprise.EnterpriseType.Hospital && !selectedVaccine.getHospitalList().contains(h)) {
+            if (h.getEnterpriseType() == Enterprise.EnterpriseType.Hospital && !selectedVaccine.getHospitalList().keySet().contains(h)) {
                 Object[] row = new Object[1];
                 row[0] = h;
                 dtm1.addRow(row);
@@ -322,7 +322,10 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
         int selectEnterprise = jTable2.getSelectedRow();
         if (selectEnterprise >= 0) {
             Enterprise e1 = (Enterprise)jTable2.getValueAt(selectEnterprise, 0);
-            selectedVaccine.getHospitalList().add(e1);
+            //selectedVaccine.getHospitalList().add(e1);
+            Phase phase = selectedVaccine.getPhases().get( selectedVaccine.getPhases().size()-1);
+            System.out.println(selectedVaccine.getPhases().size());
+            selectedVaccine.getHospitalList().put(e1, phase);
             populateSelect();
             populateAll();
         }
@@ -347,6 +350,10 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 Phase phase1 = new Phase("Phase 1", "", "Started");
                 System.out.println(phase1);
                 selectedVaccine.getPhases().add(phase1);
+                for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
+                    selectedVaccine.getHospitalList().put(hospital, phase1);
+                }
+                
                 populateAll();
                 populateSelect();
                 populate();
@@ -354,6 +361,9 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 Phase phase2 = new Phase("Phase 2", "", "Started");
                 System.out.println(phase2);
                 selectedVaccine.getPhases().add(phase2);
+                for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
+                    selectedVaccine.getHospitalList().put(hospital, phase2);
+                }
 //                populateAll();
 //                populateSelect();
                 populate();
@@ -361,6 +371,9 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 Phase phase3 = new Phase("Phase 3", "", "Started");
                 System.out.println(phase3);
                 selectedVaccine.getPhases().add(phase3);
+                for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
+                    selectedVaccine.getHospitalList().put(hospital, phase3);
+                }
 //                populateAll();
 //                populateSelect();
                 populate();
@@ -415,7 +428,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        for (Enterprise enterprise : selectedVaccine.getHospitalList()) {
+        for (Enterprise enterprise : selectedVaccine.getHospitalList().keySet()) {
             enterprise.getVaccineDirectory().getVaccineList().add(selectedVaccine);
         }
         

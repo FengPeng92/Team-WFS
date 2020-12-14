@@ -52,9 +52,7 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtRepassword = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
@@ -62,6 +60,8 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
         txtAge = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        txtRepassword = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 700));
@@ -77,11 +77,9 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Password:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 140, 34));
-        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 134, 34));
 
         jLabel5.setText("Confirm Password: ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, -1, 34));
-        add(txtRepassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 134, 34));
 
         jLabel6.setText("Email:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 140, 34));
@@ -98,7 +96,7 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Age:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 122, 34));
-        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 134, 34));
+        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 134, 34));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Register.png"))); // NOI18N
         jLabel8.setText("jLabel8");
@@ -106,6 +104,8 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/depositphotos_33777219-stock-photo-register-here-sign.jpg"))); // NOI18N
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 280, 150));
+        add(txtRepassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 130, 40));
+        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean emailVlidation(String email) {
@@ -153,7 +153,7 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
             if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
                 String name = txtName.getText();
             
-                String password = txtPassword.getText();
+                String password = txtRepassword.getText();
                 String repassword = txtRepassword.getText();
                 String email = txtEmail.getText();
                 int age = Integer.parseInt(txtAge.getText());
@@ -172,6 +172,7 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
 
                             Employee employee = userEnterprise.getEmployeeDirectory().createEmployee(name);
                             UserAccount account = userEnterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NormalUserRole());
+                            system.getUserAccountDirectory().getUserAccountList().add(account);
                             User user = new User(account, email, age);
                             userEnterprise.getUserDirectory().getUserList().add(user);
                             SendEmail send = new SendEmail(email);
@@ -210,8 +211,8 @@ public class UserRegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtRepassword;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtRepassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

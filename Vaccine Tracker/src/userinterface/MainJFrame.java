@@ -54,6 +54,8 @@ public class MainJFrame extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1000, 800));
+        setMinimumSize(new java.awt.Dimension(1000, 800));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 100));

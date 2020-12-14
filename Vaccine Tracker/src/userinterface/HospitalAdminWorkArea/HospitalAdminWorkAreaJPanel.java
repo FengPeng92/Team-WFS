@@ -57,10 +57,10 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[4];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate() 
-                    +" (" + vaccine.getPhases().get(vaccine.getPhases().size()-1).getNumerator() + "/" + 
-                    vaccine.getPhases().get(vaccine.getPhases().size()-1).getDenominator() + ")";
+            row[2] = vaccine.getHospitalList().get(enterprise).getName();
+            row[3] = vaccine.getHospitalList().get(enterprise).getEffectiveRate() 
+                    +" (" + vaccine.getHospitalList().get(enterprise).getNumerator() + "/" + 
+                    vaccine.getHospitalList().get(enterprise).getDenominator() + ")";
             dtm.addRow(row);
         }
         
@@ -71,14 +71,13 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         Object[] row = new Object[4];
-        row[0] = vaccine;
-        row[1] = vaccine.getVaccineType();
-        row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-        row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate() 
-                    +" (" + vaccine.getPhases().get(vaccine.getPhases().size()-1).getNumerator() + "/" + 
-                    vaccine.getPhases().get(vaccine.getPhases().size()-1).getDenominator() + ")";
-        
-        dtm.addRow(row);
+            row[0] = vaccine;
+            row[1] = vaccine.getVaccineType();
+            row[2] = vaccine.getHospitalList().get(enterprise).getName();
+            row[3] = vaccine.getHospitalList().get(enterprise).getEffectiveRate() 
+                    +" (" + vaccine.getHospitalList().get(enterprise).getNumerator() + "/" + 
+                    vaccine.getHospitalList().get(enterprise).getDenominator() + ")";
+            dtm.addRow(row);
     }
    
 

@@ -36,8 +36,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.system = system;
         
     }
-    
-   
 
     
     /**

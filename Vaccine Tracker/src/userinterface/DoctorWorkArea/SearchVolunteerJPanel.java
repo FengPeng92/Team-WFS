@@ -104,19 +104,25 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
         int size = vaccine.getPhases().size();
         
         int number = 0;
-        int denominator = vaccine.getPhases().get(size-1).getVolunteers().size();
-        System.out.println("denominator" + denominator);
-        vaccine.getPhases().get(size-1).setDenominator(denominator);
+        int denominator = 0;
+        
         
         for (User user : vaccine.getPhases().get(size-1).getVolunteers()) {
-            if (user.isResult()) {
-                number++;
-            }
+            if (enterprise.getUserDirectory().getUserList().contains(user)) {
+                denominator++;
+                if (user.isResult()) {
+                    number++;
+                }
+            }      
         }
         System.out.println("number" + number);
-        vaccine.getPhases().get(size-1).setNumerator(number);
+        vaccine.getHospitalList().get(enterprise).setNumerator(number);
+        vaccine.getHospitalList().get(enterprise).setDenominator(denominator);
+//        vaccine.getPhases().get(size-1).setNumerator(number);
+//        vaccine.getPhases().get(size-1).setDenominator(denominator);
         double result = (double)number * 100.0/(double)denominator;
-        vaccine.getPhases().get(size-1).setEffectiveRate(result);
+        //vaccine.getPhases().get(size-1).setEffectiveRate(result);
+        vaccine.getHospitalList().get(enterprise).setEffectiveRate(result);
         System.out.println("Rate" + vaccine.getPhases().get(size-1).getEffectiveRate());
         
     }

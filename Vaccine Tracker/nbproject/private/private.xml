@@ -2,40 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/Image/depositphotos_33777219-stock-photo-register-here-sign.jpg</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/DoctorWorkArea/VaccineShootRequestJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/InstitutionAdminWorkArea/ManageScientistOrTesterJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/VolunteerWorkArea/VolunteerRegisterJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/DoctorWorkArea/DoctorWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/AdminJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/VolunteerWorkArea/VolunteerViewVaccineInfoJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/NormalUserWorkArea/NormalUserWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/TesterWorkArea/PreclinicalTestJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/WHOOfficerWorkArea/ManageVolunteerManagerJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/WHOOfficerWorkArea/WHOOfficerWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/VolunteerWorkArea/VolunteerWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/VolunteerWorkArea/TestAppoinmentViewJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/Image/u=1806815249,3548191952&amp;fm=26&amp;gp=0.jpg</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/InstitutionAdminWorkArea/InstitutionAdminWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/ManageEnterpriseAdminJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/VolunteerManagerWorkArea/VolunteerManagerWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/HospitalAdminWorkArea/ManageDoctorsJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/TesterWorkArea/TesterWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/ScientistWorkArea/VaccineInfoJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/NormalUserWorkArea/ViewVaccineInfoJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/ScientistWorkArea/NewVaccineJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/ScientistWorkArea/ScientistWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/VolunteerWorkArea/VolunteerViewVaccineDetailJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/HospitalAdminWorkArea/HospitalAdminWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/WHOOfficerWorkArea/PhaseTestResultJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/MainJFrame.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/NormalUserWorkArea/UserRegisterJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/VolunteerWorkArea/RequestTestVaccineJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/DoctorWorkArea/SearchVolunteerJPanel.java</file>
-            <file>file:/C:/Users/jaysu/Desktop/test6/Team-WFS-Jiaqi_version/Vaccine%20Tracker/src/userinterface/SystemAdminWorkArea/ManageNetworkJPanel.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

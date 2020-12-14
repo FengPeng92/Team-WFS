@@ -62,7 +62,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm =(DefaultTableModel) tableHospital.getModel();
         dtm.setRowCount(0);
         
-        for (Enterprise enterprise: vaccine.getHospitalList()) {
+        for (Enterprise enterprise: vaccine.getHospitalList().keySet()) {
                 Object[] row = new Object[3];
                 row[0] = enterprise;
                 dtm.addRow(row);
@@ -361,7 +361,6 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 int size = selectedVaccine.getPhases().size();
                 selectedUser.setPhaseIndex(size-1);
                 selectedVaccine.getPhases().get(size-1).getVolunteers().add(selectedUser);
-                System.out.println(selectedUser.getPhaseIndex());
                 newRequest.setSender(userAccount);
                 system.getWorkQueue().getWorkRequestList().add(newRequest);
                 JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
@@ -376,11 +375,15 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (newRequest == null) {
             JOptionPane.showMessageDialog(null, "Please book an appoinmnet first. ");
-        } else {
+            return;
+        }
+        if (system.getWorkQueue().getWorkRequestList().contains(newRequest)) {
             TestAppoinmentViewJPanel testAppoinmentViewJPanel = new TestAppoinmentViewJPanel(userProcessContainer, userAccount, organization, enterprise, system, newRequest, selectedUser);
             userProcessContainer.add("TestAppoinmentViewJPanel", testAppoinmentViewJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please book an appoinmnet first. ");
         }
        
         

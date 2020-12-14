@@ -45,8 +45,8 @@ public class InstitutionAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.system = system;
-        
-        
+       
+        System.out.println(account.getUsername());
         jLabel1.setText(enterprise.getName());
         jLabel3.setText(account.getUsername());
         
