@@ -7,6 +7,7 @@ package userinterface.TesterWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.Animal;
+import Business.Entity.AnimalDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ScientistRequestTesterRequest;
@@ -298,7 +299,11 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
             txtDetail.setText(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getDetail());
             txtTime.setText((ft.format(((ScientistRequestTesterRequest)selectedRequest).getVaccine().getCreatedTime())));
             
-            for (Animal a : ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList()) 
+//            if (((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory() == null) {
+//                int size = ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().size();
+//                ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(size-1).setEffectiveRate(0);
+//            } else {
+                for (Animal a : ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList()) 
             {
                 total += a.getTotal();
                 number += a.getNumber();
@@ -311,6 +316,8 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
                 int size = ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().size();
                 ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(size-1).setEffectiveRate(((number*100)/total));
             }
+            //}
+            
             
             populate();
         } else {
@@ -323,6 +330,8 @@ public class TesterWorkAreaJPanel extends javax.swing.JPanel {
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setEndDate(new Date());
         ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getPhases().get(0).setStatus("Reported");
         ((ScientistRequestTesterRequest)selectedRequest).setIsTested(true);
+        ((ScientistRequestTesterRequest)selectedRequest).getVaccine().setAnimalDirectory(new AnimalDirectory());
+        //system.getWorkQueue().getWorkRequestList().remove(selectedRequest);
         txtDetail.setText("");
         txtName.setText("");
         txtRate.setText("");

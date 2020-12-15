@@ -64,7 +64,6 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         }
         //txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
         txtDescription.setText(phase.getDescription());
-        txtWHODescription.setText(phase.getWHOdescription());
         txtDetail.setText(selectedVaccine.getDetail());
         jLabel4.setText(enterprise.getName());
         jLabel6.setText(userAccount.getUsername());
@@ -102,9 +101,6 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         txtPhase = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtWHODescription = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtDetail = new javax.swing.JTextArea();
         jRadioBtnYes = new javax.swing.JRadioButton();
@@ -197,15 +193,6 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
 
         txtPhase.setEnabled(false);
         add(txtPhase, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 148, 136, 35));
-
-        jLabel19.setText("WHO Officer Description: ");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 456, 177, 35));
-
-        txtWHODescription.setColumns(20);
-        txtWHODescription.setRows(5);
-        jScrollPane3.setViewportView(txtWHODescription);
-
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 456, 244, -1));
 
         txtDetail.setColumns(20);
         txtDetail.setRows(5);
@@ -351,7 +338,6 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -363,7 +349,6 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioBtnNo;
     private javax.swing.JRadioButton jRadioBtnYes;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTextField txtCreateTime;
@@ -377,6 +362,5 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtVaccineName;
     private javax.swing.JTextField txtVaccineType;
-    private javax.swing.JTextArea txtWHODescription;
     // End of variables declaration//GEN-END:variables
 }

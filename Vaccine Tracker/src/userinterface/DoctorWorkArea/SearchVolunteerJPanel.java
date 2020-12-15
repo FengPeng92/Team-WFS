@@ -223,7 +223,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 btnSelectActionPerformed(evt);
             }
         });
-        add(btnSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 459, 135, 45));
+        add(btnSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 135, 45));
 
         jLabel6.setText("Username:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 526, 135, 35));
@@ -260,7 +260,7 @@ public class SearchVolunteerJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 78, 66, 37));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 66, 37));
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
 

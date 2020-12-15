@@ -361,6 +361,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 Phase phase2 = new Phase("Phase 2", "", "Started");
                 selectedVaccine.getPhases().add(phase2);
                 for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
+                    //selectedVaccine.getHospitalList().remove(hospital);
                     selectedVaccine.getHospitalList().put(hospital, new Phase("Phase 2", "", "Started"));
                 }
 //                populateAll();
@@ -370,6 +371,7 @@ public class ScientistWorkAreaJPanel extends javax.swing.JPanel {
                 Phase phase3 = new Phase("Phase 3", "", "Started");
                 selectedVaccine.getPhases().add(phase3);
                 for (Enterprise hospital : selectedVaccine.getHospitalList().keySet()) {
+                    //selectedVaccine.getHospitalList().remove(hospital);
                     selectedVaccine.getHospitalList().put(hospital, new Phase("Phase 2", "", "Started"));
                 }
 //                populateAll();

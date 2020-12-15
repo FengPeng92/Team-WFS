@@ -251,6 +251,9 @@ public class PreclinicalTestJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm=(DefaultTableModel) jTable2.getModel();
         dtm.setRowCount(0);
         
+//        if (((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory() == null) {
+//            return;
+//        }
         for (Animal animal : ((ScientistRequestTesterRequest)selectedRequest).getVaccine().getAnimalDirectory().getAnimalList()) {
             Object[] row = new Object[5];
             row[0] = animal.getAnimalName();
