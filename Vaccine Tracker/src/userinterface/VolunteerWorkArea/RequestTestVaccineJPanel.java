@@ -43,6 +43,8 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
 
     RequestTestVaccineJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem system, User selectedUser) {
         initComponents();
+        jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+
         
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
@@ -60,7 +62,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm =(DefaultTableModel) tableHospital.getModel();
         dtm.setRowCount(0);
         
-        for (Enterprise enterprise: vaccine.getHospitalList()) {
+        for (Enterprise enterprise: vaccine.getHospitalList().keySet()) {
                 Object[] row = new Object[3];
                 row[0] = enterprise;
                 dtm.addRow(row);
@@ -92,7 +94,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             row[3] = vaccine.getPhases().get(size-1).getName();
             row[4] = vaccine.getPhases().get(size-1).getStatus();
             dtm.addRow(row);
-                }
+        }
             //}
             
         //}
@@ -182,10 +184,14 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("Vaccine: ");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 121, 103, 31));
 
         tableVaccine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,21 +206,32 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableVaccine);
 
-        jLabel5.setText("Institution: ");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 163, 810, 211));
+        add(txtVaccine, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 118, 108, 38));
 
+        jLabel5.setText("Institution: ");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 120, 112, 32));
+
+        boxInstitution.setBackground(new java.awt.Color(255, 255, 255));
+        add(boxInstitution, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 117, 181, 38));
+
+        btnSearch.setBackground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 116, -1, 41));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Select a Vaccine");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 392, -1, 41));
 
         tableHospital.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -229,26 +246,34 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tableHospital);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 451, 466, 224));
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("View my appoinment");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(764, 628, -1, 47));
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Make an appoinment");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(764, 451, -1, 47));
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 67, -1, 43));
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -265,7 +290,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,68 +307,11 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxInstitution, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1145, Short.MAX_VALUE)
-                                .addComponent(btnSearch)
-                                .addGap(16, 16, 16))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(95, 95, 95))))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxInstitution, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(429, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Appointment1.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 370, 230));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -390,7 +358,9 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
                 selectedHospital.getUserDirectory().getUserList().add(selectedUser);
                 ((VaccineShootRequest)newRequest).setShootingStatus("Request to Shoot");               
                 selectedUser.setVaccine(selectedVaccine);
-                System.out.println(system.getWorkQueue().getVaccineShootRequestList().size() + " request");
+                int size = selectedVaccine.getPhases().size();
+                selectedUser.setPhaseIndex(size-1);
+                selectedVaccine.getPhases().get(size-1).getVolunteers().add(selectedUser);
                 newRequest.setSender(userAccount);
                 system.getWorkQueue().getWorkRequestList().add(newRequest);
                 JOptionPane.showMessageDialog(null, "Your appoinment has been booked successfully");
@@ -405,11 +375,15 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (newRequest == null) {
             JOptionPane.showMessageDialog(null, "Please book an appoinmnet first. ");
-        } else {
+            return;
+        }
+        if (system.getWorkQueue().getWorkRequestList().contains(newRequest)) {
             TestAppoinmentViewJPanel testAppoinmentViewJPanel = new TestAppoinmentViewJPanel(userProcessContainer, userAccount, organization, enterprise, system, newRequest, selectedUser);
             userProcessContainer.add("TestAppoinmentViewJPanel", testAppoinmentViewJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please book an appoinmnet first. ");
         }
        
         
@@ -435,6 +409,7 @@ public class RequestTestVaccineJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

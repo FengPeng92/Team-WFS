@@ -39,7 +39,7 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     public PhaseTestResultJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, WorkRequest selectedWorkRequest) {
         initComponents();
         
-        this.userAccount = userAccount;
+        this.userAccount = account;
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.selectedenterprise = enterprise;
@@ -56,10 +56,17 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         txtStartTime.setText(ft.format(phase.getStartDate()));
         txtEndTime.setText(ft.format(phase.getEndDate()) == null ? "" : ft.format(phase.getEndDate()));
         txtStatus.setText(phase.getStatus());
-        txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
+        if (phase.getEffectiveRate() == 0) {
+            txtEffectiveRate.setText("0");
+        } else {
+            String effective = phase.getEffectiveRate() + "%" + " (" + phase.getNumerator() + "/" + phase.getDenominator() + ")";
+            txtEffectiveRate.setText(effective);
+        }
+        //txtEffectiveRate.setText(phase.getEffectiveRate() == 0 ? "TBD" : String.valueOf(phase.getEffectiveRate()));
         txtDescription.setText(phase.getDescription());
-        txtWHODescription.setText(phase.getWHOdescription());
         txtDetail.setText(selectedVaccine.getDetail());
+        jLabel4.setText(enterprise.getName());
+        jLabel6.setText(userAccount.getUsername());
     }
 
     /**
@@ -88,16 +95,12 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtEffectiveRate = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         txtPhase = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtWHODescription = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtDetail = new javax.swing.JTextArea();
         jRadioBtnYes = new javax.swing.JRadioButton();
@@ -108,89 +111,117 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtEffectiveRate2 = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setEnabled(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("Vaccine Name: ");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 148, 128, 35));
 
         txtVaccineName.setEnabled(false);
+        add(txtVaccineName, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 148, 123, 35));
 
         jLabel8.setText("Create Time:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 201, 128, 35));
 
         txtCreateTime.setEnabled(false);
+        add(txtCreateTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 201, 123, 35));
 
         jLabel9.setText("Detail: ");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 317, 128, 35));
 
         jLabel10.setText("Vaccine Type: ");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 254, 128, 35));
 
         txtVaccineType.setEnabled(false);
+        add(txtVaccineType, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 254, 123, 35));
 
         jLabel11.setText("Phase: ");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 148, 128, 35));
 
         jLabel12.setText("Start Time: ");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 201, 128, 35));
 
         txtStartTime.setEnabled(false);
+        add(txtStartTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 201, 136, 35));
 
         jLabel13.setText("End Time:");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 254, 128, 35));
 
         txtEndTime.setEnabled(false);
+        add(txtEndTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 254, 136, 35));
 
         txtStatus.setEnabled(false);
+        add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 317, 138, 35));
 
         jLabel14.setText("Status: ");
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 317, 128, 35));
 
         jLabel15.setText("Effective Rate: ");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 370, 128, 35));
 
         txtEffectiveRate.setEnabled(false);
-
-        jLabel16.setText("%");
+        add(txtEffectiveRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 130, 35));
 
         jLabel17.setText("Description: ");
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 456, 128, 35));
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
         txtDescription.setEnabled(false);
         jScrollPane2.setViewportView(txtDescription);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 456, -1, 108));
+
         jLabel18.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Vaccine Information Detail");
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 83, 485, 37));
 
+        backBtn.setBackground(new java.awt.Color(255, 255, 255));
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 82, 83, 39));
 
         txtPhase.setEnabled(false);
-
-        jLabel19.setText("WHO Officer Description: ");
-
-        txtWHODescription.setColumns(20);
-        txtWHODescription.setRows(5);
-        jScrollPane3.setViewportView(txtWHODescription);
+        add(txtPhase, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 148, 136, 35));
 
         txtDetail.setColumns(20);
         txtDetail.setRows(5);
         txtDetail.setEnabled(false);
         jScrollPane4.setViewportView(txtDetail);
 
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 317, -1, -1));
+
+        jRadioBtnYes.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jRadioBtnYes);
         jRadioBtnYes.setText("Yes");
+        add(jRadioBtnYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 615, -1, -1));
 
         jLabel1.setText("Whether can go to next test stage? ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 612, 244, 35));
 
+        jRadioBtnNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jRadioBtnNo);
         jRadioBtnNo.setText("No");
+        add(jRadioBtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 615, -1, -1));
 
+        submitBtn.setBackground(new java.awt.Color(255, 255, 255));
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
+        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 607, -1, 44));
 
         jPanel5.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -224,140 +255,14 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(61, 61, 61)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtVaccineType, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtVaccineName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCreateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(jRadioBtnYes)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioBtnNo))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submitBtn)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtEffectiveRate, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPhase, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(136, 136, 136))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtVaccineName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCreateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtVaccineType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEffectiveRate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPhase, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(55, 55, 55))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioBtnYes)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioBtnNo)
-                    .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(353, Short.MAX_VALUE))
-        );
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/World-Health-Organization-Logo.jpg"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 540, 600));
+
+        txtEffectiveRate2.setEnabled(false);
+        add(txtEffectiveRate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 58, 35));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -378,28 +283,45 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
             return;
         } else if (jRadioBtnYes.isSelected()) {
             ((ReportToWHORequest)selectedWorkRequest).setIsChecked(true);
+            
             if (selectedVaccine.getPhases().size() == 1) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(0).setStatus("Finished");
+                
             } else if (selectedVaccine.getPhases().size() == 2) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(1).setStatus("Finished");
+//                for (Enterprise enterprise : selectedVaccine.getHospitalList().keySet()) {
+//                    selectedVaccine.getHospitalList().put(enterprise, new Phase("Phase 2", "", "Started"));
+//                }
 //                Phase phase2 = new Phase("Phase 2", "", "Started");
 //                selectedVaccine.getPhases().add(phase2);
             } else if (selectedVaccine.getPhases().size() == 3) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(2).setStatus("Finished");
+//                for (Enterprise enterprise : selectedVaccine.getHospitalList().keySet()) {
+//                    selectedVaccine.getHospitalList().put(enterprise, new Phase("Phase 3", "", "Started"));
+//                }
 //                Phase phase3 = new Phase("Phase 3", "", "Started");
 //                selectedVaccine.getPhases().add(phase3);
             } else if (selectedVaccine.getPhases().size() == 4) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(3).setStatus("Finished");
-//                Phase approve = new Phase("Approve", "", "Started");
-//                selectedVaccine.getPhases().add(approve);
+                
+                Phase approve = new Phase("Approve", "", "Finished");
+                selectedVaccine.getPhases().add(approve);
+                txtPhase.setText("Approve");
+                txtStatus.setText("Finished");
+                system.getWorkQueue().getWorkRequestList().remove(selectedWorkRequest);
+                JOptionPane.showMessageDialog(null, "Congrulation! This vaccine has been approved!"); 
+                return;
             }
-            JOptionPane.showMessageDialog(null, "submit successfully");
-            system.getWorkQueue().getReportToWHORequestList().remove(selectedWorkRequest);
+            system.getWorkQueue().getWorkRequestList().remove(selectedWorkRequest); 
+            txtStatus.setText("Finished");
+            JOptionPane.showMessageDialog(null, "submit successfully");           
             
         } else if (jRadioBtnNo.isSelected()) {
             int size = ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().size();
             ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().remove(size-1);
             ((ReportToWHORequest)selectedWorkRequest).setIsChecked(true);
+            system.getWorkQueue().getWorkRequestList().remove(selectedWorkRequest);
+            txtStatus.setText("Finished");
             JOptionPane.showMessageDialog(null, "submit successfully");
         }
         
@@ -418,10 +340,9 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -432,19 +353,18 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioBtnNo;
     private javax.swing.JRadioButton jRadioBtnYes;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTextField txtCreateTime;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextArea txtDetail;
     private javax.swing.JTextField txtEffectiveRate;
+    private javax.swing.JTextField txtEffectiveRate2;
     private javax.swing.JTextField txtEndTime;
     private javax.swing.JTextField txtPhase;
     private javax.swing.JTextField txtStartTime;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtVaccineName;
     private javax.swing.JTextField txtVaccineType;
-    private javax.swing.JTextArea txtWHODescription;
     // End of variables declaration//GEN-END:variables
 }

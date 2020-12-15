@@ -17,6 +17,9 @@ public class User {
     private String email;
     private int age;
     private Vaccine vaccine;
+    private boolean result;
+    private boolean isTested;
+    private int phaseIndex = 0;
 
     public User(UserAccount userAccount, String email, int age) {
         this.userAccount = userAccount;
@@ -56,7 +59,33 @@ public class User {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
+
+    public boolean isResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
+    }
+
+    public int getPhaseIndex() {
+        return phaseIndex;
+    }
+
+    public void setPhaseIndex(int phaseIndex) {
+        this.phaseIndex = phaseIndex;
+    }
+
+    public boolean isIsTested() {
+        return isTested;
+    }
+
+    public void setIsTested(boolean isTested) {
+        this.isTested = isTested;
+    }
     
+    
+
     
 
     @Override

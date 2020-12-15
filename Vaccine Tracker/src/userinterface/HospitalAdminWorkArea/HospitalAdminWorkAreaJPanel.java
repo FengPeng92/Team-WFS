@@ -33,6 +33,8 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     public HospitalAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
+        jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+
         
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
@@ -55,8 +57,10 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             Object[] row = new Object[4];
             row[0] = vaccine;
             row[1] = vaccine.getVaccineType();
-            row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-            row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate();
+            row[2] = vaccine.getHospitalList().get(enterprise).getName();
+            row[3] = vaccine.getHospitalList().get(enterprise).getEffectiveRate() 
+                    +" (" + vaccine.getHospitalList().get(enterprise).getNumerator() + "/" + 
+                    vaccine.getHospitalList().get(enterprise).getDenominator() + ")";
             dtm.addRow(row);
         }
         
@@ -67,12 +71,13 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         Object[] row = new Object[4];
-        row[0] = vaccine;
-        row[1] = vaccine.getVaccineType();
-        row[2] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getName();
-        row[3] = vaccine.getPhases().get(vaccine.getPhases().size()-1).getEffectiveRate();
-        
-        dtm.addRow(row);
+            row[0] = vaccine;
+            row[1] = vaccine.getVaccineType();
+            row[2] = vaccine.getHospitalList().get(enterprise).getName();
+            row[3] = vaccine.getHospitalList().get(enterprise).getEffectiveRate() 
+                    +" (" + vaccine.getHospitalList().get(enterprise).getNumerator() + "/" + 
+                    vaccine.getHospitalList().get(enterprise).getDenominator() + ")";
+            dtm.addRow(row);
     }
    
 
@@ -98,24 +103,33 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("Vaccine: ");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 160, 113, 32));
+        add(txtVaccine, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 156, 118, 40));
 
+        btnSearch.setBackground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 156, 109, 40));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("List All Vaccines");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(671, 156, 207, 40));
 
         tableVaccine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,19 +144,25 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableVaccine);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 226, 794, 235));
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Report to Institution");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 493, 153, 45));
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Manage Doctors");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 493, 182, 45));
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -159,7 +179,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,47 +196,10 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1765, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(122, 122, 122))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(654, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/vaccine-research-design-cartoon-scientific-doctor-vector-33886994.jpg"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1350, 760));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -257,6 +240,27 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             WorkRequest request = new ReportToInstitutionRequest();
             ((ReportToInstitutionRequest)request).setVaccine(selectedVaccine);
             system.getWorkQueue().getWorkRequestList().add(request);
+            int size = selectedVaccine.getPhases().size();
+            
+            int num = selectedVaccine.getPhases().get(size-1).getNumerator();
+            num += selectedVaccine.getHospitalList().get(enterprise).getNumerator();
+            int de = selectedVaccine.getPhases().get(size-1).getDenominator();
+            de += selectedVaccine.getHospitalList().get(enterprise).getDenominator();
+            selectedVaccine.getPhases().get(size-1).setNumerator(num);
+            selectedVaccine.getPhases().get(size-1).setDenominator(de);
+            double result = (double)num * 100.0 / (double)de;
+            selectedVaccine.getPhases().get(size-1).setEffectiveRate(result);
+            System.out.println(result);
+            
+//            int a = 0, b = 0;
+//            for (WorkRequest workrequest : system.getWorkQueue().getReportToWHORequestList()) {
+//                if (((ReportToInstitutionRequest)request).getVaccine() == selectedVaccine) {
+//                    
+//                    int size = ((ReportToInstitutionRequest)request).getVaccine().getPhases().size();
+//                    
+//                    a += ((ReportToInstitutionRequest)request).getVaccine().getPhases().get(size-1).setNumerator(a);
+//                }
+//            }
             JOptionPane.showMessageDialog(null, "Report successfully");
         } else {
             JOptionPane.showMessageDialog(null, "Please selected a vaccine.");
@@ -274,6 +278,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableVaccine;

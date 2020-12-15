@@ -6,10 +6,11 @@
 package Business.Entity;
 
 import Business.Enterprise.Enterprise;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -21,8 +22,10 @@ public class Vaccine {
     private String vaccineType;
     private String detail;
     private Date createdTime;
-    private List<Enterprise> hospitalList;
+    //private List<Enterprise> hospitalList;
+    private Map<Enterprise, Phase> hospitalList;
     private String status;
+    //private List<User> userList;
     
     private AnimalDirectory animalDirectory;
 
@@ -31,10 +34,11 @@ public class Vaccine {
         this.vaccineType = vaccineType;
         this.detail = detail;
         this.phases = new ArrayList<>();
-        this.hospitalList = new ArrayList<>();
+        this.hospitalList = new HashMap<>();
         this.createdTime = createdTime;
         this.animalDirectory = new AnimalDirectory();
         this.status = status;
+        //this.userList = new ArrayList<>();
     }
 
     public String getVaccineName() {
@@ -82,14 +86,22 @@ public class Vaccine {
         return this.vaccineName;
     }
 
-    public List<Enterprise> getHospitalList() {
+//    public List<Enterprise> getHospitalList() {
+//        return hospitalList;
+//    }
+//
+//    public void setHospitalList(List<Enterprise> hospitalList) {
+//        this.hospitalList = hospitalList;
+//    }
+
+    public Map<Enterprise, Phase> getHospitalList() {
         return hospitalList;
     }
 
-    public void setHospitalList(List<Enterprise> hospitalList) {
+    public void setHospitalList(Map<Enterprise, Phase> hospitalList) {
         this.hospitalList = hospitalList;
     }
-
+    
     public AnimalDirectory getAnimalDirectory() {
         return animalDirectory;
     }
@@ -105,10 +117,5 @@ public class Vaccine {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
-    
-    
-    
     
 }
