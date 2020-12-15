@@ -296,14 +296,22 @@ public class PhaseTestResultJPanel extends javax.swing.JPanel {
             return;
         } else if (jRadioBtnYes.isSelected()) {
             ((ReportToWHORequest)selectedWorkRequest).setIsChecked(true);
+            
             if (selectedVaccine.getPhases().size() == 1) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(0).setStatus("Finished");
+                
             } else if (selectedVaccine.getPhases().size() == 2) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(1).setStatus("Finished");
+//                for (Enterprise enterprise : selectedVaccine.getHospitalList().keySet()) {
+//                    selectedVaccine.getHospitalList().put(enterprise, new Phase("Phase 2", "", "Started"));
+//                }
 //                Phase phase2 = new Phase("Phase 2", "", "Started");
 //                selectedVaccine.getPhases().add(phase2);
             } else if (selectedVaccine.getPhases().size() == 3) {
                 ((ReportToWHORequest)selectedWorkRequest).getVaccine().getPhases().get(2).setStatus("Finished");
+//                for (Enterprise enterprise : selectedVaccine.getHospitalList().keySet()) {
+//                    selectedVaccine.getHospitalList().put(enterprise, new Phase("Phase 3", "", "Started"));
+//                }
 //                Phase phase3 = new Phase("Phase 3", "", "Started");
 //                selectedVaccine.getPhases().add(phase3);
             } else if (selectedVaccine.getPhases().size() == 4) {

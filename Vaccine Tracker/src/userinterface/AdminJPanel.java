@@ -151,7 +151,6 @@ public class AdminJPanel extends javax.swing.JPanel {
         else{
             jButton1.setVisible(false);
             CardLayout layout=(CardLayout)container.getLayout();
-            System.out.println(userAccount.getRole().toString());
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
             layout.next(container);
         }

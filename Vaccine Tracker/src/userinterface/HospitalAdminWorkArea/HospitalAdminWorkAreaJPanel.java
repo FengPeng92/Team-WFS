@@ -250,6 +250,7 @@ public class HospitalAdminWorkAreaJPanel extends javax.swing.JPanel {
             selectedVaccine.getPhases().get(size-1).setDenominator(de);
             double result = (double)num * 100.0 / (double)de;
             selectedVaccine.getPhases().get(size-1).setEffectiveRate(result);
+            System.out.println(result);
             
 //            int a = 0, b = 0;
 //            for (WorkRequest workrequest : system.getWorkQueue().getReportToWHORequestList()) {
